@@ -1,8 +1,8 @@
-# .dotfiles/nvim/.config/nvim
+# nvim/
 
-[![Plugins](https://dotfyle.com/emretuna/dotfiles-nvim-config-nvim/badges/plugins?style=flat)](https://dotfyle.com/emretuna/dotfiles-nvim-config-nvim)
-[![Leader Key](https://dotfyle.com/emretuna/dotfiles-nvim-config-nvim/badges/leaderkey?style=flat)](https://dotfyle.com/emretuna/dotfiles-nvim-config-nvim)
-[![Plugin Manager](https://dotfyle.com/emretuna/dotfiles-nvim-config-nvim/badges/plugin-manager?style=flat)](https://dotfyle.com/emretuna/dotfiles-nvim-config-nvim)
+<a href="https://dotfyle.com/emretuna/nvim"><img src="https://dotfyle.com/emretuna/nvim/badges/plugins?style=flat" /></a>
+<a href="https://dotfyle.com/emretuna/nvim"><img src="https://dotfyle.com/emretuna/nvim/badges/leaderkey?style=flat" /></a>
+<a href="https://dotfyle.com/emretuna/nvim"><img src="https://dotfyle.com/emretuna/nvim/badges/plugin-manager?style=flat" /></a>
 
 ## Install Instructions
 
@@ -11,40 +11,42 @@
 Clone the repository and install the plugins:
 
 ```sh
-git clone git@github.com:emretuna/.dotfiles ~/.config/emretuna/.dotfiles
+git clone git@github.com:emretuna/nvim ~/.config/emretuna/nvim
 ```
 
 Open Neovim with this config:
 
 ```sh
-NVIM_APPNAME=emretuna/.dotfiles/nvim/.config/nvim nvim
+NVIM_APPNAME=emretuna/nvim/ nvim
 ```
 
 ## Plugins
 
-### bars-and-lines
+### ai
 
-- [SmiteshP/nvim-navic](https://dotfyle.com/plugins/SmiteshP/nvim-navic)
+- [monkoose/neocodeium](https://dotfyle.com/plugins/monkoose/neocodeium)
+- [yetone/avante.nvim](https://dotfyle.com/plugins/yetone/avante.nvim)
 
 ### color
 
-- [NvChad/nvim-colorizer.lua](https://dotfyle.com/plugins/NvChad/nvim-colorizer.lua)
+- [brenoprata10/nvim-highlight-colors](https://dotfyle.com/plugins/brenoprata10/nvim-highlight-colors)
 - [folke/twilight.nvim](https://dotfyle.com/plugins/folke/twilight.nvim)
+- [echasnovski/mini.hipatterns](https://dotfyle.com/plugins/echasnovski/mini.hipatterns)
 
 ### colorscheme
 
 - [folke/tokyonight.nvim](https://dotfyle.com/plugins/folke/tokyonight.nvim)
+- [rose-pine/neovim](https://dotfyle.com/plugins/rose-pine/neovim)
 
 ### comment
 
 - [danymat/neogen](https://dotfyle.com/plugins/danymat/neogen)
-- [folke/todo-comments.nvim](https://dotfyle.com/plugins/folke/todo-comments.nvim)
-- [JoosepAlviste/nvim-ts-context-commentstring](https://dotfyle.com/plugins/JoosepAlviste/nvim-ts-context-commentstring)
-- [echasnovski/mini.comment](https://dotfyle.com/plugins/echasnovski/mini.comment)
 
 ### completion
 
 - [hrsh7th/nvim-cmp](https://dotfyle.com/plugins/hrsh7th/nvim-cmp)
+- [iguanacucumber/magazine.nvim](https://dotfyle.com/plugins/iguanacucumber/magazine.nvim)
+- [zbirenbaum/copilot.lua](https://dotfyle.com/plugins/zbirenbaum/copilot.lua)
 
 ### debugging
 
@@ -57,13 +59,12 @@ NVIM_APPNAME=emretuna/.dotfiles/nvim/.config/nvim nvim
 
 ### editing-support
 
-- [nvim-treesitter/nvim-treesitter-context](https://dotfyle.com/plugins/nvim-treesitter/nvim-treesitter-context)
 - [echasnovski/mini.ai](https://dotfyle.com/plugins/echasnovski/mini.ai)
-- [windwp/nvim-autopairs](https://dotfyle.com/plugins/windwp/nvim-autopairs)
-- [windwp/nvim-ts-autotag](https://dotfyle.com/plugins/windwp/nvim-ts-autotag)
+- [echasnovski/mini.pairs](https://dotfyle.com/plugins/echasnovski/mini.pairs)
 - [folke/zen-mode.nvim](https://dotfyle.com/plugins/folke/zen-mode.nvim)
-- [Wansmer/treesj](https://dotfyle.com/plugins/Wansmer/treesj)
-- [debugloop/telescope-undo.nvim](https://dotfyle.com/plugins/debugloop/telescope-undo.nvim)
+- [windwp/nvim-ts-autotag](https://dotfyle.com/plugins/windwp/nvim-ts-autotag)
+- [echasnovski/mini.splitjoin](https://dotfyle.com/plugins/echasnovski/mini.splitjoin)
+- [nvim-treesitter/nvim-treesitter-context](https://dotfyle.com/plugins/nvim-treesitter/nvim-treesitter-context)
 
 ### file-explorer
 
@@ -75,11 +76,16 @@ NVIM_APPNAME=emretuna/.dotfiles/nvim/.config/nvim nvim
 
 ### fuzzy-finder
 
-- [nvim-telescope/telescope.nvim](https://dotfyle.com/plugins/nvim-telescope/telescope.nvim)
+- [ibhagwan/fzf-lua](https://dotfyle.com/plugins/ibhagwan/fzf-lua)
 
 ### git
 
 - [lewis6991/gitsigns.nvim](https://dotfyle.com/plugins/lewis6991/gitsigns.nvim)
+- [sindrets/diffview.nvim](https://dotfyle.com/plugins/sindrets/diffview.nvim)
+
+### icon
+
+- [nvim-tree/nvim-web-devicons](https://dotfyle.com/plugins/nvim-tree/nvim-web-devicons)
 
 ### indent
 
@@ -87,15 +93,14 @@ NVIM_APPNAME=emretuna/.dotfiles/nvim/.config/nvim nvim
 
 ### keybinding
 
-- [folke/which-key.nvim](https://dotfyle.com/plugins/folke/which-key.nvim)
+- [echasnovski/mini.clue](https://dotfyle.com/plugins/echasnovski/mini.clue)
 
 ### lsp
 
-- [SmiteshP/nvim-navbuddy](https://dotfyle.com/plugins/SmiteshP/nvim-navbuddy)
-- [j-hui/fidget.nvim](https://dotfyle.com/plugins/j-hui/fidget.nvim)
 - [onsails/lspkind.nvim](https://dotfyle.com/plugins/onsails/lspkind.nvim)
 - [neovim/nvim-lspconfig](https://dotfyle.com/plugins/neovim/nvim-lspconfig)
 - [mfussenegger/nvim-lint](https://dotfyle.com/plugins/mfussenegger/nvim-lint)
+- [j-hui/fidget.nvim](https://dotfyle.com/plugins/j-hui/fidget.nvim)
 
 ### lsp-installer
 
@@ -103,15 +108,20 @@ NVIM_APPNAME=emretuna/.dotfiles/nvim/.config/nvim nvim
 
 ### markdown-and-latex
 
-- [iamcco/markdown-preview.nvim](https://dotfyle.com/plugins/iamcco/markdown-preview.nvim)
+- [OXY2DEV/markview.nvim](https://dotfyle.com/plugins/OXY2DEV/markview.nvim)
 
 ### marks
 
-- [cbochs/grapple.nvim](https://dotfyle.com/plugins/cbochs/grapple.nvim)
+- [otavioschwanck/arrow.nvim](https://dotfyle.com/plugins/otavioschwanck/arrow.nvim)
+
+### media
+
+- [HakonHarnes/img-clip.nvim](https://dotfyle.com/plugins/HakonHarnes/img-clip.nvim)
 
 ### motion
 
-- [folke/flash.nvim](https://dotfyle.com/plugins/folke/flash.nvim)
+- [echasnovski/mini.jump2d](https://dotfyle.com/plugins/echasnovski/mini.jump2d)
+- [echasnovski/mini.jump](https://dotfyle.com/plugins/echasnovski/mini.jump)
 - [tris203/precognition.nvim](https://dotfyle.com/plugins/tris203/precognition.nvim)
 
 ### note-taking
@@ -120,10 +130,10 @@ NVIM_APPNAME=emretuna/.dotfiles/nvim/.config/nvim nvim
 
 ### nvim-dev
 
-- [kkharji/sqlite.lua](https://dotfyle.com/plugins/kkharji/sqlite.lua)
-- [folke/neodev.nvim](https://dotfyle.com/plugins/folke/neodev.nvim)
-- [nvim-lua/plenary.nvim](https://dotfyle.com/plugins/nvim-lua/plenary.nvim)
 - [MunifTanjim/nui.nvim](https://dotfyle.com/plugins/MunifTanjim/nui.nvim)
+- [kkharji/sqlite.lua](https://dotfyle.com/plugins/kkharji/sqlite.lua)
+- [nvim-lua/plenary.nvim](https://dotfyle.com/plugins/nvim-lua/plenary.nvim)
+- [folke/lazydev.nvim](https://dotfyle.com/plugins/folke/lazydev.nvim)
 
 ### plugin-manager
 
@@ -147,8 +157,8 @@ NVIM_APPNAME=emretuna/.dotfiles/nvim/.config/nvim nvim
 
 ### snippet
 
-- [rafamadriz/friendly-snippets](https://dotfyle.com/plugins/rafamadriz/friendly-snippets)
 - [L3MON4D3/LuaSnip](https://dotfyle.com/plugins/L3MON4D3/LuaSnip)
+- [rafamadriz/friendly-snippets](https://dotfyle.com/plugins/rafamadriz/friendly-snippets)
 
 ### split-and-window
 
@@ -164,9 +174,9 @@ NVIM_APPNAME=emretuna/.dotfiles/nvim/.config/nvim nvim
 
 ### syntax
 
-- [echasnovski/mini.surround](https://dotfyle.com/plugins/echasnovski/mini.surround)
-- [nvim-treesitter/nvim-treesitter-textobjects](https://dotfyle.com/plugins/nvim-treesitter/nvim-treesitter-textobjects)
 - [nvim-treesitter/nvim-treesitter](https://dotfyle.com/plugins/nvim-treesitter/nvim-treesitter)
+- [nvim-treesitter/nvim-treesitter-textobjects](https://dotfyle.com/plugins/nvim-treesitter/nvim-treesitter-textobjects)
+- [echasnovski/mini.surround](https://dotfyle.com/plugins/echasnovski/mini.surround)
 
 ### tabline
 
@@ -182,28 +192,27 @@ NVIM_APPNAME=emretuna/.dotfiles/nvim/.config/nvim nvim
 
 ### utility
 
-- [stevearc/dressing.nvim](https://dotfyle.com/plugins/stevearc/dressing.nvim)
-- [folke/noice.nvim](https://dotfyle.com/plugins/folke/noice.nvim)
 - [rcarriga/nvim-notify](https://dotfyle.com/plugins/rcarriga/nvim-notify)
 - [echasnovski/mini.animate](https://dotfyle.com/plugins/echasnovski/mini.animate)
 - [kevinhwang91/nvim-ufo](https://dotfyle.com/plugins/kevinhwang91/nvim-ufo)
+- [stevearc/dressing.nvim](https://dotfyle.com/plugins/stevearc/dressing.nvim)
+- [folke/noice.nvim](https://dotfyle.com/plugins/folke/noice.nvim)
 
 ### web-development
 
-- [luckasRanarison/tailwind-tools.nvim](https://dotfyle.com/plugins/luckasRanarison/tailwind-tools.nvim)
 - [mistweaverco/kulala.nvim](https://dotfyle.com/plugins/mistweaverco/kulala.nvim)
+- [luckasRanarison/tailwind-tools.nvim](https://dotfyle.com/plugins/luckasRanarison/tailwind-tools.nvim)
 
 ## Language Servers
 
 - clangd
 - cssls
-- emmet_ls
 - gopls
 - graphql
 - html
+- intelephense
 - jsonls
 - lua_ls
-- phpactor
 - prismals
 - svelte
 - tailwindcss
