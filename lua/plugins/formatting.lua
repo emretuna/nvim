@@ -31,7 +31,8 @@ return {
       markdown = { 'prettier', 'markdownlint' },
       graphql = { 'prettier' },
       lua = { 'stylua' },
-      php = { 'phpcbf', 'php_cs_fixer', 'pint' },
+      php = { 'pint', 'php_cs_fixer', 'phpcbf' },
+      blade = { 'blade-formatter' },
       ['_'] = { 'trim_whitespace', 'trim_newlines' },
 
       -- python = { "isort", "black" },

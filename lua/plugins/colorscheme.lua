@@ -16,9 +16,6 @@ return {
       --- @usage 'auto'|'main'|'moon'|'dawn'
       dark_variant = 'main',
       disable_italics = true,
-      styles = {
-        transparency = true,
-      },
     },
     config = function(_, opts)
       require('rose-pine').setup(opts)

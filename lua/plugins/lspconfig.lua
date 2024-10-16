@@ -203,6 +203,9 @@ return {
           completion = {
             enabled = true,
           },
+          format = {
+            enable = false, -- use boolean
+          },
           settings = {
             intelephense = {
               telemetry = {
@@ -268,6 +271,7 @@ return {
       -- for you, so that they are available from within Neovim.
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
+        'blade-formatter',
         'cssls',
         'emmet-language-server',
         'eslint_d', -- js linter

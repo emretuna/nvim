@@ -14,6 +14,7 @@ return {
     ---eol stands for `end of column` - Recommended to set `virtual_symbol_suffix = ''` when used.
     ---eow stands for `end of word` - Recommended to set `virtual_symbol_prefix = ' ' and virtual_symbol_suffix = ''` when used.
     virtual_symbol_position = 'eol',
+    exclude_buftypes = { 'text', 'nofile' },
   },
   config = function(_, opts)
     require('nvim-highlight-colors').setup(opts)

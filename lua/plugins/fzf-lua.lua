@@ -95,31 +95,7 @@ return {
     vim.keymap.set('n', '<leader>t.', '<cmd>FzfLua tabs<cr>', { desc = 'Tabs' })
     -- neoclip.nvim keymap
     vim.keymap.set('n', '<leader>fy', '<cmd>:lua require("neoclip.fzf")()<cr>', { desc = 'Find Yank History' })
-    -- Add keymap for project.nvim
-    vim.keymap.set('n', '<leader>fp', function()
-      local history = require 'project_nvim.utils.history'
-      fzf_lua.fzf_exec(function(cb)
-        local results = history.get_recent_projects()
-        for _, e in ipairs(results) do
-          cb(e)
-        end
-        cb()
-      end, {
-        actions = {
-          ['default'] = {
-            function(selected)
-              fzf_lua.files { cwd = selected[1] }
-            end,
-          },
-          ['ctrl-d'] = {
-            function(selected)
-              history.delete_project { value = selected[1] }
-            end,
-            fzf_lua.actions.resume,
-          },
-        },
-      })
-    end, { desc = 'Find Project' })
+
     -- Neovim config
     vim.keymap.set('n', '<leader>fN', function()
       -- specify vimconfig directory

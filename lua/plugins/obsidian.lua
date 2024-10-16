@@ -2,6 +2,7 @@ return {
   'epwalsh/obsidian.nvim',
   version = '*', -- recommended, use latest release instead of latest commit
   event = 'VeryLazy',
+  enabled = vim.fn.has 'macunix' == 1,
   dependencies = {
     'nvim-lua/plenary.nvim',
   },
