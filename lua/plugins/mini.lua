@@ -15,6 +15,13 @@ return {
           { mode = 'n', keys = 'g' },
           { mode = 'x', keys = 'g' },
 
+          --`c` key
+          { mode = 'n', keys = 's' },
+
+          -- `d` key
+          { mode = 'x', keys = 'd' },
+          { mode = 'n', keys = 'd' },
+
           -- Marks
           { mode = 'n', keys = "'" },
           { mode = 'n', keys = '`' },

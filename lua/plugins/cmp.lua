@@ -4,6 +4,7 @@ return {
     'iguanacucumber/magazine.nvim',
     name = 'nvim-cmp', -- Otherwise highlighting gets messed up
     event = 'InsertEnter',
+    -- enabled = false,
     dependencies = {
       'monkoose/neocodeium',
       -- Snippet Engine & its associated nvim-cmp source
@@ -150,18 +151,30 @@ return {
           { name = 'buffer', priority = 250 },
           { name = 'emoji', priority = 50 },
         },
-        ---@diagnostic disable-next-line: missing-fields
         formatting = {
+          -- kind icon / color icon + completion + kind text
+          fields = { 'menu', 'abbr', 'kind' },
+
           format = function(entry, item)
-            local color_item = require('nvim-highlight-colors').format(entry, { kind = item.kind })
-            item = require('lspkind').cmp_format {
-              require('tailwind-tools.cmp').lspkind_format,
-              -- any lspkind format settings here
-            }(entry, item)
-            if color_item.abbr_hl_group then
-              item.kind_hl_group = color_item.abbr_hl_group
-              item.kind = color_item.abbr
+            local entryItem = entry.completion_item
+            local color = entryItem.documentation
+
+            -- check if color is hexcolor
+            if color and type(color) == 'string' and color:match '^#%x%x%x%x%x%x$' then
+              local hl = 'hex-' .. color:sub(2)
+
+              if #vim.api.nvim_get_hl(0, { name = hl }) == 0 then
+                vim.api.nvim_set_hl(0, hl, { fg = color })
+              end
+
+              item.menu = ' '
+              item.menu_hl_group = hl
+
+              -- else
+              -- add your lspkind icon here!
+              -- item.menu_hl_group = item.kind_hl_group
             end
+
             return item
           end,
         },

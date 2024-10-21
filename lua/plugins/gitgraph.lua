@@ -3,6 +3,7 @@ return {
   dependencies = { 'sindrets/diffview.nvim' },
   ---@type I.GGConfig
   ---@diagnostic disable
+  event = 'VeryLazy',
   opts = {
     format = {
       timestamp = '%H:%M:%S %d-%m-%Y',
@@ -25,13 +26,10 @@ return {
       end,
     },
   },
-  keys = {
-    {
-      '<leader>gg',
-      function()
-        require('gitgraph').draw({}, { all = true, max_count = 5000 })
-      end,
-      desc = 'Git Graph',
-    },
-  },
+  config = function(_, opts)
+    require('gitgraph').setup(opts)
+    vim.keymap.set('n', '<leader>gg', function()
+      require('gitgraph').draw({}, { all = true, max_count = 5000 })
+    end, { desc = 'Git Graph' })
+  end,
 }

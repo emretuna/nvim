@@ -42,6 +42,11 @@ vim.keymap.set('n', '<leader>m-', '<C-w>v', { desc = 'Split Vertically' })
 vim.keymap.set('n', '<leader>m|', '<C-w>s', { desc = 'Split Horizontally' })
 vim.keymap.set('n', '<leader>mx', '<cmd>close<CR>', { desc = 'Close Current Split' })
 
+-- Resize window using <ctrl> arrow keys
+vim.keymap.set('n', '<C-Up>', '<cmd>resize +2<cr>', { desc = 'Increase Window Height' })
+vim.keymap.set('n', '<C-Down>', '<cmd>resize -2<cr>', { desc = 'Decrease Window Height' })
+vim.keymap.set('n', '<C-Left>', '<cmd>vertical resize -2<cr>', { desc = 'Decrease Window Width' })
+vim.keymap.set('n', '<C-Right>', '<cmd>vertical resize +2<cr>', { desc = 'Increase Window Width' })
 -- tabs
 vim.keymap.set('n', '<leader>to', '<cmd>tabnew<CR>', { desc = 'Open new tab' }) -- open new tab
 vim.keymap.set('n', '<leader>tx', '<cmd>tabclose<CR>', { desc = 'Close current tab' }) -- close current tab

@@ -5,12 +5,14 @@ return {
     'MunifTanjim/nui.nvim',
     'kevinhwang91/promise-async',
   },
+  ft = { 'php', 'blade' },
+  event = 'VeryLazy',
   cmd = { 'Laravel' },
-  keys = {
-    { '<leader>ma', ':Laravel artisan<cr>', desc = 'Laravel artisan' },
-    { '<leader>mr', ':Laravel routes<cr>', desc = 'Laravel routes' },
-    { '<leader>mm', ':Laravel related<cr>', desc = 'Laravel related' },
-  },
   opts = {},
-  config = true,
+  config = function()
+    require('laravel').setup()
+    vim.keymap.set('n', '<leader>ma', ':Laravel artisan<cr>', { desc = 'Laravel artisan' })
+    vim.keymap.set('n', '<leader>mr', ':Laravel routes<cr>', { desc = 'Laravel routes' })
+    vim.keymap.set('n', '<leader>mm', ':Laravel related<cr>', { desc = 'Laravel related' })
+  end,
 }

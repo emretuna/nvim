@@ -115,7 +115,6 @@ return {
       --  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
-
       -- Change the Diagnostic symbols in the sign column (gutter)
       local signs = { Error = ' ', Warn = ' ', Hint = '󰠠 ', Info = ' ' }
       for type, icon in pairs(signs) do
@@ -273,6 +272,9 @@ return {
       vim.list_extend(ensure_installed, {
         'blade-formatter',
         'cssls',
+        'css_variables',
+        'dockerls',
+        'docker_compose_language_service',
         'emmet-language-server',
         'eslint_d', -- js linter
         'gitui',

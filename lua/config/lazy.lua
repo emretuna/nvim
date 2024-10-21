@@ -22,9 +22,20 @@ require('lazy').setup({ { import = 'plugins' } }, {
   -- Enable luarocks if installed.
   rocks = { enabled = vim.fn.executable 'luarocks' == 1 },
   performance = {
+    cache = {
+      enabled = true,
+    },
+    reset_packpath = true,
     rtp = { -- Use deflate to download faster from the plugin repos.
       disabled_plugins = {
+        'osc52',
+        'parser',
         'tohtml',
+        'matchit',
+        'shadafile',
+        'spellfile',
+        'rplugin',
+        'tarPlugin',
         'gzip',
         'zipPlugin',
         'netrwPlugin',
@@ -33,7 +44,7 @@ require('lazy').setup({ { import = 'plugins' } }, {
     },
   },
   install = {
-    colorscheme = { 'rose-pine' },
+    colorscheme = { 'cyberpunk' },
   },
   checker = {
     enabled = true,
