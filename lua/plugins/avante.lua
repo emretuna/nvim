@@ -24,6 +24,10 @@ return {
           -- required for Windows users
           use_absolute_path = true,
         },
+        behaviour = {
+          auto_apply_diff_after_generation = true,
+          support_paste_from_clipboard = true,
+        },
       },
       keys = {
         {

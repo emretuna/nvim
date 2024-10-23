@@ -59,6 +59,7 @@ return {
           { mode = 'n', keys = '<Leader>s', desc = 'Search' },
           { mode = 'n', keys = '<Leader>t', desc = 'Tabs' },
           { mode = 'n', keys = '<Leader>m', desc = 'Misc' },
+          { mode = 'n', keys = '<Leader>w', desc = 'Window' },
           { mode = 'n', keys = '<Leader>x', desc = 'Trouble' },
           -- Enhance this by adding descriptions for <Leader> mapping groups
           require('mini.clue').gen_clues.builtin_completion(),
@@ -74,7 +75,18 @@ return {
   {
     'echasnovski/mini.pairs',
     event = 'VeryLazy',
-    opts = {},
+    opts = {
+      modes = { insert = true, command = true, terminal = false },
+      -- skip autopair when next character is one of these
+      skip_next = [=[[%w%%%'%[%"%.%`%$]]=],
+      -- skip autopair when the cursor is inside these treesitter nodes
+      skip_ts = { 'string' },
+      -- skip autopair when next character is closing pair
+      -- and there are more closing pairs than opening pairs
+      skip_unbalanced = true,
+      -- better deal with markdown code blocks
+      markdown = true,
+    },
     config = function(_, opts)
       require('mini.pairs').setup(opts)
     end,
@@ -208,6 +220,11 @@ return {
     config = function(_, opts)
       require('mini.animate').setup(opts)
     end,
+  },
+  {
+    'echasnovski/mini.move',
+    event = 'BufReadPost',
+    config = true,
   },
   {
     'echasnovski/mini.statusline',

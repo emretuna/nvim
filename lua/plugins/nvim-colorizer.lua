@@ -6,7 +6,7 @@ return {
       -- Available modes for `mode`: foreground, background,  virtualtext
       mode = 'virtualtext',
       tailwind = true,
-      virtualtext = '⬤ ',
+      virtualtext = ' ',
     },
   },
   config = function(_, opts)

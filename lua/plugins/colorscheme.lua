@@ -6,7 +6,9 @@ return {
     -- If you want to see what colorschemes are already installed, you can use `:FzfLua colorschemes`.
     'folke/tokyonight.nvim',
     priority = 1000, -- Make sure to load this before all the other start plugins.
-    enabled = false,
+    init = function()
+      -- vim.cmd 'colorscheme tokyonight'
+    end,
   },
   {
     'scottmckendry/cyberdream.nvim',
@@ -36,23 +38,24 @@ return {
     'slugbyte/lackluster.nvim',
     lazy = false,
     priority = 1000,
-    enabled = false,
     opts = {},
-    -- init = function()
-    --   -- vim.cmd.colorscheme("lackluster")
-    --   vim.cmd.colorscheme 'lackluster-hack'
-    --   -- vim.cmd.colorscheme("lackluster-mint")
-    -- end,
+    init = function()
+      -- vim.cmd.colorscheme 'lackluster'
+      -- vim.cmd.colorscheme 'lackluster-hack'
+      -- vim.cmd.colorscheme 'lackluster-mint'
+    end,
   },
   {
     'rose-pine/neovim',
     name = 'rose-pine',
     priority = 1000,
-    enabled = false,
     opts = {
       --- @usage 'auto'|'main'|'moon'|'dawn'
       dark_variant = 'main',
       disable_italics = true,
     },
+    -- init = function()
+    --   vim.cmd.colorscheme 'rose-pine'
+    -- end,
   },
 }

@@ -8,14 +8,6 @@ vim.keymap.set('n', '<C-s>', '<cmd>w<cr>', { desc = 'Save file' })
 vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
--- Move Lines
-vim.keymap.set('n', '<A-j>', '<cmd>m .+1<cr>==', { desc = 'Move Down' })
-vim.keymap.set('n', '<A-k>', '<cmd>m .-2<cr>==', { desc = 'Move Up' })
-vim.keymap.set('i', '<A-j>', '<esc><cmd>m .+1<cr>==gi', { desc = 'Move Down' })
-vim.keymap.set('i', '<A-k>', '<esc><cmd>m .-2<cr>==gi', { desc = 'Move Up' })
-vim.keymap.set('v', '<A-j>', ":m '>+1<cr>gv=gv", { desc = 'Move Down' })
-vim.keymap.set('v', '<A-k>', ":m '<-2<cr>gv=gv", { desc = 'Move Up' })
-
 -- Shifted movement
 vim.keymap.set('n', '<S-Down>', function()
   vim.api.nvim_feedkeys('7j', 'n', true)
@@ -38,9 +30,9 @@ vim.keymap.set('n', 'g+', '<C-a>', { desc = 'Increment number' })
 vim.keymap.set('n', 'g-', '<C-x>', { desc = 'Decrement number' })
 
 -- window management
-vim.keymap.set('n', '<leader>m-', '<C-w>v', { desc = 'Split Vertically' })
-vim.keymap.set('n', '<leader>m|', '<C-w>s', { desc = 'Split Horizontally' })
-vim.keymap.set('n', '<leader>mx', '<cmd>close<CR>', { desc = 'Close Current Split' })
+vim.keymap.set('n', '<leader>w|', '<C-w>v', { desc = 'Split Vertically' })
+vim.keymap.set('n', '<leader>w-', '<C-w>s', { desc = 'Split Horizontally' })
+vim.keymap.set('n', '<leader>wd', '<cmd>close<CR>', { desc = 'Close Current Split' })
 
 -- Resize window using <ctrl> arrow keys
 vim.keymap.set('n', '<C-Up>', '<cmd>resize +2<cr>', { desc = 'Increase Window Height' })
@@ -66,7 +58,7 @@ end, { desc = 'Bbuffer Clear' })
 vim.keymap.set('x', '<Tab>', '>gv', { desc = 'Indent Line' })
 vim.keymap.set('x', '<S-Tab>', '<gv', { desc = 'Unindent Line' })
 
---gitui
+--git tui
 vim.keymap.set('n', '<leader>g.', function()
   local git_dir = vim.fn.finddir('.git', vim.fn.getcwd() .. ';')
   if git_dir ~= '' then
