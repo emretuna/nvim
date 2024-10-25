@@ -99,4 +99,49 @@ vim.opt.scrolloff = 10 -- Number of lines to leave before/after the cursor when 
 vim.opt.sidescrolloff = 10 -- Same but for side scrolling.
 vim.opt.selection = 'old' -- Don't select the newline symbol when using <End> on visual mode.
 
+-- [[ Basic Autocommands ]]
+--  See `:help lua-guide-autocommands`
+-- Change background color based on OS theme
+vim.api.nvim_create_autocmd('ColorScheme', {
+  callback = function()
+    local m = vim.fn.system 'defaults read -g AppleInterfaceStyle'
+    m = m:gsub('%s+', '') -- trim whitespace
+    if m == 'Dark' then
+      vim.o.background = 'dark'
+    else
+      vim.o.background = 'light'
+    end
+  end,
+})
+vim.api.nvim_create_autocmd('VimEnter', {
+  desc = 'Disable right contextual menu warning message',
+  callback = function()
+    -- Disable right click message
+    vim.api.nvim_command [[aunmenu PopUp.How-to\ disable\ mouse]]
+    -- vim.api.nvim_command [[aunmenu PopUp.-1-]] -- You can remode a separator like this.
+    vim.api.nvim_command [[menu PopUp.Toggle\ \Breakpoint <cmd>:lua require('dap').toggle_breakpoint()<CR>]]
+    vim.api.nvim_command [[menu PopUp.-2- <Nop>]]
+    vim.api.nvim_command [[menu PopUp.Start\ \Debugger <cmd>:DapContinue<CR>]]
+    vim.api.nvim_command [[menu PopUp.Run\ \Test <cmd>:Neotest run<CR>]]
+  end,
+})
+-- Toggle relative line numbers based on mode and focus
+local number_toggle_group = vim.api.nvim_create_augroup('numbertoggle', { clear = true })
+vim.api.nvim_create_autocmd({ 'BufEnter', 'FocusGained', 'InsertLeave' }, {
+  group = number_toggle_group,
+  callback = function()
+    if vim.wo.number then
+      vim.wo.relativenumber = true
+    end
+  end,
+})
+vim.api.nvim_create_autocmd({ 'BufLeave', 'FocusLost', 'InsertEnter' }, {
+  group = number_toggle_group,
+  callback = function()
+    if vim.wo.number then
+      vim.wo.relativenumber = false
+    end
+  end,
+})
+
 -- vim: ts=2 sts=2 sw=2 et

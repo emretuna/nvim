@@ -55,7 +55,6 @@ return {
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-emoji',
-      'onsails/lspkind.nvim',
     },
     config = function()
       -- See `:help cmp`
@@ -152,10 +151,9 @@ return {
           { name = 'emoji', priority = 50 },
         },
         formatting = {
-          -- kind icon / color icon + completion + kind text
-          fields = { 'menu', 'abbr', 'kind' },
-
-          format = function(entry, item)
+          expandable_indicator = true,
+          fields = { 'abbr', 'kind', 'menu' },
+          format = function(entry, vim_item)
             local entryItem = entry.completion_item
             local color = entryItem.documentation
 
@@ -167,15 +165,14 @@ return {
                 vim.api.nvim_set_hl(0, hl, { fg = color })
               end
 
-              item.menu = ' '
-              item.menu_hl_group = hl
+              vim_item.menu = ' '
+              vim_item.menu_hl_group = hl
 
               -- else
               -- add your lspkind icon here!
-              -- item.menu_hl_group = item.kind_hl_group
+              -- vim_item.menu_hl_group = vim_item.kind_hl_group
             end
-
-            return item
+            return vim_item
           end,
         },
       }

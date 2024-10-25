@@ -44,7 +44,7 @@ require('lazy').setup({ { import = 'plugins' } }, {
     },
   },
   install = {
-    colorscheme = { 'cyberdream' },
+    colorscheme = { 'zenbones' },
   },
   checker = {
     enabled = true,

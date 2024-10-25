@@ -5,15 +5,42 @@ return {
     --
     -- If you want to see what colorschemes are already installed, you can use `:FzfLua colorschemes`.
     'folke/tokyonight.nvim',
-    priority = 1000, -- Make sure to load this before all the other start plugins.
+    lazy = false,
+    priority = 1000,
+    enabled = false,
     init = function()
       -- vim.cmd 'colorscheme tokyonight'
+    end,
+  },
+  {
+    'aliqyan-21/darkvoid.nvim',
+    lazy = false,
+    priority = 1000,
+    enabled = false,
+    opts = {
+      transparent = true, -- set true for transparent
+      glow = true, -- set true for glow effect
+      show_end_of_buffer = true, -- set false for not showing end of buffer
+    },
+
+    -- init = function()
+    --   vim.cmd.colorscheme 'darkvoid'
+    -- end,
+  },
+  {
+    'zenbones-theme/zenbones.nvim',
+    lazy = false,
+    priority = 1000,
+    init = function()
+      vim.g.zenbones_compat = true
+      vim.cmd 'colorscheme zenbones'
     end,
   },
   {
     'scottmckendry/cyberdream.nvim',
     lazy = false,
     priority = 1000,
+    enabled = false,
     opts = {
       -- Enable transparent background
       transparent = true,
@@ -29,15 +56,16 @@ return {
         variant = 'default',
       },
     },
-    init = function()
-      vim.cmd 'colorscheme cyberdream'
-    end,
+    -- init = function()
+    --   vim.cmd 'colorscheme cyberdream'
+    -- end,
   },
 
   {
     'slugbyte/lackluster.nvim',
     lazy = false,
     priority = 1000,
+    enabled = false,
     opts = {},
     init = function()
       -- vim.cmd.colorscheme 'lackluster'
@@ -46,9 +74,22 @@ return {
     end,
   },
   {
+    'aktersnurra/no-clown-fiesta.nvim',
+    lazy = false,
+    priority = 1000,
+    enabled = false,
+    opts = {
+      transparent = true,
+    },
+    -- init = function()
+    --   vim.cmd.colorscheme 'no-clown-fiesta'
+    -- end,
+  },
+  {
     'rose-pine/neovim',
     name = 'rose-pine',
     priority = 1000,
+    enabled = false,
     opts = {
       --- @usage 'auto'|'main'|'moon'|'dawn'
       dark_variant = 'main',
