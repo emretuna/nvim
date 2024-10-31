@@ -133,6 +133,7 @@ return {
     'echasnovski/mini.icons',
     lazy = true,
     opts = {
+      -- style = 'ascii',
       extension = {
         ['http'] = { glyph = '󰖟', hl = 'MiniIconsGreen' },
         ['rest'] = { glyph = '󱂛', hl = 'MiniIconsBlue' },

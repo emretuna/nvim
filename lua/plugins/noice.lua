@@ -17,6 +17,15 @@ return {
           -- view = "notify",
           filter = { event = 'msg_showmode' },
         },
+        {
+          filter = {
+            event = 'notify',
+            find = 'No information available',
+          },
+          opts = {
+            skip = true,
+          },
+        },
       },
       cmdline = {
         view = 'cmdline', -- The kind of popup used for :

@@ -32,7 +32,7 @@ vim.keymap.set('n', 'g-', '<C-x>', { desc = 'Decrement number' })
 -- window management
 vim.keymap.set('n', '<leader>w|', '<C-w>v', { desc = 'Split Vertically' })
 vim.keymap.set('n', '<leader>w-', '<C-w>s', { desc = 'Split Horizontally' })
-vim.keymap.set('n', '<leader>wd', '<cmd>close<CR>', { desc = 'Close Current Split' })
+vim.keymap.set('n', '<leader>wx', '<cmd>close<CR>', { desc = 'Close Current Split' })
 
 -- Resize window using <ctrl> arrow keys
 vim.keymap.set('n', '<C-Up>', '<cmd>resize +2<cr>', { desc = 'Increase Window Height' })
@@ -49,11 +49,11 @@ vim.keymap.set('n', '[t', '<cmd>tabprevious<cr>', { desc = 'Tab previous' })
 vim.keymap.set('n', ']b', '<cmd>bnext<cr>', { desc = 'Buffer next' })
 vim.keymap.set('n', '[b', '<cmd>bprevious<cr>', { desc = 'Buffer previous' })
 vim.keymap.set('n', '<leader>`', '<cmd>e #<cr>', { desc = 'Switch Buffer' })
-vim.keymap.set('n', '<leader>bd', '<cmd>bdelete<cr>', { desc = 'Bbuffer Delete' })
-vim.keymap.set('n', '<leader>ba', '<cmd>new<cr>', { desc = 'Bbuffer Add' })
+vim.keymap.set('n', '<leader>bx', '<cmd>bdelete<cr>', { desc = 'Buffer Delete' })
+vim.keymap.set('n', '<leader>ba', '<cmd>new<cr>', { desc = 'Buffer Add' })
 vim.keymap.set('n', '<leader>bc', function()
   vim.cmd 'execute "%bd|e#"'
-end, { desc = 'Bbuffer Clear' })
+end, { desc = 'Buffer Clear' })
 -- better indent
 vim.keymap.set('x', '<Tab>', '>gv', { desc = 'Indent Line' })
 vim.keymap.set('x', '<S-Tab>', '<gv', { desc = 'Unindent Line' })

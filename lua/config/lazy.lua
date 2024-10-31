@@ -44,7 +44,7 @@ require('lazy').setup({ { import = 'plugins' } }, {
     },
   },
   install = {
-    colorscheme = { 'zenbones' },
+    colorscheme = { 'lackluster' },
   },
   checker = {
     enabled = true,

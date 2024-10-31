@@ -31,10 +31,11 @@ return {
     'zenbones-theme/zenbones.nvim',
     lazy = false,
     priority = 1000,
-    init = function()
-      vim.g.zenbones_compat = true
-      vim.cmd 'colorscheme zenbones'
-    end,
+    enabled = false,
+    -- init = function()
+    --   vim.g.zenbones_compat = true
+    --   vim.cmd 'colorscheme zenbones'
+    -- end,
   },
   {
     'scottmckendry/cyberdream.nvim',
@@ -65,11 +66,11 @@ return {
     'slugbyte/lackluster.nvim',
     lazy = false,
     priority = 1000,
-    enabled = false,
+    -- enabled = false,
     opts = {},
     init = function()
       -- vim.cmd.colorscheme 'lackluster'
-      -- vim.cmd.colorscheme 'lackluster-hack'
+      vim.cmd.colorscheme 'lackluster-hack'
       -- vim.cmd.colorscheme 'lackluster-mint'
     end,
   },
