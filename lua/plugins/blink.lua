@@ -2,8 +2,8 @@ return {
   'saghen/blink.cmp',
   lazy = false, -- lazy loading handled internally
   -- optional: provides snippets for the snippet source
-  dependencies = 'rafamadriz/friendly-snippets',
-  enabled = false,
+  dependencies = { 'rafamadriz/friendly-snippets', 'mikavilpas/blink-ripgrep.nvim' },
+  -- enabled = false,
   -- use a release tag to download pre-built binaries
   version = 'v0.*',
   -- OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
@@ -20,45 +20,100 @@ return {
       -- sets the fallback highlight groups to nvim-cmp's highlight groups
       -- useful for when your theme doesn't support blink.cmp
       -- will be removed in a future release, assuming themes add support
-      use_nvim_cmp_as_default = false,
+      use_nvim_cmp_as_default = true,
     },
     -- set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
     -- adjusts spacing to ensure icons are aligned
-    nerd_font_variant = 'normal',
+    nerd_font_variant = 'mono',
 
     -- experimental auto-brackets support
     -- accept = { auto_brackets = { enabled = true } }
 
-    -- experimental signature help support
-    -- trigger = { signature_help = { enabled = true } },
     windows = {
       autocomplete = {
         border = 'rounded',
+        draw = 'minimal',
+        winblend = vim.o.pumblend,
       },
+
       documentation = {
         border = 'rounded',
         auto_show = true,
+        winblend = vim.o.pumblend,
+      },
+      signature_help = {
+        border = 'rounded',
+        winblend = vim.o.pumblend,
+      },
+      ghost_text = {
+        enabled = false,
       },
     },
+    -- experimental signature help support
     trigger = {
       signature_help = {
-        enabled = true,
+        enabled = false,
+      },
+    },
+    -- experimental auto-brackets support
+    accept = { auto_brackets = { enabled = true } },
+
+    sources = {
+      -- adding any nvim-cmp sources here will enable them
+      -- with blink.compat
+      compat = {},
+      completion = {
+        -- remember to enable your providers here
+        enabled_providers = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev', 'ripgrep' },
+      },
+    },
+    providers = {
+      path = {
+        name = 'path',
+        score_offset = 100,
+      },
+      lsp = {
+        name = 'lsp',
+        score_offset = 99,
+      },
+      lazydev = { name = 'LazyDev', module = 'lazydev.integrations.blink' },
+      ripgrep = {
+        module = 'blink-ripgrep',
+        name = 'Ripgrep',
+        ---@module "blink-ripgrep"
+        ---@type blink-ripgrep.Options
+        opts = {
+          get_command = function(_, prefix)
+            local root = require('my-nvim-micro-plugins.main').find_project_root()
+            return {
+              'rg',
+              '--no-config',
+              '--json',
+              '--word-regexp',
+              '--ignore-case',
+              '--',
+              prefix .. '[\\w_-]+',
+              root or vim.fn.getcwd(),
+            }
+          end,
+        },
       },
     },
     keymap = {
-      show = '<C-space>',
-      hide = '<C-d>',
-      accept = '<C-y>',
-      select_prev = { '<Up>', '<C-p>' },
-      select_next = { '<Down>', '<C-n>' },
+      ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
+      ['<C-d>'] = { 'hide' },
+      ['<C-y>'] = { 'select_and_accept', 'fallback' },
 
-      show_documentation = '<C-space>',
-      hide_documentation = '<C-space>',
-      scroll_documentation_up = '<C-b>',
-      scroll_documentation_down = '<C-f>',
+      ['<C-p>'] = { 'select_prev', 'fallback' },
+      ['<C-n>'] = { 'select_next', 'fallback' },
+      ['<Up>'] = { 'select_prev', 'fallback' },
+      ['<Down>'] = { 'select_next', 'fallback' },
 
-      snippet_forward = '<Tab>',
-      snippet_backward = '<S-Tab>',
+      ['<C-b>'] = { 'scroll_documentation_up', 'fallback' },
+      ['<C-f>'] = { 'scroll_documentation_down', 'fallback' },
+
+      ['<Tab>'] = { 'snippet_forward', 'fallback' },
+      ['<S-Tab>'] = { 'snippet_backward', 'fallback' },
     },
   },
   config = function(_, opts)

@@ -5,6 +5,8 @@
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
+--
+-- vim.g.colorscheme = 'default'
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 vim.g.big_file = { size = 1024 * 100, lines = 10000 } -- For files bigger than this, disable 'treesitter' (+100kb).
@@ -93,26 +95,54 @@ vim.opt.swapfile = false -- Ask what state to recover when opening a file that w
 vim.opt.wrap = true -- Disable wrapping of lines longer than the width of window.
 vim.opt.colorcolumn = '80' -- PEP8 like character limit vertical bar.
 -- vim.opt.mousescroll = 'ver:2,hor:5' -- Disables hozirontal scroll in neovim.
-vim.opt.guicursor = 'n:blinkon200,i-ci-ve:ver25' -- Enable cursor blink.
+-- vim.opt.guicursor = 'n:blinkon200,i-ci-ve:ver25' -- Enable cursor blink.
+vim.opt.guicursor = {
+  'n-v-c:block-Cursor/lCursor-blinkwait1000-blinkon100-blinkoff100',
+  'i-ci:ver25-Cursor/lCursor-blinkwait1000-blinkon100-blinkoff100',
+  'r:hor50-Cursor/lCursor-blinkwait100-blinkon100-blinkoff100',
+}
 vim.opt.autochdir = true -- Use current file dir as working dir (See project.nvim).
 vim.opt.scrolloff = 10 -- Number of lines to leave before/after the cursor when scrolling. Setting a high value keep the cursor centered.
 vim.opt.sidescrolloff = 10 -- Same but for side scrolling.
 vim.opt.selection = 'old' -- Don't select the newline symbol when using <End> on visual mode.
-
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
--- Change background color based on OS theme
-vim.api.nvim_create_autocmd('ColorScheme', {
+-- Don't show columns in these filetypes
+vim.api.nvim_create_autocmd('filetype', {
+  pattern = { 'netrw', 'qf', 'help', 'oil' },
   callback = function()
-    local m = vim.fn.system 'defaults read -g AppleInterfaceStyle'
-    m = m:gsub('%s+', '') -- trim whitespace
-    if m == 'Dark' then
-      vim.o.background = 'dark'
-    else
-      vim.o.background = 'light'
-    end
+    vim.opt_local.colorcolumn = ''
+    vim.opt_local.cursorcolumn = false
   end,
 })
+-- Restore cursor position after opening a file
+vim.api.nvim_create_autocmd('BufRead', {
+  callback = function(opts)
+    vim.api.nvim_create_autocmd('BufWinEnter', {
+      once = true,
+      buffer = opts.buf,
+      callback = function()
+        local ft = vim.bo[opts.buf].filetype
+        local last_known_line = vim.api.nvim_buf_get_mark(opts.buf, '"')[1]
+        if not (ft:match 'commit' and ft:match 'rebase') and last_known_line > 1 and last_known_line <= vim.api.nvim_buf_line_count(opts.buf) then
+          vim.api.nvim_feedkeys([[g`"]], 'nx', false)
+        end
+      end,
+    })
+  end,
+})
+-- -- Change background color based on OS theme
+-- vim.api.nvim_create_autocmd('ColorScheme', {
+--   callback = function()
+--     local m = vim.fn.system 'defaults read -g AppleInterfaceStyle'
+--     m = m:gsub('%s+', '') -- trim whitespace
+--     if m == 'Dark' then
+--       vim.o.background = 'dark'
+--     else
+--       vim.o.background = 'light'
+--     end
+--   end,
+-- })
 vim.api.nvim_create_autocmd('VimEnter', {
   desc = 'Disable right contextual menu warning message',
   callback = function()
@@ -123,24 +153,6 @@ vim.api.nvim_create_autocmd('VimEnter', {
     vim.api.nvim_command [[menu PopUp.-2- <Nop>]]
     vim.api.nvim_command [[menu PopUp.Start\ \Debugger <cmd>:DapContinue<CR>]]
     vim.api.nvim_command [[menu PopUp.Run\ \Test <cmd>:Neotest run<CR>]]
-  end,
-})
--- Toggle relative line numbers based on mode and focus
-local number_toggle_group = vim.api.nvim_create_augroup('numbertoggle', { clear = true })
-vim.api.nvim_create_autocmd({ 'BufEnter', 'FocusGained', 'InsertLeave' }, {
-  group = number_toggle_group,
-  callback = function()
-    if vim.wo.number then
-      vim.wo.relativenumber = true
-    end
-  end,
-})
-vim.api.nvim_create_autocmd({ 'BufLeave', 'FocusLost', 'InsertEnter' }, {
-  group = number_toggle_group,
-  callback = function()
-    if vim.wo.number then
-      vim.wo.relativenumber = false
-    end
   end,
 })
 

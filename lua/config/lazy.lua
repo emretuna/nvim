@@ -44,7 +44,7 @@ require('lazy').setup({ { import = 'plugins' } }, {
     },
   },
   install = {
-    colorscheme = { 'lackluster' },
+    colorscheme = { 'mellifluous' },
   },
   checker = {
     enabled = true,

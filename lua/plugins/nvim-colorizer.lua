@@ -5,6 +5,8 @@ return {
     user_default_options = {
       -- Available modes for `mode`: foreground, background,  virtualtext
       mode = 'virtualtext',
+      css = true,
+      css_fn = true,
       tailwind = true,
       virtualtext = ' ',
     },

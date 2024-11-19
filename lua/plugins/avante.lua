@@ -2,7 +2,30 @@ return {
   'yetone/avante.nvim',
   event = 'VeryLazy',
   build = 'make',
+  lazy = false,
+  version = false,
+  opts = {
+    ---@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
+    provider = 'claude', -- Recommend using Claude
+    auto_suggestions_provider = 'claude', -- Since auto-suggestions are a high-frequency operation and therefore expensive, it is recommended to specify an inexpensive provider or even a free provider: copilot
+    claude = {
+      endpoint = 'https://api.anthropic.com',
+      model = 'claude-3-5-sonnet-20240620',
+      temperature = 0,
+      max_tokens = 4096,
+    },
+    windows = {
+      sidebar_header = {
+        rounded = false,
+      },
+
+      input = {
+        prefix = '󱙺 ',
+      },
+    },
+  },
   dependencies = {
+    'nvim-treesitter/nvim-treesitter',
     'stevearc/dressing.nvim',
     'nvim-lua/plenary.nvim',
     'MunifTanjim/nui.nvim',
@@ -39,16 +62,13 @@ return {
         },
       },
     },
-  },
-  opts = {
-    ---@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
-    provider = 'claude', -- Recommend using Claude
-    auto_suggestions_provider = 'claude', -- Since auto-suggestions are a high-frequency operation and therefore expensive, it is recommended to specify an inexpensive provider or even a free provider: copilot
-    claude = {
-      endpoint = 'https://api.anthropic.com',
-      model = 'claude-3-5-sonnet-20240620',
-      temperature = 0,
-      max_tokens = 4096,
+    {
+      -- Make sure to set this up properly if you have lazy=true
+      'MeanderingProgrammer/render-markdown.nvim',
+      opts = {
+        file_types = { 'markdown', 'Avante' },
+      },
+      ft = { 'markdown', 'Avante' },
     },
   },
 }

@@ -1,10 +1,11 @@
 return {
   'MeanderingProgrammer/render-markdown.nvim',
   dependencies = { 'nvim-treesitter/nvim-treesitter' },
+  enabled = false,
   event = 'VeryLazy',
-  ft = { 'markdown', 'norg', 'rmd', 'org', 'vimwiki', 'Avante' },
+  ft = { 'markdown', 'norg', 'rmd', 'org', 'vimwiki' },
   opts = {
-    filetypes = { 'markdown', 'norg', 'rmd', 'org', 'vimwiki', 'Avante' },
+    filetypes = { 'markdown', 'norg', 'rmd', 'org', 'vimwiki' },
     buf_ignore = {},
     code = {
       sign = false,

@@ -9,33 +9,25 @@ return {
     priority = 1000,
     enabled = false,
     init = function()
-      -- vim.cmd 'colorscheme tokyonight'
+      vim.cmd 'colorscheme tokyonight'
     end,
   },
   {
-    'aliqyan-21/darkvoid.nvim',
+    'ramojus/mellifluous.nvim',
     lazy = false,
     priority = 1000,
-    enabled = false,
+    -- enabled = false,
     opts = {
-      transparent = true, -- set true for transparent
-      glow = true, -- set true for glow effect
-      show_end_of_buffer = true, -- set false for not showing end of buffer
+      colorset = 'kanagawa_dragon', -- 'kanagawa_dragon','melliflous','alduin','mountain','tender'
+      transparent_background = {
+        enabled = false,
+      },
+      dim_inactive = true,
     },
-
-    -- init = function()
-    --   vim.cmd.colorscheme 'darkvoid'
-    -- end,
-  },
-  {
-    'zenbones-theme/zenbones.nvim',
-    lazy = false,
-    priority = 1000,
-    enabled = false,
-    -- init = function()
-    --   vim.g.zenbones_compat = true
-    --   vim.cmd 'colorscheme zenbones'
-    -- end,
+    config = function(_, opts)
+      require('mellifluous').setup(opts)
+      vim.cmd 'colorscheme mellifluous'
+    end,
   },
   {
     'scottmckendry/cyberdream.nvim',
@@ -57,17 +49,35 @@ return {
         variant = 'default',
       },
     },
-    -- init = function()
-    --   vim.cmd 'colorscheme cyberdream'
-    -- end,
+    init = function()
+      vim.cmd 'colorscheme cyberdream'
+    end,
   },
-
   {
     'slugbyte/lackluster.nvim',
     lazy = false,
     priority = 1000,
-    -- enabled = false,
-    opts = {},
+    enabled = false,
+    opts = function()
+      -- local lackluster = require 'lackluster'
+      return {
+        tweak_background = {
+          -- ('default' is default) ('none' is transparent) ('#ffaaff' is a custom hexcode)
+          normal = 'default', -- main background
+          -- normal = 'none', -- transparent
+          -- normal = '#a1b2c3',    -- hexcode
+          -- normal = lackluster.color.lack, -- lackluster color
+          menu = 'none', -- nvim_cmp, wildmenu ...
+          popup = 'none', -- lazy, mason, whichkey ...
+          telescope = 'none', -- telescope
+        },
+        tweak_highlight = {
+          ['@comment'] = {
+            italic = true,
+          },
+        },
+      }
+    end,
     init = function()
       -- vim.cmd.colorscheme 'lackluster'
       vim.cmd.colorscheme 'lackluster-hack'
@@ -80,24 +90,15 @@ return {
     priority = 1000,
     enabled = false,
     opts = {
-      transparent = true,
+      -- transparent = true,
+      styles = {
+        comments = {
+          italic = true,
+        },
+      },
     },
-    -- init = function()
-    --   vim.cmd.colorscheme 'no-clown-fiesta'
-    -- end,
-  },
-  {
-    'rose-pine/neovim',
-    name = 'rose-pine',
-    priority = 1000,
-    enabled = false,
-    opts = {
-      --- @usage 'auto'|'main'|'moon'|'dawn'
-      dark_variant = 'main',
-      disable_italics = true,
-    },
-    -- init = function()
-    --   vim.cmd.colorscheme 'rose-pine'
-    -- end,
+    init = function()
+      vim.cmd.colorscheme 'no-clown-fiesta'
+    end,
   },
 }

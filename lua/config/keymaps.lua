@@ -33,6 +33,7 @@ vim.keymap.set('n', 'g-', '<C-x>', { desc = 'Decrement number' })
 vim.keymap.set('n', '<leader>w|', '<C-w>v', { desc = 'Split Vertically' })
 vim.keymap.set('n', '<leader>w-', '<C-w>s', { desc = 'Split Horizontally' })
 vim.keymap.set('n', '<leader>wx', '<cmd>close<CR>', { desc = 'Close Current Split' })
+vim.keymap.set('n', '<leader>wq', '<cmd>qa<CR>', { desc = 'Quit Neowim ' })
 
 -- Resize window using <ctrl> arrow keys
 vim.keymap.set('n', '<C-Up>', '<cmd>resize +2<cr>', { desc = 'Increase Window Height' })
@@ -49,28 +50,10 @@ vim.keymap.set('n', '[t', '<cmd>tabprevious<cr>', { desc = 'Tab previous' })
 vim.keymap.set('n', ']b', '<cmd>bnext<cr>', { desc = 'Buffer next' })
 vim.keymap.set('n', '[b', '<cmd>bprevious<cr>', { desc = 'Buffer previous' })
 vim.keymap.set('n', '<leader>`', '<cmd>e #<cr>', { desc = 'Switch Buffer' })
-vim.keymap.set('n', '<leader>bx', '<cmd>bdelete<cr>', { desc = 'Buffer Delete' })
 vim.keymap.set('n', '<leader>ba', '<cmd>new<cr>', { desc = 'Buffer Add' })
-vim.keymap.set('n', '<leader>bc', function()
-  vim.cmd 'execute "%bd|e#"'
-end, { desc = 'Buffer Clear' })
 -- better indent
 vim.keymap.set('x', '<Tab>', '>gv', { desc = 'Indent Line' })
 vim.keymap.set('x', '<S-Tab>', '<gv', { desc = 'Unindent Line' })
-
---git tui
-vim.keymap.set('n', '<leader>g.', function()
-  local git_dir = vim.fn.finddir('.git', vim.fn.getcwd() .. ';')
-  if git_dir ~= '' then
-    if vim.fn.executable 'keychain' == 1 then
-      vim.cmd 'TermExec cmd="eval `keychain --eval ~/.ssh/github.key` && lazygit && exit"'
-    else
-      vim.cmd "TermExec cmd='lazygit && exit'"
-    end
-  else
-    vim.notify('Not a git repository', vim.log.levels.WARN)
-  end
-end, { desc = 'Lazygit' })
 
 -- Toggle spell checking
 vim.keymap.set('n', '<leader>mS', function()
@@ -89,7 +72,9 @@ vim.keymap.set('t', '<C-j>', '<cmd>wincmd j<cr>', { desc = 'Go to Lower Window' 
 vim.keymap.set('t', '<C-k>', '<cmd>wincmd k<cr>', { desc = 'Go to Upper Window' })
 vim.keymap.set('t', '<C-l>', '<cmd>wincmd l<cr>', { desc = 'Go to Right Window' })
 vim.keymap.set('t', '<C-/>', '<cmd>close<cr>', { desc = 'Hide Terminal' })
-
+-- Open terminal and run tree command
+vim.api.nvim_set_keymap('n', '<leader>mT', ':3vsplit | terminal tree<CR>', { desc = 'Open Tree', noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>mO', ':3split | terminal tokei<CR>', { desc = 'Open Tokei', noremap = true, silent = true })
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 

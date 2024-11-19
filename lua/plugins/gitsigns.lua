@@ -22,9 +22,9 @@ return {
     vim.keymap.set('n', '[g', function()
       require('gitsigns').prev_hunk()
     end, { silent = true, desc = 'Previous Git Hunk' })
-    vim.keymap.set('n', '<leader>gl', function()
-      require('gitsigns').blame_line()
-    end, { silent = true, desc = 'Git Blame Line' })
+    -- vim.keymap.set('n', '<leader>gl', function()
+    --   require('gitsigns').blame_line()
+    -- end, { silent = true, desc = 'Git Blame Line' })
     vim.keymap.set('n', '<leader>gL', function()
       require('gitsigns').blame_line { full = true }
     end, { silent = true, desc = 'Git Blame Line Full' })

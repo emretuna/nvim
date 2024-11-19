@@ -25,9 +25,9 @@ return {
     --   end
     -- })
   end,
-  vim.keymap.set('n', '<leader>ml', '<cmd>SessionManager! load_last_session<cr>', { desc = 'Load last session' }),
-  vim.keymap.set('n', '<leader>ms', '<cmd>SessionManager! save_current_session <cr>', { desc = 'Save current session' }),
-  vim.keymap.set('n', '<leader>md', '<cmd>SessionManager! delete_session <cr>', { desc = 'Delete session' }),
-  vim.keymap.set('n', '<leader>mf', '<cmd>SessionManager! load_session <cr>', { desc = 'Find session' }),
-  vim.keymap.set('n', '<leader>mc', '<cmd>SessionManager! load_current_dir_session <cr>', { desc = 'Current dir session' }),
+  vim.keymap.set('n', '<leader>mL', '<cmd>SessionManager! load_last_session<cr>', { desc = 'Load last session' }),
+  vim.keymap.set('n', '<leader>mS', '<cmd>SessionManager! save_current_session <cr>', { desc = 'Save current session' }),
+  vim.keymap.set('n', '<leader>mD', '<cmd>SessionManager! delete_session <cr>', { desc = 'Delete session' }),
+  vim.keymap.set('n', '<leader>fS', '<cmd>SessionManager! load_session <cr>', { desc = 'Find session' }),
+  vim.keymap.set('n', '<leader>mC', '<cmd>SessionManager! load_current_dir_session <cr>', { desc = 'Current dir session' }),
 }

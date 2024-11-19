@@ -66,7 +66,7 @@ return {
     })
 
     -- Add keymap to disable and enable format on save
-    vim.keymap.set('n', '<leader>mF', function()
+    vim.keymap.set('n', '<leader>mf', function()
       if vim.b.disable_autoformat or vim.g.disable_autoformat then
         vim.cmd 'FormatEnable'
       else

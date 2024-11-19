@@ -3,11 +3,17 @@ return {
     -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
     -- used for completion, annotations and signatures of Neovim apis
     'folke/lazydev.nvim',
+    dependencies = { 'gonstoll/wezterm-types', lazy = true },
     ft = 'lua',
     lazy = true,
     opts = {
       library = {
+        -- Only load the lazyvim library when the `LazyVim` global is found
+        { path = 'LazyVim', words = { 'LazyVim' } },
+        { path = 'snacks.nvim', words = { 'Snacks' } },
+        { path = 'lazy.nvim', words = { 'LazyVim' } },
         -- Load luvit types when the `vim.uv` word is found
+        { path = 'wezterm-types', mods = { 'wezterm' } },
         { path = 'luvit-meta/library', words = { 'vim%.uv' } },
       },
     },
@@ -79,16 +85,47 @@ return {
           local client = vim.lsp.get_client_by_id(event.data.client_id)
           if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
             local highlight_augroup = vim.api.nvim_create_augroup('lsp-highlight', { clear = false })
+            local highlight_enabled = true
+
+            local function toggle_highlight(enable)
+              highlight_enabled = enable
+              if enable then
+                vim.lsp.buf.document_highlight()
+              else
+                vim.lsp.buf.clear_references()
+              end
+            end
+
             vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
               buffer = event.buf,
               group = highlight_augroup,
-              callback = vim.lsp.buf.document_highlight,
+              callback = function()
+                if highlight_enabled then
+                  vim.lsp.buf.document_highlight()
+                end
+              end,
             })
 
             vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
               buffer = event.buf,
               group = highlight_augroup,
               callback = vim.lsp.buf.clear_references,
+            })
+
+            vim.api.nvim_create_autocmd('InsertEnter', {
+              buffer = event.buf,
+              group = highlight_augroup,
+              callback = function()
+                toggle_highlight(false)
+              end,
+            })
+
+            vim.api.nvim_create_autocmd('InsertLeave', {
+              buffer = event.buf,
+              group = highlight_augroup,
+              callback = function()
+                toggle_highlight(true)
+              end,
             })
 
             vim.api.nvim_create_autocmd('LspDetach', {
@@ -99,16 +136,6 @@ return {
               end,
             })
           end
-
-          -- The following code creates a keymap to toggle inlay hints in your
-          -- code, if the language server you are using supports them
-          --
-          -- This may be unwanted, since they displace some of your code
-          if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
-            map('<leader>lh', function()
-              vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
-            end, 'Toggle Inlay [H]ints')
-          end
         end,
       })
 
@@ -116,8 +143,15 @@ return {
       --  By default, Neovim doesn't support everything that is in the LSP specification.
       --  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
       --  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
+      local has_cmp, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
+      local has_blink, blink = pcall(require, 'blink.cmp')
       local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+      if has_cmp then
+        capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+      end
+      if has_blink then
+        capabilities = vim.tbl_deep_extend('force', capabilities, require('blink.cmp').get_lsp_capabilities())
+      end
       -- Change the Diagnostic symbols in the sign column (gutter)
       local signs = { Error = ' ', Warn = ' ', Hint = '󰠠 ', Info = ' ' }
       for type, icon in pairs(signs) do

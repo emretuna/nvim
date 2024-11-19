@@ -24,7 +24,6 @@ return {
   },
   config = function(_, opts)
     require('toggleterm').setup(opts)
-
     vim.keymap.set('n', '<F7>', '<cmd>ToggleTerm<cr>', { desc = 'Toggle Terminal' })
   end,
 }

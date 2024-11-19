@@ -8,15 +8,16 @@ return {
       ['<C-h>'] = false,
       ['<C-s>'] = false,
       ['<C-t>'] = false,
-      ['<M-s>'] = { 'actions.select', opts = { vertical = true }, desc = 'Open the entry in a vertical split' },
+      ['<C-l>'] = false,
+      ['<C-r>'] = { 'actions.refresh', desc = 'Refresh the directory listing' },
+      ['<M-v>'] = { 'actions.select', opts = { vertical = true }, desc = 'Open the entry in a vertical split' },
       ['<M-h>'] = { 'actions.select', opts = { horizontal = true }, desc = 'Open the entry in a horizontal split' },
       ['<M-t>'] = { 'actions.select', opts = { tab = true }, desc = 'Open the entry in a horizontal split' },
     },
     view_options = {
       show_hidden = true,
     },
-    delete_to_trash = true,
-    -- trash_command = 'rm',
+    delete_to_trash = false,
     float = {
       -- Padding around the floating window
       padding = 2,

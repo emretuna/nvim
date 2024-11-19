@@ -11,8 +11,8 @@ return {
   opts = {},
   config = function()
     require('laravel').setup()
-    vim.keymap.set('n', '<leader>ma', ':Laravel artisan<cr>', { desc = 'Laravel artisan' })
-    vim.keymap.set('n', '<leader>mr', ':Laravel routes<cr>', { desc = 'Laravel routes' })
-    vim.keymap.set('n', '<leader>mm', ':Laravel related<cr>', { desc = 'Laravel related' })
+    vim.keymap.set('n', '<leader>mA', ':Laravel artisan<cr>', { desc = 'Laravel artisan' })
+    vim.keymap.set('n', '<leader>mR', ':Laravel routes<cr>', { desc = 'Laravel routes' })
+    vim.keymap.set('n', '<leader>mM', ':Laravel related<cr>', { desc = 'Laravel related' })
   end,
 }

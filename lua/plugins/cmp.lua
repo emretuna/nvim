@@ -2,11 +2,13 @@ return {
   { -- Autocompletion
     -- 'hrsh7th/nvim-cmp',
     'iguanacucumber/magazine.nvim',
+    version = '0.3',
     name = 'nvim-cmp', -- Otherwise highlighting gets messed up
     event = 'InsertEnter',
-    -- enabled = false,
+    enabled = false,
     dependencies = {
       'monkoose/neocodeium',
+      'onsails/lspkind.nvim',
       -- Snippet Engine & its associated nvim-cmp source
       {
         'L3MON4D3/LuaSnip',
@@ -51,9 +53,11 @@ return {
       -- Adds other completion capabilities.
       --  nvim-cmp does not ship with all sources by default. They are split
       --  into multiple repos for maintenance purposes.
-      'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-path',
-      'hrsh7th/cmp-buffer',
+      { 'iguanacucumber/mag-nvim-lsp', name = 'cmp-nvim-lsp', opts = {} },
+      { 'iguanacucumber/mag-nvim-lua', name = 'cmp-nvim-lua' },
+      { 'iguanacucumber/mag-buffer', name = 'cmp-buffer' },
+      { 'iguanacucumber/mag-cmdline', name = 'cmp-cmdline' },
+      'https://codeberg.org/FelipeLema/cmp-async-path', -- not by me, but better than cmp-path
       'hrsh7th/cmp-emoji',
     },
     config = function()
@@ -146,14 +150,16 @@ return {
         sources = {
           { name = 'nvim_lsp', priority = 1000 },
           { name = 'luasnip', priority = 750 },
-          { name = 'path', priority = 250 },
-          { name = 'buffer', priority = 250 },
+          { name = 'nvim_lua', priority = 750 },
+          { name = 'lazydev', priority = 500 },
+          { name = 'async_path', priority = 500 },
           { name = 'emoji', priority = 50 },
         },
         formatting = {
           expandable_indicator = true,
-          fields = { 'abbr', 'kind', 'menu' },
+          fields = { 'kind', 'abbr', 'menu' },
           format = function(entry, vim_item)
+            vim_item.kind = require('lspkind').presets.codicons[vim_item.kind] .. ' ' .. vim_item.kind
             local entryItem = entry.completion_item
             local color = entryItem.documentation
 
@@ -176,25 +182,24 @@ return {
           end,
         },
       }
-      -- -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
-      -- cmp.setup.cmdline({ '/', '?' }, {
-      --   mapping = cmp.mapping.preset.cmdline(),
-      --   sources = {
-      --     { name = 'buffer' },
-      --   },
-      -- })
-      --
-      -- -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-      -- cmp.setup.cmdline(':', {
-      --   mapping = cmp.mapping.preset.cmdline(),
-      --   sources = cmp.config.sources({
-      --     { name = 'path' },
-      --   }, {
-      --     { name = 'cmdline' },
-      --   }),
-      --   ---@diagnostic disable-next-line: missing-fields
-      --   matching = { disallow_symbol_nonprefix_matching = false },
-      -- })
+      -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+      cmp.setup.cmdline({ '/', '?' }, {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = {
+          { name = 'buffer' },
+        },
+      })
+
+      -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+      cmp.setup.cmdline(':', {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = cmp.config.sources({
+          { name = 'path' },
+        }, {
+          { name = 'cmdline' },
+        }),
+        matching = { disallow_symbol_nonprefix_matching = false },
+      })
     end,
   },
 }
