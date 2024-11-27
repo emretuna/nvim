@@ -115,34 +115,6 @@ vim.api.nvim_create_autocmd('filetype', {
     vim.opt_local.cursorcolumn = false
   end,
 })
--- Restore cursor position after opening a file
-vim.api.nvim_create_autocmd('BufRead', {
-  callback = function(opts)
-    vim.api.nvim_create_autocmd('BufWinEnter', {
-      once = true,
-      buffer = opts.buf,
-      callback = function()
-        local ft = vim.bo[opts.buf].filetype
-        local last_known_line = vim.api.nvim_buf_get_mark(opts.buf, '"')[1]
-        if not (ft:match 'commit' and ft:match 'rebase') and last_known_line > 1 and last_known_line <= vim.api.nvim_buf_line_count(opts.buf) then
-          vim.api.nvim_feedkeys([[g`"]], 'nx', false)
-        end
-      end,
-    })
-  end,
-})
--- -- Change background color based on OS theme
--- vim.api.nvim_create_autocmd('ColorScheme', {
---   callback = function()
---     local m = vim.fn.system 'defaults read -g AppleInterfaceStyle'
---     m = m:gsub('%s+', '') -- trim whitespace
---     if m == 'Dark' then
---       vim.o.background = 'dark'
---     else
---       vim.o.background = 'light'
---     end
---   end,
--- })
 vim.api.nvim_create_autocmd('VimEnter', {
   desc = 'Disable right contextual menu warning message',
   callback = function()

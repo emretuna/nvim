@@ -3,7 +3,7 @@ return {
   lazy = false, -- lazy loading handled internally
   -- optional: provides snippets for the snippet source
   dependencies = { 'rafamadriz/friendly-snippets', 'mikavilpas/blink-ripgrep.nvim' },
-  -- enabled = false,
+  enabled = false,
   -- use a release tag to download pre-built binaries
   version = 'v0.*',
   -- OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
@@ -64,7 +64,7 @@ return {
       compat = {},
       completion = {
         -- remember to enable your providers here
-        enabled_providers = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev', 'ripgrep' },
+        enabled_providers = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev', 'ripgrep', 'dadbod' },
       },
     },
     providers = {
@@ -98,6 +98,7 @@ return {
           end,
         },
       },
+      dadbod = { name = 'Dadbod', module = 'vim_dadbod_completion.blink' },
     },
     keymap = {
       ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },

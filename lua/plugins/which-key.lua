@@ -52,6 +52,8 @@ return {
         { '<leader>h', group = 'Http' },
         { '<leader>l', group = 'Lsp' },
         { '<leader>n', group = 'Notes' },
+        { '<leader>o', group = 'Overseer' },
+        { '<leader>r', group = 'Refactor' },
         { '<leader>s', group = 'Search' },
         { '<leader>t', group = 'Tabs' },
         { '<leader>m', group = 'Misc' },

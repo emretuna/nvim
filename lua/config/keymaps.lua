@@ -44,11 +44,13 @@ vim.keymap.set('n', '<C-Right>', '<cmd>vertical resize +2<cr>', { desc = 'Increa
 vim.keymap.set('n', '<leader>to', '<cmd>tabnew<CR>', { desc = 'Open new tab' }) -- open new tab
 vim.keymap.set('n', '<leader>tx', '<cmd>tabclose<CR>', { desc = 'Close current tab' }) -- close current tab
 vim.keymap.set('n', '<leader>tf', '<cmd>tabnew %<CR>', { desc = 'Open current buffer in new tab' }) --  move current buffer to new tab
-vim.keymap.set('n', ']t', '<cmd>tabnext<cr>', { desc = 'Tab next' })
-vim.keymap.set('n', '[t', '<cmd>tabprevious<cr>', { desc = 'Tab previous' })
+-- vim.keymap.set('n', ']t', '<cmd>tabnext<cr>', { desc = 'Tab next' })
+-- vim.keymap.set('n', '[t', '<cmd>tabprevious<cr>', { desc = 'Tab previous' })
+
 -- buffers
-vim.keymap.set('n', ']b', '<cmd>bnext<cr>', { desc = 'Buffer next' })
-vim.keymap.set('n', '[b', '<cmd>bprevious<cr>', { desc = 'Buffer previous' })
+
+-- vim.keymap.set('n', ']b', '<cmd>bnext<cr>', { desc = 'Buffer next' })
+-- vim.keymap.set('n', '[b', '<cmd>bprevious<cr>', { desc = 'Buffer previous' })
 vim.keymap.set('n', '<leader>`', '<cmd>e #<cr>', { desc = 'Switch Buffer' })
 vim.keymap.set('n', '<leader>ba', '<cmd>new<cr>', { desc = 'Buffer Add' })
 -- better indent

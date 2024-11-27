@@ -74,8 +74,8 @@ return {
           map('gK', vim.lsp.buf.signature_help, 'LSP: Signature Help')
           vim.keymap.set('i', '<c-k>', vim.lsp.buf.signature_help, { buffer = event.buf, desc = 'LSP: Signature Help' })
           -- Diagnostic keymaps
-          vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'LSP: Previous Diagnostic Message' })
-          vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'LSP: Next Diagnostic Message' })
+          -- vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'LSP: Previous Diagnostic Message' })
+          -- vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'LSP: Next Diagnostic Message' })
 
           -- The following two autocommands are used to highlight references of the
           -- word under your cursor when your cursor rests there for a little while.
@@ -143,21 +143,17 @@ return {
       --  By default, Neovim doesn't support everything that is in the LSP specification.
       --  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
       --  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
-      local has_cmp, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
-      local has_blink, blink = pcall(require, 'blink.cmp')
       local capabilities = vim.lsp.protocol.make_client_capabilities()
-      if has_cmp then
-        capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+
+      local function safe_extend(module_name, extend_func)
+        local success, module = pcall(require, module_name)
+        if success and module[extend_func] then
+          capabilities = vim.tbl_deep_extend('force', capabilities, module[extend_func]())
+        end
       end
-      if has_blink then
-        capabilities = vim.tbl_deep_extend('force', capabilities, require('blink.cmp').get_lsp_capabilities())
-      end
-      -- Change the Diagnostic symbols in the sign column (gutter)
-      local signs = { Error = ' ', Warn = ' ', Hint = '󰠠 ', Info = ' ' }
-      for type, icon in pairs(signs) do
-        local hl = 'DiagnosticSign' .. type
-        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = '' })
-      end
+
+      safe_extend('cmp_nvim_lsp', 'default_capabilities')
+      safe_extend('blink.cmp', 'get_lsp_capabilities')
 
       -- Borders
       -- Apply the option lsp_round_borders_enabled from ../options.lua

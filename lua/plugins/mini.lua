@@ -1,5 +1,21 @@
 return {
   {
+    'echasnovski/mini.misc',
+    lazy = false,
+    config = function()
+      require('mini.misc').setup()
+      require('mini.misc').setup_restore_cursor()
+      require('mini.misc').setup_auto_root()
+    end,
+  },
+  {
+    'echasnovski/mini.bracketed',
+    event = 'VeryLazy',
+    config = function()
+      require('mini.bracketed').setup()
+    end,
+  },
+  {
     'echasnovski/mini.pairs',
     event = 'VeryLazy',
     opts = {
