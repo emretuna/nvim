@@ -307,6 +307,13 @@ return {
     },
   },
   {
+    'echasnovski/mini-git',
+    config = function()
+      require('mini.git').setup()
+      vim.keymap.set({ 'n', 'x' }, '<Leader>gs', '<CMD>lua MiniGit.show_at_cursor()<CR>', { desc = 'Show at cursor' })
+    end,
+  },
+  {
     'echasnovski/mini.statusline',
     dependencies = {
       'otavioschwanck/arrow.nvim',
