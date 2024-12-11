@@ -9,7 +9,33 @@
 -- vim.g.colorscheme = 'default'
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+
+vim.opt.cmdheight = 0 -- Hide command line spacing
 vim.g.big_file = { size = 1024 * 100, lines = 10000 } -- For files bigger than this, disable 'treesitter' (+100kb).
+-- Netrw settings
+vim.g.netrw_banner = 0
+vim.g.netrw_liststyle = 3
+vim.g.netrw_browse_split = 4
+vim.g.netrw_winsize = 25
+vim.g.netrw_altv = 1
+
+-- Set to true if you have a Nerd Font installed and selected in the terminal
+vim.g.have_nerd_font = true
+
+-- Global variable to control borders for every plugins
+vim.g.border_style = 'rounded'
+
+vim.g.border = {
+  { '╭', 'FloatBorder' },
+  { '─', 'FloatBorder' },
+  { '╮', 'FloatBorder' },
+  { '│', 'FloatBorder' },
+  { '╯', 'FloatBorder' },
+  { '─', 'FloatBorder' },
+  { '╰', 'FloatBorder' },
+  { '│', 'FloatBorder' },
+}
+
 -- Enable lsp rounded borders
 vim.g.lsp_round_borders_enabled = true
 -- Enable cmp rounded borders
@@ -23,62 +49,6 @@ vim.g.dap_enabled = false
 vim.g.dadbod_enabled = false
 vim.g.precognition_enabled = false
 vim.g.neotest_enabled = false
--- If more than 1 show tabline
-vim.opt.showtabline = 1
--- Make line numbers default
-vim.opt.number = true
--- You can also add relative line numbers, to help with jumping.
---  Experiment for yourself to see if you like it!
-vim.opt.relativenumber = true
-
--- Don't show the mode, since it's already in the status line
-vim.opt.showmode = false
-
--- Sync clipboard between OS and Neovim.
---  Remove this option if you want your OS clipboard to remain independent.
---  See `:help 'clipboard'`
-vim.opt.clipboard = 'unnamedplus'
-
--- Enable break indent
-vim.opt.breakindent = true
-
--- Number of space in a tab.
-vim.opt.tabstop = 2
--- Number of space inserted for indentation.
-vim.opt.shiftwidth = 2
-
--- Save undo history
-vim.opt.undofile = true
-
--- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-
--- Keep signcolumn on by default
-vim.opt.signcolumn = 'yes'
-
--- Decrease update time
-vim.opt.updatetime = 250
-
--- Decrease mapped sequence wait time
--- Displays which-key popup sooner
-vim.opt.timeoutlen = 300
-
--- Configure how new splits should be opened
-vim.opt.splitright = true
-vim.opt.splitbelow = true
-
--- Sets how neovim will display certain whitespace characters in the editor.
---  See `:help 'list'`
---  and `:help 'listchars'`
--- vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
-
--- Preview substitutions live, as you type!
-vim.opt.inccommand = 'split'
-
--- Show which line your cursor is on
-vim.opt.cursorline = true
 
 -- Misc Settings
 vim.opt.mouse = 'a' -- Enable mouse mode, can be useful for resizing splits for example! To disable set it to " "
@@ -87,12 +57,43 @@ vim.opt.timeoutlen = 500 -- Shorten key timeout length a little bit for which-ke
 vim.opt.undofile = true -- Enable persistent undo between session and reboots.
 vim.opt.updatetime = 300 -- Length of time to wait before triggering the plugin.
 vim.opt.virtualedit = 'block' -- Allow going past end of line in visual block mode.
+vim.opt.backup = false -- Don't store backup while overwriting the file
 vim.opt.writebackup = false -- Disable making a backup before overwriting a file.
 vim.opt.shada = "!,'1000,<50,s10,h" -- Remember the last 1000 opened files
 vim.opt.undodir = vim.fn.stdpath 'data' .. '/undodir' -- Chooses where to store the undodir.
 vim.opt.history = 1000 -- Number of commands to remember in a history table (per buffer).
 vim.opt.swapfile = false -- Ask what state to recover when opening a file that was not saved.
+vim.opt.showtabline = 1 -- If more than 1 show tabline
+vim.opt.number = true -- Make line numbers default
+vim.opt.relativenumber = true -- Make relative line numbers default
+vim.opt.showmode = false -- Disable showing mode since we have a statusline
+vim.opt.clipboard = 'unnamedplus' -- Use system clipboard
+vim.opt.tabstop = 2 -- Insert 2 spaces for a tab
+vim.opt.shiftwidth = 2 -- Number of space inserted for indentation.
+vim.opt.autoindent = true -- Copy indent from current line
+vim.opt.undofile = true -- Enable persistent undo
+vim.opt.ignorecase = true -- Case insensitive searching
+vim.opt.smartcase = true -- Case sensitive when using capital letters
+vim.opt.smartindent = true -- Make indenting smart
+vim.opt.incsearch = true -- Show search results while typing
+vim.opt.infercase = true -- Infer letter cases for a richer built-in keyword completion
+vim.opt.signcolumn = 'yes' -- Always show the sign column
+vim.opt.updatetime = 250 -- Decrease update time
+vim.opt.timeoutlen = 300 -- Decrease mapped sequence wait time good for whichkey
+vim.opt.inccommand = 'split' -- Preview substitutions live, as you type!
+vim.opt.cursorline = true -- Show which line your cursor is on
+vim.opt.breakindent = true -- Enable break indent
+vim.opt.linebreak = true -- Wrap long lines at 'breakat' (if 'wrap' is set)
 vim.opt.wrap = true -- Disable wrapping of lines longer than the width of window.
+vim.opt.whichwrap = '<,>,[,],l,h' -- Which characters can go through wrap on a line
+vim.opt.formatoptions:remove 'o' -- Don't have 'o' add a comment, From new tjdrevis video
+vim.opt.ruler = false -- Don't show cursor position in command line
+vim.opt.fillchars = 'eob: ' -- Don't show `~` outside of buffer
+
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+-- vim.opt.list = true
+-- vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 vim.opt.colorcolumn = '80' -- PEP8 like character limit vertical bar.
 -- vim.opt.mousescroll = 'ver:2,hor:5' -- Disables hozirontal scroll in neovim.
 -- vim.opt.guicursor = 'n:blinkon200,i-ci-ve:ver25' -- Enable cursor blink.
@@ -105,27 +106,9 @@ vim.opt.autochdir = true -- Use current file dir as working dir (See project.nvi
 vim.opt.scrolloff = 10 -- Number of lines to leave before/after the cursor when scrolling. Setting a high value keep the cursor centered.
 vim.opt.sidescrolloff = 10 -- Same but for side scrolling.
 vim.opt.selection = 'old' -- Don't select the newline symbol when using <End> on visual mode.
--- [[ Basic Autocommands ]]
---  See `:help lua-guide-autocommands`
--- Don't show columns in these filetypes
-vim.api.nvim_create_autocmd('filetype', {
-  pattern = { 'netrw', 'qf', 'help', 'oil' },
-  callback = function()
-    vim.opt_local.colorcolumn = ''
-    vim.opt_local.cursorcolumn = false
-  end,
-})
-vim.api.nvim_create_autocmd('VimEnter', {
-  desc = 'Disable right contextual menu warning message',
-  callback = function()
-    -- Disable right click message
-    vim.api.nvim_command [[aunmenu PopUp.How-to\ disable\ mouse]]
-    -- vim.api.nvim_command [[aunmenu PopUp.-1-]] -- You can remode a separator like this.
-    vim.api.nvim_command [[menu PopUp.Toggle\ \Breakpoint <cmd>:lua require('dap').toggle_breakpoint()<CR>]]
-    vim.api.nvim_command [[menu PopUp.-2- <Nop>]]
-    vim.api.nvim_command [[menu PopUp.Start\ \Debugger <cmd>:DapContinue<CR>]]
-    vim.api.nvim_command [[menu PopUp.Run\ \Test <cmd>:Neotest run<CR>]]
-  end,
-})
+
+vim.opt.completeopt = 'menuone,noinsert,noselect' -- Customize completions
+vim.opt.virtualedit = 'block' -- Allow going past the end of line in visual block mode
+vim.opt.formatoptions = 'qjl1' -- Don't autoformat comments
 
 -- vim: ts=2 sts=2 sw=2 et

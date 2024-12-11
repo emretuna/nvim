@@ -18,12 +18,12 @@ return {
     shading_factor = 2,
     direction = 'float',
     float_opts = {
-      border = 'rounded',
+      border = vim.g.border_style,
       highlights = { border = 'Normal', background = 'Normal' },
     },
   },
   config = function(_, opts)
     require('toggleterm').setup(opts)
-    vim.keymap.set('n', '<F7>', '<cmd>ToggleTerm<cr>', { desc = 'Toggle Terminal' })
+    vim.keymap.set('n', '<F7>', '<cmd>ToggleTerm direction=horizontal<cr>', { desc = 'Toggle Terminal' })
   end,
 }

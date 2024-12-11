@@ -32,6 +32,7 @@ return {
       { 'j-hui/fidget.nvim', opts = {} },
     },
     config = function()
+      require('lspconfig.ui.windows').default_options.border = vim.g.border_style
       local home = os.getenv 'HOME'
       -- LSP provides Neovim with features like:
       --  - Go to definition
@@ -158,8 +159,9 @@ return {
       -- Borders
       -- Apply the option lsp_round_borders_enabled from ../options.lua
       if vim.g.lsp_round_borders_enabled then
-        vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'rounded', silent = true })
-        vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'rounded', silent = true })
+        vim.lsp.handlers['textDocument/hover'] =
+          vim.lsp.with(vim.lsp.handlers.hover, { border = vim.g.border_style, max_width = 100, max_height = 20, silent = true })
+        vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = vim.g.border_style, silent = true })
         vim.diagnostic.config {
           virtual_text = true,
           update_in_insert = true,
@@ -168,7 +170,7 @@ return {
           float = {
             focused = false,
             style = 'minimal',
-            border = 'rounded',
+            border = vim.g.border_style,
             source = true,
             header = '',
             prefix = '',
@@ -208,20 +210,32 @@ return {
           -- capabilities = {},
           settings = {
             Lua = {
+              runtime = { version = 'LuaJIT' },
+              workspace = {
+                checkThirdParty = false,
+              },
               completion = {
                 callSnippet = 'Replace',
+                displayContext = 10,
+                keywordSnippet = 'Both',
               },
-              -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-              -- diagnostics = { disable = { 'missing-fields' } },
               diagnostics = {
                 globals = { 'vim' },
+                disable = { 'missing-fields', 'undefined-global' },
               },
-              workspace = {
-                -- make language server aware of runtime files
-                library = {
-                  [vim.fn.expand '$VIMRUNTIME/lua'] = true,
-                  [vim.fn.stdpath 'config' .. '/lua'] = true,
-                },
+              codeLens = {
+                enable = true,
+              },
+              doc = {
+                privateName = { '^_' },
+              },
+              hint = {
+                enable = true,
+                setType = false,
+                paramType = true,
+                paramName = 'Disable',
+                semicolon = 'Disable',
+                arrayIndex = 'Disable',
               },
             },
           },

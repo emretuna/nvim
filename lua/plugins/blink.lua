@@ -30,19 +30,25 @@ return {
     -- accept = { auto_brackets = { enabled = true } }
 
     windows = {
+      completion = {
+        menu = {
+          border = vim.g.border_style,
+          winblend = vim.o.pumblend,
+        },
+      },
       autocomplete = {
-        border = 'rounded',
+        border = vim.g.border_style,
         draw = 'minimal',
         winblend = vim.o.pumblend,
       },
 
       documentation = {
-        border = 'rounded',
+        border = vim.g.border_style,
         auto_show = true,
         winblend = vim.o.pumblend,
       },
       signature_help = {
-        border = 'rounded',
+        border = vim.g.border_style,
         winblend = vim.o.pumblend,
       },
       ghost_text = {

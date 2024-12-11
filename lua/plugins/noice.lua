@@ -1,8 +1,6 @@
 return {
   'folke/noice.nvim',
   event = 'VeryLazy',
-  version = '4.4.7',
-  dependencies = { 'nvim-notify', 'fzf-lua' },
   keys = {
     { '<leader>fn', '<cmd>NoiceFzf<cr>', desc = 'Noice: Fzf Mesasges' },
   },
@@ -13,8 +11,8 @@ return {
       presets = { bottom_search = true }, -- The kind of popup used for /
       routes = {
         {
-          view = 'cmdline',
-          -- view = "notify",
+          -- view = 'cmdline',
+          view = 'notify',
           filter = { event = 'msg_showmode' },
         },
         {

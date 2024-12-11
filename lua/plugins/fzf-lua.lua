@@ -60,8 +60,6 @@ return {
   config = function(_, opts)
     -- calling `setup` is optional for customization
     require('fzf-lua').setup(opts)
-    local fzf_lua = require 'fzf-lua'
-
     vim.keymap.set('n', '<leader>ff', '<cmd>FzfLua files<cr>', { desc = 'Files' })
     vim.keymap.set('n', '<leader>fh', '<cmd>FzfLua help_tags<cr>', { desc = 'Find Help' })
     vim.keymap.set('n', '<leader>fc', '<cmd>FzfLua command_history<cr>', { desc = 'Find Command History' })
@@ -81,7 +79,7 @@ return {
     vim.keymap.set('n', 'gr', '<cmd>FzfLua lsp_references<cr>', { desc = 'LSP: References' })
     vim.keymap.set('n', 'gd', '<cmd>FzfLua lsp_definitions<cr>', { desc = 'LSP: Definitions' })
     vim.keymap.set('n', 'gD', '<cmd>FzfLua lsp_declarations<cr>', { desc = 'LSP: Declarations' })
-    vim.keymap.set('n', 'go', '<cmd>FzfLua lsp_typedefs<cr>', { desc = 'LSP: Type Definitions' })
+    -- vim.keymap.set('n', 'go', '<cmd>FzfLua lsp_typedefs<cr>', { desc = 'LSP: Type Definitions' })
     vim.keymap.set('n', 'gI', '<cmd>FzfLua lsp_implementations<cr>', { desc = 'LSP: Implementations' })
     vim.keymap.set('n', '<leader>ls', '<cmd>FzfLua lsp_document_symbols<cr>', { desc = 'LSP: Symbols' })
     vim.keymap.set('n', '<leader>lS', '<cmd>FzfLua lsp_workspace_symbols<cr>', { desc = 'LSP: Workspace Symbols' })
@@ -97,7 +95,7 @@ return {
     vim.keymap.set('n', '<leader>fy', '<cmd>:lua require("neoclip.fzf")()<cr>', { desc = 'Find Yank History' })
 
     -- Neovim config
-    vim.keymap.set('n', '<leader>fN', function()
+    vim.keymap.set('n', '<leader>fC', function()
       -- specify vimconfig directory
       local choice = '~/.config/nvim'
       require('fzf-lua').files {

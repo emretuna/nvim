@@ -1,7 +1,11 @@
 return {
   'folke/trouble.nvim',
   event = 'VeryLazy',
-  opts = {}, -- for default options, refer to the configuration section for custom setup.
+  opts = {
+		win ={
+			border = vim.g.border_style
+		}
+	}, -- for default options, refer to the configuration section for custom setup.
   cmd = 'Trouble',
   config = function(_, opts)
     require('trouble').setup(opts)

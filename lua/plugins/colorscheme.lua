@@ -18,11 +18,12 @@ return {
     priority = 1000,
     -- enabled = false,
     opts = {
+      flat_background = { line_numbers = true, floating_windows = true },
       colorset = 'kanagawa_dragon', -- 'kanagawa_dragon','melliflous','alduin','mountain','tender'
       transparent_background = {
         enabled = false,
       },
-      dim_inactive = true,
+      dim_inactive = false,
     },
     config = function(_, opts)
       require('mellifluous').setup(opts)

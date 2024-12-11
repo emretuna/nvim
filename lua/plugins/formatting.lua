@@ -5,17 +5,34 @@ return {
   opts = {
     stop_after_first = true,
     notify_on_error = true,
-    format_on_save = function(bufnr)
-      -- Disable "format_on_save lsp_fallback" for languages that don't
-      -- have a well standardized coding style. You can add additional
-      -- languages here or re-enable it for the disabled ones.
+    log_level = vim.log.levels.TRACE,
+
+    -- format_on_save = function(bufnr)
+    --   -- Disable "format_on_save lsp_fallback" for languages that don't
+    --   -- have a well standardized coding style. You can add additional
+    --   -- languages here or re-enable it for the disabled ones.
+    --   local disable_filetypes = { c = true, cpp = true }
+    --   if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+    --     return
+    --   end
+    --   -- ...additional logic...
+    --   return {
+    --     timeout_ms = 2500,
+    --     lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
+    --   }
+    -- end,
+    --
+    format_after_save = function(bufnr)
       local disable_filetypes = { c = true, cpp = true }
       if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
         return
       end
+      -- ...additional logic...
       return {
         timeout_ms = 2500,
         lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
+        async = true,
+        quiet = true,
       }
     end,
     formatters_by_ft = {
