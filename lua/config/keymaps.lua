@@ -99,7 +99,7 @@ vim.keymap.set('x', '<Tab>', '>gv', { desc = 'Indent Line' })
 vim.keymap.set('x', '<S-Tab>', '<gv', { desc = 'Unindent Line' })
 
 --git tui
-vim.keymap.set('n', '<leader>ml', function()
+vim.keymap.set('n', '<leader>g.', function()
   local git_dir = vim.fn.finddir('.git', vim.fn.getcwd() .. ';')
   if git_dir ~= '' then
     if vim.fn.executable 'keychain' == 1 then
