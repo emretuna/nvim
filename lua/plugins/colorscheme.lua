@@ -1,4 +1,30 @@
 return {
+  {
+    'echasnovski/mini.base16',
+    config = function()
+      require('mini.base16').setup {
+        palette = {
+          base00 = '#0a0a0a', -- Darkest background
+          base01 = '#080808', -- Slightly lighter
+          base02 = '#191919', -- Mid dark
+          base03 = '#2a2a2a', -- Comments
+          base04 = '#444444', -- Lighter midtone
+          base05 = '#555555', -- Default text
+          base06 = '#7a7a7a', -- Slightly lighter text
+          base07 = '#AAAAAA', -- Lightest text
+          base08 = '#b98d7b', -- Subtle accents
+          base09 = '#789978', -- Another variation for highlights
+          base0A = '#505050', -- Alternate text
+          base0B = '#deeeed', -- Lighter accents
+          base0C = '#DDDDDD', -- Alternate muted accent
+          base0D = '#708090', -- UI elements
+          base0E = '#383838', -- Subdued highlights
+          base0F = '#202020', -- Accent for strong elements
+        },
+        use_cterm = true,
+      }
+    end,
+  },
   { -- You can easily change to a different colorscheme.
     -- Change the name of the colorscheme plugin below, and then
     -- change the command in the config to whatever the name of that colorscheme is.
@@ -16,7 +42,7 @@ return {
     'ramojus/mellifluous.nvim',
     lazy = false,
     priority = 1000,
-    -- enabled = false,
+    enabled = false,
     opts = {
       flat_background = { line_numbers = true, floating_windows = true },
       colorset = 'kanagawa_dragon', -- 'kanagawa_dragon','melliflous','alduin','mountain','tender'
