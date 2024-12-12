@@ -5,21 +5,21 @@ return {
       require('mini.base16').setup {
         palette = {
           base00 = '#0a0a0a', -- Darkest background
-          base01 = '#080808', -- Slightly lighter
-          base02 = '#191919', -- Mid dark
-          base03 = '#2a2a2a', -- Comments
-          base04 = '#444444', -- Lighter midtone
-          base05 = '#555555', -- Default text
-          base06 = '#7a7a7a', -- Slightly lighter text
-          base07 = '#AAAAAA', -- Lightest text
-          base08 = '#b98d7b', -- Subtle accents
-          base09 = '#789978', -- Another variation for highlights
-          base0A = '#505050', -- Alternate text
-          base0B = '#deeeed', -- Lighter accents
-          base0C = '#DDDDDD', -- Alternate muted accent
-          base0D = '#708090', -- UI elements
-          base0E = '#383838', -- Subdued highlights
-          base0F = '#202020', -- Accent for strong elements
+          base01 = '#121212', -- Slightly lighter for subtle contrast
+          base02 = '#1e1e1e', -- Mid dark for UI elements
+          base03 = '#2a2a2a', -- Comments and subtle text
+          base04 = '#3c3c3c', -- Midtone for inactive elements
+          base05 = '#5a5a5a', -- Default text, standard readability
+          base06 = '#8a8a8a', -- Slightly lighter text for emphasis
+          base07 = '#c4c4c4', -- Lightest text, headings
+          base08 = '#a0756e', -- Variables, markup link text (softer orange-brown)
+          base09 = '#789978', -- Integers, booleans, constants (muted green)
+          base0A = '#4a4a4a', -- Classes, markup bold (dark gray)
+          base0B = '#b9c9c9', -- Strings, markup code (pale blue-gray for clarity)
+          base0C = '#9a9a9a', -- Support, diff changed (neutral gray)
+          base0D = '#708090', -- Functions, methods (cool gray-blue)
+          base0E = '#3e3e3e', -- Keywords, storage (subtle highlight)
+          base0F = '#252525', -- Deprecated, special tags (dark and subdued)
         },
         use_cterm = true,
       }
