@@ -1,6 +1,7 @@
 return {
   'ibhagwan/fzf-lua',
   -- optional for icon support
+  enabled = false,
   dependencies = { 'echasnovski/mini.icons' },
   opts = function()
     local actions = require('fzf-lua').actions

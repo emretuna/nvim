@@ -2,7 +2,7 @@ return {
   'folke/noice.nvim',
   event = 'VeryLazy',
   keys = {
-    { '<leader>fn', '<cmd>NoiceFzf<cr>', desc = 'Noice: Fzf Mesasges' },
+    { '<leader>fn', '<cmd>Noice<cr>', desc = 'Noice Messages' },
   },
   opts = function()
     local enable_conceal = true -- Hide command text if true

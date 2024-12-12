@@ -59,6 +59,7 @@ return {
         { '<leader>t', group = 'Tabs' },
         { '<leader>m', group = 'Misc' },
         { '<leader>u', group = 'UI' },
+        { '<leader>v', group = 'Visits' },
         { '<leader>w', group = 'Window' },
         { '<leader>x', group = 'Trouble' },
       },

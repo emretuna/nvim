@@ -23,11 +23,11 @@ return {
     -- Buttons
     dashboard.section.buttons.val = {
       dashboard.button('n', '📋 New     ', '<cmd>enew<CR>'),
-      dashboard.button('r', '⚡ Recent  ', '<cmd>FzfLua oldfiles<CR>'),
-      dashboard.button('f', '🐙 Find    ', '<cmd>FzfLua live_grep <cr>'),
+      dashboard.button('o', '⚡ Recent  ', '<cmd>lua MiniExtra.pickers.oldfiles()<CR>'),
+      dashboard.button('f', '🐙 Find    ', '<cmd>lua MiniPick.builtin.files()<cr>'),
       dashboard.button('l', '💤 Lazy    ', '<cmd>Lazy <cr>'),
       dashboard.button('s', '🔎 Sessions', '<cmd>SessionManager! load_session<CR>'),
-      dashboard.button('p', '💼 Projects', ':lua vim.api.nvim_input("<leader>fp")<CR>'),
+      dashboard.button('p', '💼 Projects', ':lua vim.api.nvim_input("<leader>fP")<CR>'),
       dashboard.button('', ''),
       dashboard.button('q', '   Quit', '<cmd>exit<CR>'),
       --  --button("LDR f '", "  Bookmarks  "),
