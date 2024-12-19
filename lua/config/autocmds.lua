@@ -10,6 +10,7 @@ end
 --   pattern = '*',
 --   command = 'silent! update | redraw',
 -- })
+
 -- macro function of mini.statusline
 vim.api.nvim_create_autocmd('RecordingEnter', {
   pattern = '*',
@@ -105,22 +106,13 @@ vim.api.nvim_create_autocmd('BufWinEnter', {
     end
   end,
 })
+
 vim.api.nvim_create_autocmd('filetype', {
   desc = 'Disable cursorcolumn and colorcolumn in these filetypes',
   pattern = { 'netrw', 'qf', 'help', 'oil', 'avante' },
   callback = function()
     vim.opt_local.colorcolumn = ''
     vim.opt_local.cursorcolumn = false
-  end,
-})
-
--- Highlight text on yank
-vim.api.nvim_create_autocmd('TextYankPost', {
-  desc = 'Highlight yanked text',
-  group = augroup 'highlight_yank',
-  pattern = '*',
-  callback = function()
-    vim.highlight.on_yank()
   end,
 })
 
@@ -133,27 +125,38 @@ vim.api.nvim_create_autocmd('VimEnter', {
   end,
 })
 
--- Show relative line numbers in Visual mode
-vim.api.nvim_create_autocmd('ModeChanged', {
-  desc = 'Show relative line numbers in Visual mode',
-  group = augroup 'relative_line_numbers',
-  pattern = '*:[V\x16]*',
-  callback = function()
-    if vim.wo.number then -- Avoid horizontal flickering
-      vim.wo.relativenumber = true
-    end
-  end,
-})
+-- Disabled mini.basics already has this
+-- -- Highlight text on yank
+-- vim.api.nvim_create_autocmd('TextYankPost', {
+--   desc = 'Highlight yanked text',
+--   group = augroup 'highlight_yank',
+--   pattern = '*',
+--   callback = function()
+--     vim.highlight.on_yank()
+--   end,
+-- })
 
--- Hide relative line numbers outside Visual mode
-vim.api.nvim_create_autocmd('ModeChanged', {
-  desc = 'Hide relative line numbers outside Visual mode',
-  group = augroup 'relative_line_numbers',
-  pattern = '[V\x16]*:*',
-  callback = function()
-    vim.wo.relativenumber = false
-  end,
-})
+-- -- Show relative line numbers in Visual mode
+-- vim.api.nvim_create_autocmd('ModeChanged', {
+--   desc = 'Show relative line numbers in Visual mode',
+--   group = augroup 'relative_line_numbers',
+--   pattern = '*:[V\x16]*',
+--   callback = function()
+--     if vim.wo.number then -- Avoid horizontal flickering
+--       vim.wo.relativenumber = true
+--     end
+--   end,
+-- })
+--
+-- -- Hide relative line numbers outside Visual mode
+-- vim.api.nvim_create_autocmd('ModeChanged', {
+--   desc = 'Hide relative line numbers outside Visual mode',
+--   group = augroup 'relative_line_numbers',
+--   pattern = '[V\x16]*:*',
+--   callback = function()
+--     vim.wo.relativenumber = false
+--   end,
+-- })
 
 vim.api.nvim_create_autocmd({ 'FileType' }, {
   desc = 'Close some filetypes with <q>',

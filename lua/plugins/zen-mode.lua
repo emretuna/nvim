@@ -1,7 +1,13 @@
 return {
   'folke/zen-mode.nvim',
   dependencies = {
-    'folke/twilight.nvim',
+    {
+      'folke/twilight.nvim',
+      config = function()
+        require('twilight').setup()
+        vim.keymap.set('n', '<leader>mt', '<cmd>Twilight<cr>', { desc = 'Twilight' })
+      end,
+    },
   },
   opts = {
     plugins = {

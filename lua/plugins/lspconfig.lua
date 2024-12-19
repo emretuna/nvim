@@ -69,6 +69,36 @@ return {
           -- Execute a code action, usually your cursor needs to be on top of an error
           -- or a suggestion from your LSP for this to activate.
           map('ga', vim.lsp.buf.code_action, 'LSP: Code Action')
+          -- Restart LSP server
+          map('<leader>ms', ':LspRestart', 'LSP Restart')
+
+          map('gd', function()
+            MiniExtra.pickers.lsp { scope = 'definition' }
+          end, 'Goto Ddefinition')
+
+          map('gr', function()
+            MiniExtra.pickers.lsp { scope = 'references' }
+          end, 'Goto References')
+
+          map('gI', function()
+            MiniExtra.pickers.lsp { scope = 'implementation' }
+          end, 'Goto Implementation')
+
+          map('gD', function()
+            MiniExtra.pickers.lsp { scope = 'declaration' }
+          end, 'Goto Declaration')
+
+          map('gt', function()
+            MiniExtra.pickers.lsp { scope = 'type_definition' }
+          end, 'Type [D]definition')
+
+          -- map("<leader>ds", function()
+          --   MiniExtra.pickers.lsp({ scope = "document_symbol" })
+          -- end, "[D]ocument [S]symbols")
+          --
+          -- map("<leader>ws", function()
+          --   MiniExtra.pickers.lsp({ scope = "workspace_symbol" })
+          -- end, "[W]orkspace [S]symbols")
           -- Opens a popup that displays documentation about the word under your cursor
           --  See `:help K` for why this keymap.
           map('K', vim.lsp.buf.hover, 'Hover Documentation')

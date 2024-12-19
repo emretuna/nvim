@@ -48,5 +48,9 @@ return {
   },
   config = function(_, opts)
     require('typescript-tools').setup(opts)
+    vim.api.nvim_create_autocmd('BufWritePre', {
+      pattern = '*.ts*',
+      command = ':TSToolsRemoveUnusedImports sync',
+    })
   end,
 }
