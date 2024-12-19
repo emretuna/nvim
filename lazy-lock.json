@@ -34,6 +34,7 @@
   "mini-git": { "branch": "main", "commit": "f75ae3855f595e55e1a8a96521ffa01012632b28" },
   "mini.ai": { "branch": "main", "commit": "ebb04799794a7f94628153991e6334c3304961b8" },
   "mini.animate": { "branch": "main", "commit": "d14190ac3040116540889e2ebc25f488b195799e" },
+  "mini.base16": { "branch": "main", "commit": "6bc6bb3d76174bad4089590df36375bb5d0660ac" },
   "mini.basics": { "branch": "main", "commit": "67c10b3436d5d3b892715137f4773e71c6753b13" },
   "mini.bracketed": { "branch": "main", "commit": "daf2bff8172bc84bfb934f765275618f5e7844a8" },
   "mini.bufremove": { "branch": "main", "commit": "285bdac9596ee7375db50c0f76ed04336dcd2685" },
