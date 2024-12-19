@@ -1,6 +1,8 @@
 return {
   {
     'echasnovski/mini.base16',
+    lazy = false,
+    priority = 1000,
     config = function()
       -- Define dark and light palettes
       local dark_palette = {
@@ -13,8 +15,8 @@ return {
         base06 = '#909090', -- Slightly lighter text for emphasis
         base07 = '#c8c8c8', -- Lightest text, headings
         base08 = '#a37b6f', -- Variables, markup link text
-        base09 = '#dee5e5', -- Integers, booleans, constants
-        base0A = '#657688', -- Classes, markup bold
+        base09 = '#DEEEED', -- Integers, booleans, constants
+        base0A = '#708090', -- Classes, markup bold
         base0B = '#505050', -- Strings, markup code
         base0C = '#6a6a6a', -- Support, diff changed
         base0D = '#a8a8a8', -- Functions, methods
@@ -23,22 +25,22 @@ return {
       }
 
       local light_palette = {
-        base00 = '#f8f8f8', -- Lightest background
-        base01 = '#eeeeee', -- Slightly darker for subtle contrast
-        base02 = '#e0e0e0', -- Light gray for UI elements
-        base03 = '#d2d2d2', -- Comments and subtle text
-        base04 = '#bcbcbc', -- Midtone for inactive elements
-        base05 = '#909090', -- Default text, standard readability
-        base06 = '#606060', -- Slightly darker text for emphasis
-        base07 = '#2b2b2b', -- Darkest text, headings
-        base08 = '#ba8d7f', -- Variables, markup link text
-        base09 = '#4e5a5a', -- Integers, booleans, constants
-        base0A = '#8899aa', -- Classes, markup bold
-        base0B = '#707070', -- Strings, markup code (aligned with neutral tones)
-        base0C = '#8a8a8a', -- Support, diff changed
-        base0D = '#595959', -- Functions, methods
-        base0E = '#707070', -- Keywords, storage
-        base0F = '#c0c0c0', -- Deprecated, special tags
+        base00 = '#fafafa', -- Softest light background
+        base01 = '#f0f0f0', -- Slightly darker for subtle contrast
+        base02 = '#e6e6e6', -- Mid light for UI elements
+        base03 = '#dcdcdc', -- Comments and subtle text
+        base04 = '#c0c0c0', -- Inactive elements with soft contrast
+        base05 = '#808080', -- Default text, balanced readability
+        base06 = '#5c5c5c', -- Slightly darker text for emphasis
+        base07 = '#2f2f2f', -- Darkest text, headings
+        base08 = '#a08070', -- Variables, markup link text (muted warm tone)
+        base09 = '#728c7b', -- Integers, booleans, constants (soft green)
+        base0A = '#708090', -- Classes, markup bold (cool muted blue-gray)
+        base0B = '#6e6e6e', -- Strings, markup code (neutral and soft)
+        base0C = '#8a8a8a', -- Support, diff changed (gentle gray tone)
+        base0D = '#505050', -- Functions, methods (subtle dark gray)
+        base0E = '#686868', -- Keywords, storage (medium contrast gray)
+        base0F = '#909090', -- Deprecated, special tags (muted and neutral)
       }
 
       -- Function to apply the colorscheme based on `vim.o.background`
