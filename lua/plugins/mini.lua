@@ -1,68 +1,21 @@
 return {
   {
-    'echasnovski/mini.base16',
+    'echasnovski/mini.hues',
     lazy = false,
     priority = 1000,
-    config = function()
-      -- Define dark and light palettes
-      local dark_palette = {
-        base00 = '#171717', -- Darkest background
-        base01 = '#1e1e1e', -- Slightly lighter for contrast
-        base02 = '#262626', -- Mid dark for UI elements
-        base03 = '#303030', -- Comments and subtle text
-        base04 = '#424242', -- Midtone for inactive elements
-        base05 = '#646464', -- Default text, standard readability
-        base06 = '#909090', -- Slightly lighter text for emphasis
-        base07 = '#c8c8c8', -- Lightest text, headings
-        base08 = '#a37b6f', -- Variables, markup link text
-        base09 = '#DEEEED', -- Integers, booleans, constants
-        base0A = '#708090', -- Classes, markup bold
-        base0B = '#505050', -- Strings, markup code
-        base0C = '#6a6a6a', -- Support, diff changed
-        base0D = '#a8a8a8', -- Functions, methods
-        base0E = '#5e5e5e', -- Keywords, storage
-        base0F = '#404040', -- Deprecated, special tags
-      }
+    -- enabled = false,
+    opts = {
+      -- Base colors
+      background = '#171717', -- Slate Gray (lack)
+      foreground = '#deeeed', -- Soft White (luster)
 
-      local light_palette = {
-        base00 = '#fafafa', -- Softest light background
-        base01 = '#f0f0f0', -- Slightly darker for subtle contrast
-        base02 = '#e6e6e6', -- Mid light for UI elements
-        base03 = '#dcdcdc', -- Comments and subtle text
-        base04 = '#c0c0c0', -- Inactive elements with soft contrast
-        base05 = '#808080', -- Default text, balanced readability
-        base06 = '#5c5c5c', -- Slightly darker text for emphasis
-        base07 = '#2f2f2f', -- Darkest text, headings
-        base08 = '#a08070', -- Variables, markup link text (muted warm tone)
-        base09 = '#728c7b', -- Integers, booleans, constants (soft green)
-        base0A = '#708090', -- Classes, markup bold (cool muted blue-gray)
-        base0B = '#6e6e6e', -- Strings, markup code (neutral and soft)
-        base0C = '#8a8a8a', -- Support, diff changed (gentle gray tone)
-        base0D = '#505050', -- Functions, methods (subtle dark gray)
-        base0E = '#686868', -- Keywords, storage (medium contrast gray)
-        base0F = '#909090', -- Deprecated, special tags (muted and neutral)
-      }
-
-      -- Function to apply the colorscheme based on `vim.o.background`
-      local function apply_palette()
-        local palette = vim.o.background == 'dark' and dark_palette or light_palette
-        require('mini.base16').setup {
-          palette = palette,
-          use_cterm = true,
-        }
-        vim.g.colors_name = 'base16' -- Set colorscheme name
-      end
-
-      -- Apply the palette during initialization
-      apply_palette()
-
-      -- Set up an autocmd to change the palette dynamically
-      vim.api.nvim_create_autocmd('OptionSet', {
-        pattern = 'background',
-        callback = function()
-          apply_palette()
-        end,
-      })
+      -- Color configuration
+      n_hues = 4, -- Number of hues for non-base colors
+      saturation = 'medium', -- Saturation level
+      accent = 'bg', -- Accent color for UI highlights)
+    },
+    config = function(_, opts)
+      require('mini.hues').setup(opts)
     end,
   },
   {

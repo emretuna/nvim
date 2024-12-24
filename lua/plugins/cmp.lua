@@ -2,13 +2,14 @@ return {
   { -- Autocompletion
     -- 'hrsh7th/nvim-cmp',
     'iguanacucumber/magazine.nvim',
-    version = '0.3',
+    version = '*',
     name = 'nvim-cmp', -- Otherwise highlighting gets messed up
     event = 'InsertEnter',
     -- enabled = false,
     dependencies = {
       'monkoose/neocodeium',
       'onsails/lspkind.nvim',
+      'lukas-reineke/cmp-rg',
       -- Snippet Engine & its associated nvim-cmp source
       {
         'L3MON4D3/LuaSnip',
@@ -153,17 +154,21 @@ return {
           { name = 'nvim_lua', priority = 750 },
           { name = 'lazydev', priority = 500 },
           { name = 'async_path', priority = 500 },
+          {
+            name = 'rg',
+            -- Try it when you feel cmp performance is poor
+            keyword_length = 3,
+          },
           { name = 'emoji', priority = 50 },
         },
         formatting = {
           expandable_indicator = true,
           fields = { 'kind', 'abbr', 'menu' },
           format = function(entry, vim_item)
-            vim_item.kind = require('lspkind').presets.codicons[vim_item.kind] .. ' ' .. vim_item.kind
-            local entryItem = entry.completion_item
-            local color = entryItem.documentation
-
-            -- check if color is hexcolor
+            local icon, hl = require('mini.icons').get('lsp', vim_item.kind)
+            vim_item.kind = icon .. ' ' .. vim_item.kind
+            vim_item.kind_hl_group = hl
+            local color = entry.completion_item.documentation
             if color and type(color) == 'string' and color:match '^#%x%x%x%x%x%x$' then
               local hl = 'hex-' .. color:sub(2)
 
@@ -171,7 +176,8 @@ return {
                 vim.api.nvim_set_hl(0, hl, { fg = color })
               end
 
-              vim_item.menu = ' '
+              vim_item.menu = '█'
+              -- vim_item.menu = ''
               vim_item.menu_hl_group = hl
 
               -- else
