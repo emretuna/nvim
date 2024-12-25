@@ -10,7 +10,7 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
--- vim.opt.cmdheight = 0 -- Hide command line spacing
+vim.opt.cmdheight = 0 -- Hide command line spacing
 
 vim.g.big_file = { size = 1024 * 100, lines = 10000 } -- For files bigger than this, disable 'treesitter' (+100kb).
 -- Netrw settings
@@ -52,35 +52,35 @@ vim.g.precognition_enabled = false
 vim.g.neotest_enabled = false
 
 -- Misc Settings
--- Commented out mini.basics already enables this
--- vim.opt.undofile = true -- Enable persistent undo between session and reboots.
--- vim.opt.backup = false -- Don't store backup while overwriting the file
--- vim.opt.writebackup = false -- Disable making a backup before overwriting a file.
--- vim.opt.mouse = 'a' -- Enable mouse mode, can be useful for resizing splits for example! To disable set it to " "
---
--- vim.opt.breakindent = true -- Enable break indent
--- vim.opt.cursorline = true -- Show which line your cursor is on
--- vim.opt.linebreak = true -- Wrap long lines at 'breakat' (if 'wrap' is set)
--- vim.opt.number = true -- Make line numbers default
--- vim.opt.splitbelow = true
--- vim.opt.splitright = true
---
--- vim.opt.ruler = false -- Don't show cursor position in command line
--- vim.opt.showmode = false -- Disable showing mode since we have a statusline
--- vim.opt.wrap = false -- Disable wrapping of lines longer than the width of window.
--- vim.opt.signcolumn = 'yes' -- Always show the sign column
--- vim.opt.fillchars = 'eob: ' -- Don't show `~` outside of buffer
--- vim.opt.ignorecase = true -- Case insensitive searching
--- vim.opt.incsearch = true -- Show search results while typing
--- vim.opt.infercase = true -- Infer letter cases for a richer built-in keyword completion
--- vim.opt.smartcase = true -- Case sensitive when using capital letters
--- vim.opt.smartindent = true -- Make indenting smart
--- vim.opt.completeopt = 'menuone,noinsert,noselect' -- Customize completions
--- vim.opt.virtualedit = 'block' -- Allow going past end of line in visual block mode.
--- vim.opt.formatoptions = 'qjl1' -- Don't have 'o' add a comment, From new tjdrevis video
--- vim.opt.termguicolors = true -- Enable 24-bit RGB color in the TUI.
+vim.opt.undofile = true -- Enable persistent undo between session and reboots.
+vim.opt.backup = false -- Don't store backup while overwriting the file
+vim.opt.writebackup = false -- Disable making a backup before overwriting a file.
+vim.opt.mouse = 'a' -- Enable mouse mode, can be useful for resizing splits for example! To disable set it to " "
+
+vim.opt.breakindent = true -- Enable break indent
+vim.opt.cursorline = true -- Show which line your cursor is on
+vim.opt.linebreak = true -- Wrap long lines at 'breakat' (if 'wrap' is set)
+vim.opt.number = true -- Make line numbers default
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+
+vim.opt.ruler = false -- Don't show cursor position in command line
+vim.opt.showmode = false -- Disable showing mode since we have a statusline
+vim.opt.wrap = false -- Disable wrapping of lines longer than the width of window.
+vim.opt.signcolumn = 'yes' -- Always show the sign column
+vim.opt.fillchars = 'eob: ' -- Don't show `~` outside of buffer
+vim.opt.ignorecase = true -- Case insensitive searching
+vim.opt.incsearch = true -- Show search results while typing
+vim.opt.infercase = true -- Infer letter cases for a richer built-in keyword completion
+vim.opt.smartcase = true -- Case sensitive when using capital letters
+vim.opt.smartindent = true -- Make indenting smart
+vim.opt.completeopt = 'menuone,noinsert,noselect' -- Customize completions
+vim.opt.virtualedit = 'block' -- Allow going past end of line in visual block mode.
+vim.opt.formatoptions = 'qjl1' -- Don't have 'o' add a comment, From new tjdrevis video
+vim.opt.termguicolors = true -- Enable 24-bit RGB color in the TUI.
 -- vim.opt.list = true
 -- vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+-- vim.opt.relativenumber = true -- Make relative line numbers default
 
 vim.opt.timeoutlen = 500 -- Shorten key timeout length a little bit for which-key.
 vim.opt.updatetime = 300 -- Length of time to wait before triggering the plugin.
@@ -90,7 +90,6 @@ vim.opt.undodir = vim.fn.stdpath 'data' .. '/undodir' -- Chooses where to store 
 vim.opt.history = 1000 -- Number of commands to remember in a history table (per buffer).
 vim.opt.swapfile = false -- Ask what state to recover when opening a file that was not saved.
 vim.opt.showtabline = 1 -- If more than 1 show tabline
-vim.opt.relativenumber = true -- Make relative line numbers default
 vim.opt.clipboard = 'unnamedplus' -- Use system clipboard
 vim.opt.tabstop = 2 -- Insert 2 spaces for a tab
 vim.opt.shiftwidth = 2 -- Number of space inserted for indentation.

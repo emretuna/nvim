@@ -5,6 +5,7 @@ local function augroup(name)
   return vim.api.nvim_create_augroup('vimrc_' .. name, { clear = true })
 end
 
+-- Autosave changed files
 -- vim.api.nvim_create_autocmd({ 'FocusLost', 'ModeChanged', 'TextChanged', 'BufEnter' }, {
 --   desc = 'Autosave',
 --   pattern = '*',
@@ -125,38 +126,34 @@ vim.api.nvim_create_autocmd('VimEnter', {
   end,
 })
 
--- Disabled mini.basics already has this
--- -- Highlight text on yank
--- vim.api.nvim_create_autocmd('TextYankPost', {
---   desc = 'Highlight yanked text',
---   group = augroup 'highlight_yank',
---   pattern = '*',
---   callback = function()
---     vim.highlight.on_yank()
---   end,
--- })
+-- Highlight text on yank
+vim.api.nvim_create_autocmd('TextYankPost', {
+  desc = 'Highlight yanked text',
+  group = augroup 'highlight_yank',
+  pattern = '*',
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+})
 
--- -- Show relative line numbers in Visual mode
--- vim.api.nvim_create_autocmd('ModeChanged', {
---   desc = 'Show relative line numbers in Visual mode',
---   group = augroup 'relative_line_numbers',
---   pattern = '*:[V\x16]*',
---   callback = function()
---     if vim.wo.number then -- Avoid horizontal flickering
---       vim.wo.relativenumber = true
---     end
---   end,
--- })
---
--- -- Hide relative line numbers outside Visual mode
--- vim.api.nvim_create_autocmd('ModeChanged', {
---   desc = 'Hide relative line numbers outside Visual mode',
---   group = augroup 'relative_line_numbers',
---   pattern = '[V\x16]*:*',
---   callback = function()
---     vim.wo.relativenumber = false
---   end,
--- })
+-- Show relative numbers only in visual modes
+vim.api.nvim_create_autocmd('ModeChanged', {
+  pattern = '*:[V\x16]*',
+  callback = function()
+    if vim.wo.number then
+      vim.wo.relativenumber = true
+    end
+  end,
+  desc = 'Show relative line numbers in visual modes',
+})
+
+vim.api.nvim_create_autocmd('ModeChanged', {
+  pattern = '[V\x16]*:*',
+  callback = function()
+    vim.wo.relativenumber = string.find(vim.fn.mode(), '^[V\22]') ~= nil
+  end,
+  desc = 'Hide relative line numbers when not in visual modes',
+})
 
 vim.api.nvim_create_autocmd({ 'FileType' }, {
   desc = 'Close some filetypes with <q>',

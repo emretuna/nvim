@@ -19,28 +19,6 @@ return {
     end,
   },
   {
-    'echasnovski/mini.basics',
-    -- enabled = false,
-    lazy = false,
-    opts = {
-      options = {
-        win_border = 'single',
-        extra_ui = false,
-      },
-      mappings = {
-        move_with_alt = true,
-        option_toggle_prefix = [[\]],
-      },
-
-      autocommands = {
-        relnum_in_visual_mode = true,
-      },
-    },
-    config = function(_, opts)
-      require('mini.basics').setup(opts)
-    end,
-  },
-  {
     'echasnovski/mini.visits',
     event = 'VeryLazy',
     config = function()
@@ -54,35 +32,11 @@ return {
     end,
   },
   {
-    'echasnovski/mini.bufremove',
-    event = 'VeryLazy',
-    opts = {
-      set_vim_settings = false,
-    },
+    'echasnovski/mini.sessions',
+    lazy = false,
+    priority = 1000,
     config = function()
-      require('mini.bufremove').setup()
-      -- Function to remove all buffers except the current one
-      local function remove_all_but_current()
-        local current_buf = vim.api.nvim_get_current_buf() -- Get the current buffer ID
-        local buffers = vim.api.nvim_list_bufs() -- Get a list of all buffer IDs
-
-        for _, buf_id in ipairs(buffers) do
-          -- Only delete the buffer if it's not the current one
-          if buf_id ~= current_buf then
-            -- Use MiniBufremove.delete to delete the buffer
-            local success = require('mini.bufremove').delete(buf_id, false) -- true = force delete
-            if not success then
-              print('Failed to delete buffer:', buf_id)
-            end
-          end
-        end
-      end
-
-      vim.keymap.set('n', '<leader>bx', '<cmd>lua MiniBufremove.delete()<CR>', { desc = 'Delete Buffer' })
-      vim.keymap.set('n', '<leader>bw', '<cmd>lua MiniBufremove.wipeout()<CR>', { desc = 'Wipeout Buffer' })
-      vim.keymap.set('n', '<leader>bc', function()
-        remove_all_but_current()
-      end, { desc = 'Delete All Buffers' })
+      require('mini.sessions').setup()
     end,
   },
   {
@@ -209,8 +163,12 @@ return {
         MiniExtra.pickers.explorer {
           cwd = os.getenv 'HOME' .. '/.dotfiles',
         }
+      end, { desc = 'Search Trash' })
+      vim.keymap.set('n', '<leader>fT', function()
+        MiniExtra.pickers.explorer {
+          cwd = os.getenv 'HOME' .. '/.local/share/nvim/mini.files/trash',
+        }
       end, { desc = 'Search Dotfiles' })
-
       vim.keymap.set('n', '<leader>fP', function()
         MiniExtra.pickers.explorer {
           cwd = os.getenv 'HOME' .. '/Code',
@@ -241,7 +199,7 @@ return {
         end
       end, { desc = 'Search Git Commands' })
 
-      vim.keymap.set('n', '<leader>gb', function()
+      vim.keymap.set('n', '<leader>gB', function()
         MiniExtra.pickers.git_branches()
       end, { desc = 'Search Git Branches' })
 
@@ -523,6 +481,7 @@ return {
   { 'echasnovski/mini.surround', event = 'BufReadPost', opts = {} },
   {
     'echasnovski/mini.animate',
+    -- enabled = false,
     event = 'VeryLazy',
     opts = function()
       -- don't use animate when scrolling with the mouse
