@@ -36,7 +36,6 @@ return {
     notifier = {
       enabled = true,
       timeout = 3000,
-      style = 'fancy',
     },
     quickfile = { enabled = true },
     words = { enabled = true },
