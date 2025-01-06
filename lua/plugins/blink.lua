@@ -1,8 +1,11 @@
 return {
   'saghen/blink.cmp',
   -- optional: provides snippets for the snippet source
-  dependencies = { 'rafamadriz/friendly-snippets' },
   enabled = false,
+  dependencies = {
+    'rafamadriz/friendly-snippets',
+  },
+  -- enabled = false,
   -- use a release tag to download pre-built binaries
   version = 'v0.*',
   -- OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
@@ -30,8 +33,8 @@ return {
     -- accept = { auto_brackets = { enabled = true } }
     completion = {
       keyword = { range = 'full' },
-      accept = { auto_brackets = { enabled = false } },
-      list = { selection = 'manual' },
+      accept = { auto_brackets = { enabled = true } },
+      list = { selection = 'preselect' },
       menu = {
         border = vim.g.border_style,
         winblend = vim.o.pumblend,
@@ -91,6 +94,20 @@ return {
       lazydev = { name = 'LazyDev', module = 'lazydev.integrations.blink', score_offset = 100, fallbacks = { 'lsp' } },
       dadbod = { name = 'Dadbod', module = 'vim_dadbod_completion.blink' },
     },
+  },
+  snippets = {
+    -- Function to use when expanding LSP provided snippets
+    expand = function(snippet)
+      vim.snippet.expand(snippet)
+    end,
+    -- Function to use when checking if a snippet is active
+    active = function(filter)
+      return vim.snippet.active(filter)
+    end,
+    -- Function to use when jumping between tab stops in a snippet, where direction can be negative or positive
+    jump = function(direction)
+      vim.snippet.jump(direction)
+    end,
   },
   keymap = {
     ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },

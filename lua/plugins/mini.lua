@@ -1,21 +1,13 @@
 return {
   {
-    'echasnovski/mini.hues',
-    lazy = false,
-    priority = 1000,
-    -- enabled = false,
+    'echasnovski/mini.sessions',
+    event = 'VeryLazy',
     opts = {
-      -- Base colors
-      background = '#171717', -- Slate Gray (lack)
-      foreground = '#deeeed', -- Soft White (luster)
-
-      -- Color configuration
-      n_hues = 4, -- Number of hues for non-base colors
-      saturation = 'medium', -- Saturation level
-      accent = 'bg', -- Accent color for UI highlights)
+      autoread = true,
+      autowrite = true,
     },
     config = function(_, opts)
-      require('mini.hues').setup(opts)
+      require('mini.sessions').setup(opts)
     end,
   },
   {
@@ -32,15 +24,20 @@ return {
     end,
   },
   {
-    'echasnovski/mini.sessions',
-    lazy = false,
-    priority = 1000,
-    config = function()
-      require('mini.sessions').setup()
+    'echasnovski/mini.align',
+    opts = {
+      mappings = {
+        start = 'gb',
+        start_with_preview = 'gB',
+      },
+    },
+    config = function(_, opts)
+      require('mini.align').setup(opts)
     end,
   },
   {
     'echasnovski/mini.pick',
+    -- enabled = false,
     opts = {
       options = {
         content_from_bottom = false,
@@ -236,7 +233,7 @@ return {
       end, { desc = 'Search Builtin Pick Commands' })
 
       -- Only works with lazy
-      vim.keymap.set('n', '<leader>mr', function()
+      vim.keymap.set('n', '<leader>mP', function()
         local plugin = MiniPick.start {
           source = {
             name = ' Reload Plugins ',
@@ -259,6 +256,7 @@ return {
   {
     'echasnovski/mini.files',
     event = 'VeryLazy',
+    -- enabled = false,
     opts = {
       options = {
         permanent_delete = false,
@@ -267,6 +265,13 @@ return {
         go_in = '<S-Enter>',
         go_in_plus = '<Enter>',
         synchronize = '<C-s>',
+      },
+      windows = {
+        max_number = 3,
+        preview = true,
+        width_nofocus = math.floor((vim.o.columns - 5) * 0.25), -- 25% of screen minus border+padding
+        width_focus = math.floor((vim.o.columns - 5) * 0.25), -- 25% of screen minus border+padding
+        width_preview = math.floor((vim.o.columns - 3) * 0.5), -- 50% of screen minus border+padding,
       },
       border = vim.g.border_style,
     },

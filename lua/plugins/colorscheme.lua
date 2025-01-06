@@ -17,7 +17,7 @@ return {
     'ramojus/mellifluous.nvim',
     lazy = false,
     priority = 1000,
-    enabled = false,
+    -- enabled = false,
     opts = {
       flat_background = { line_numbers = true, floating_windows = true },
       colorset = 'kanagawa_dragon', -- 'kanagawa_dragon','melliflous','alduin','mountain','tender'

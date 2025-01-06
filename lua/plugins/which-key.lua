@@ -62,6 +62,7 @@ return {
         { '<leader>v', group = 'Visits' },
         { '<leader>w', group = 'Window' },
         { '<leader>x', group = 'Trouble' },
+        { '<leader><leader>', group = 'Smart Splits' },
       },
     },
   },

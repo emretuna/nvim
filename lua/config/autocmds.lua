@@ -28,15 +28,43 @@ vim.api.nvim_create_autocmd('RecordingLeave', {
   end,
 })
 -- create directories when needed, when saving a file
-vim.api.nvim_create_autocmd('BufWritePre', {
+vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
+  pattern = '*',
   group = augroup 'auto_create_dir',
   callback = function(event)
-    local file = vim.loop.fs_realpath(event.match) or event.match
-
+    if event.match:match '^%w%w+:[\\/][\\/]' then
+      return
+    end
+    local file = vim.uv.fs_realpath(event.match) or event.match
     vim.fn.mkdir(vim.fn.fnamemodify(file, ':p:h'), 'p')
-    local backup = vim.fn.fnamemodify(file, ':p:~:h')
-    backup = backup:gsub('[/\\]', '%%')
-    vim.go.backupext = backup
+  end,
+})
+
+-- wrap and check for spell in text filetypes
+vim.api.nvim_create_autocmd('FileType', {
+  group = augroup 'wrap_spell',
+  pattern = { 'text', 'plaintex', 'typst', 'gitcommit', 'markdown' },
+  callback = function()
+    vim.opt_local.wrap = true
+    vim.opt_local.spell = true
+  end,
+})
+
+-- Fix conceallevel for json files
+vim.api.nvim_create_autocmd({ 'FileType' }, {
+  group = augroup 'json_conceal',
+  pattern = { 'json', 'jsonc', 'json5' },
+  callback = function()
+    vim.opt_local.conceallevel = 0
+  end,
+})
+
+-- make it easier to close man-files when opened inline
+vim.api.nvim_create_autocmd('FileType', {
+  group = augroup 'man_unlisted',
+  pattern = { 'man' },
+  callback = function(event)
+    vim.bo[event.buf].buflisted = false
   end,
 })
 
@@ -62,13 +90,14 @@ vim.api.nvim_create_autocmd('CursorMoved', {
   end,
 })
 
-vim.api.nvim_create_autocmd({ 'FileType' }, {
-  pattern = { 'gitcommit', 'markdown' },
-  callback = function()
-    vim.opt_local.wrap = true
-    vim.opt_local.spell = true
-  end,
-})
+-- vim.api.nvim_create_autocmd({ 'FileType' }, {
+--   pattern = { 'gitcommit', 'markdown' },
+--   callback = function()
+--     vim.opt_local.wrap = true
+--     vim.opt_local.spell = true
+--   end,
+-- })
+
 vim.api.nvim_create_autocmd('QuickFixCmdPost', {
   callback = function()
     vim.cmd [[Trouble qflist open]]
@@ -155,6 +184,7 @@ vim.api.nvim_create_autocmd('ModeChanged', {
   desc = 'Hide relative line numbers when not in visual modes',
 })
 
+-- Close some filetypes with <q>
 vim.api.nvim_create_autocmd({ 'FileType' }, {
   desc = 'Close some filetypes with <q>',
   pattern = {
@@ -182,6 +212,8 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
     'Trouble',
     'trouble',
     'tsplayground',
+    'Oil',
+    'grug-far',
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false

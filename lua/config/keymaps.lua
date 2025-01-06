@@ -13,13 +13,13 @@ vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Shifted movement
-vim.keymap.set('n', '<S-Down>', function()
+vim.keymap.set('n', '<C-d>', function()
   vim.api.nvim_feedkeys('7j', 'n', true)
 end, {
   desc = 'Fast move down',
 })
 
-vim.keymap.set('n', '<S-Up>', function()
+vim.keymap.set('n', '<C-u>', function()
   vim.api.nvim_feedkeys('7k', 'n', true)
 end, {
   desc = 'Fast move up',
@@ -61,7 +61,12 @@ vim.keymap.set('n', 'gV', '"`[" . strpart(getregtype(), 0, 1) . "`]"', { expr = 
 -- Search inside visually highlighted text. Use `silent = false` for it to
 -- make effect immediately.
 vim.keymap.set('x', 'g/', '<esc>/\\%V', { silent = false, desc = 'Search inside visual selection' })
-vim.keymap.set('n', '<leader>uH', '<Cmd>let v:hlsearch = 1 - v:hlsearch | echo (v:hlsearch ? "  " : "no") . "hlsearch"<CR>',{desc = 'Toggle search highlight'})
+vim.keymap.set(
+  'n',
+  '<leader>uH',
+  '<Cmd>let v:hlsearch = 1 - v:hlsearch | echo (v:hlsearch ? "  " : "no") . "hlsearch"<CR>',
+  { desc = 'Toggle search highlight' }
+)
 -- Map ScrollWheelUp to Ctrl+B
 vim.api.nvim_set_keymap('n', '<ScrollWheelUp>', '<C-B>', { noremap = true })
 -- Map ScrollWheelDown to Ctrl+F
@@ -100,9 +105,9 @@ vim.keymap.set('x', '<Tab>', '>gv', { desc = 'Indent Line' })
 vim.keymap.set('x', '<S-Tab>', '<gv', { desc = 'Unindent Line' })
 -- toggles
 
-vim.keymap.set('n', '<leader>ui', '<Cmd>setlocal ignorecase! ignorecase?<CR>', { desc = "Toggle ignorecase" })
-vim.keymap.set('n', '<leader>uL', '<Cmd>setlocal list! list?<CR>', { desc = "Toggle list" })
-vim.keymap.set('n', '<leader>uN', '<Cmd>setlocal number! number?<CR>', { desc = "Toggle number" })
+vim.keymap.set('n', '<leader>ui', '<Cmd>setlocal ignorecase! ignorecase?<CR>', { desc = 'Toggle ignorecase' })
+vim.keymap.set('n', '<leader>uL', '<Cmd>setlocal list! list?<CR>', { desc = 'Toggle list' })
+vim.keymap.set('n', '<leader>uN', '<Cmd>setlocal number! number?<CR>', { desc = 'Toggle number' })
 
 --git tui
 -- vim.keymap.set('n', '<leader>g.', function()

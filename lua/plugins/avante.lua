@@ -2,7 +2,6 @@ return {
   'yetone/avante.nvim',
   event = 'VeryLazy',
   build = 'make',
-  lazy = false,
   version = false,
   opts = {
     ---@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
@@ -30,7 +29,7 @@ return {
     'nvim-lua/plenary.nvim',
     'MunifTanjim/nui.nvim',
     --- The below dependencies are optional,
-    'nvim-tree/nvim-web-devicons', -- or echasnovski/mini.icons
+    'echasnovski/mini.icons', -- or echasnovski/mini.icons
     -- 'zbirenbaum/copilot.lua', -- for providers='copilot'
     {
       -- support for image pasting

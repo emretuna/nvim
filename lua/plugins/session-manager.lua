@@ -1,5 +1,6 @@
 return {
   'Shatur/neovim-session-manager',
+  enabled = false,
   cmd = 'SessionManager',
   event = 'VeryLazy',
   opts = function()

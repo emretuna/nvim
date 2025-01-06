@@ -1,6 +1,7 @@
 return {
   'folke/noice.nvim',
   event = 'VeryLazy',
+  -- enabled = false,
   keys = {
     { '<leader>fn', '<cmd>Noice<cr>', desc = 'Noice Messages' },
   },

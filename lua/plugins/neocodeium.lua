@@ -14,7 +14,7 @@ return {
     vim.keymap.set('i', '<c-w>', function()
       require('neocodeium').accept_word()
     end)
-    vim.keymap.set('i', '<c-l>', function()
+    vim.keymap.set('i', '<c-e>', function()
       require('neocodeium').accept_line()
     end)
     vim.keymap.set('i', '<c-p>', function()
