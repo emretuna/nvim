@@ -44,12 +44,17 @@ vim.g.completion_round_borders_enabled = true
 
 -- Set to true if you have a Nerd Font installed
 vim.g.have_nerd_font = true
-
+vim.o.spell = true
+vim.o.spelllang = 'en_us'
 -- Disable some plugins to reduce startup time
 vim.g.dap_enabled = false
 vim.g.dadbod_enabled = false
 vim.g.precognition_enabled = false
 vim.g.neotest_enabled = false
+
+-- AI assistant configuration
+-- Options: 'codeium' or 'supermaven'
+vim.g.ai_assistant = 'codeium'
 
 -- Misc Settings
 vim.opt.undofile = true -- Enable persistent undo between session and reboots.

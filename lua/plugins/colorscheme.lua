@@ -5,12 +5,21 @@ return {
   --
   -- If you want to see what colorschemes are already installed, you can use `:FzfLua colorschemes`.
   {
-    'folke/tokyonight.nvim',
+    'aktersnurra/no-clown-fiesta.nvim',
     lazy = false,
     priority = 1000,
     enabled = false,
-    init = function()
-      vim.cmd 'colorscheme tokyonight'
+    opts = {
+      transparent = true,
+      styles = {
+        comments = {
+          italic = true,
+        },
+      },
+    },
+    config = function(_, opts)
+      require('no-clown-fiesta').setup(opts)
+      vim.cmd 'colorscheme no-clown-fiesta'
     end,
   },
   {
@@ -84,23 +93,6 @@ return {
       -- vim.cmd.colorscheme 'lackluster'
       vim.cmd.colorscheme 'lackluster-hack'
       -- vim.cmd.colorscheme 'lackluster-mint'
-    end,
-  },
-  {
-    'aktersnurra/no-clown-fiesta.nvim',
-    lazy = false,
-    priority = 1000,
-    enabled = false,
-    opts = {
-      -- transparent = true,
-      styles = {
-        comments = {
-          italic = true,
-        },
-      },
-    },
-    init = function()
-      vim.cmd.colorscheme 'no-clown-fiesta'
     end,
   },
 }

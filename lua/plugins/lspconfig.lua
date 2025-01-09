@@ -115,27 +115,12 @@ return {
           --
           -- When you move your cursor, the highlights will be cleared (the second autocommand).
           local client = vim.lsp.get_client_by_id(event.data.client_id)
-          if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
+          if client and client.server_capabilities.documentHighlightProvider then
             local highlight_augroup = vim.api.nvim_create_augroup('lsp-highlight', { clear = false })
-            local highlight_enabled = true
-
-            local function toggle_highlight(enable)
-              highlight_enabled = enable
-              if enable then
-                vim.lsp.buf.document_highlight()
-              else
-                vim.lsp.buf.clear_references()
-              end
-            end
-
             vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
               buffer = event.buf,
               group = highlight_augroup,
-              callback = function()
-                if highlight_enabled then
-                  vim.lsp.buf.document_highlight()
-                end
-              end,
+              callback = vim.lsp.buf.document_highlight,
             })
 
             vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
@@ -143,33 +128,47 @@ return {
               group = highlight_augroup,
               callback = vim.lsp.buf.clear_references,
             })
-
-            vim.api.nvim_create_autocmd('InsertEnter', {
-              buffer = event.buf,
-              group = highlight_augroup,
-              callback = function()
-                toggle_highlight(false)
-              end,
-            })
-
-            vim.api.nvim_create_autocmd('InsertLeave', {
-              buffer = event.buf,
-              group = highlight_augroup,
-              callback = function()
-                toggle_highlight(true)
-              end,
-            })
-
-            vim.api.nvim_create_autocmd('LspDetach', {
-              group = vim.api.nvim_create_augroup('lsp-detach', { clear = true }),
-              callback = function(event2)
-                vim.lsp.buf.clear_references()
-                vim.api.nvim_clear_autocmds { group = 'lsp-highlight', buffer = event2.buf }
-              end,
-            })
           end
+
+          vim.api.nvim_create_autocmd('LspDetach', {
+            group = vim.api.nvim_create_augroup('lsp-detach', { clear = true }),
+            callback = function(event2)
+              vim.lsp.buf.clear_references()
+              vim.api.nvim_clear_autocmds { group = 'lsp-highlight', buffer = event2.buf }
+            end,
+          })
+
+          vim.diagnostic.config {
+            signs = {
+              active = true,
+              values = {
+                { name = 'DiagnosticSignError', text = '' },
+                { name = 'DiagnosticSignWarn', text = '' },
+                { name = 'DiagnosticSignHint', text = '󰌶' },
+                { name = 'DiagnosticSignInfo', text = '' },
+              },
+            },
+            virtual_text = true,
+            update_in_insert = false,
+            underline = true,
+            severity_sort = true,
+            float = {
+              focusable = true,
+              style = 'minimal',
+              border = vim.g.border_style,
+              source = 'if_many',
+              header = '',
+              prefix = '',
+            },
+          }
         end,
       })
+
+      local signs = { Error = ' ', Warn = ' ', Hint = '󰠠 ', Info = ' ' }
+      for type, icon in pairs(signs) do
+        local hl = 'DiagnosticSign' .. type
+        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = '' })
+      end
 
       -- LSP servers and clients are able to communicate to each other what features they support.
       --  By default, Neovim doesn't support everything that is in the LSP specification.
@@ -187,27 +186,15 @@ return {
       safe_extend('cmp_nvim_lsp', 'default_capabilities')
       safe_extend('blink.cmp', 'get_lsp_capabilities')
 
-      -- Borders
-      -- Apply the option lsp_round_borders_enabled from ../options.lua
-      if vim.g.lsp_round_borders_enabled then
-        vim.lsp.handlers['textDocument/hover'] =
-          vim.lsp.with(vim.lsp.handlers.hover, { border = vim.g.border_style, max_width = 100, max_height = 20, silent = true })
-        vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = vim.g.border_style, silent = true })
-        vim.diagnostic.config {
-          virtual_text = true,
-          update_in_insert = true,
-          underline = true,
-          severity_sort = true,
-          float = {
-            focused = false,
-            style = 'minimal',
-            border = vim.g.border_style,
-            source = true,
-            header = '',
-            prefix = '',
-          },
-        }
+      local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+
+      ---@diagnostic disable-next-line: duplicate-set-field
+      function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+        opts = opts or {}
+        opts.border = opts.border or vim.g.border_style
+        return orig_util_open_floating_preview(contents, syntax, opts, ...)
       end
+
       pcall(require, 'schemastore')
 
       -- Set default diagnostics
@@ -361,6 +348,7 @@ return {
         'intelephense',
         'jq',
         'jsonls',
+        -- 'kulala_ls',
         'lua_ls',
         'markdownlint',
         'php-cs-fixer',

@@ -1,6 +1,7 @@
 return {
   'AckslD/nvim-neoclip.lua',
   dependencies = { 'ibhagwan/fzf-lua', { 'kkharji/sqlite.lua', module = 'sqlite' } },
+  enabled = false,
   event = 'VeryLazy',
   opts = {
     enable_persistent_history = true,

@@ -1,14 +1,17 @@
 return {
   'monkoose/neocodeium',
+  enabled = vim.g.ai_assistant == 'codeium',
   lazy = true,
-  config = function()
+  opts = {
+    manual = false,
+    show_label = true,
+    silent = true,
+    debounce = false,
+  },
+  config = function(_, opts)
     local neocodeium = require 'neocodeium'
-    neocodeium.setup {
-      manual = false,
-      silent = true,
-      debounce = false,
-    }
-    vim.keymap.set('i', '<c-y>', function()
+    neocodeium.setup(opts)
+    vim.keymap.set('i', '<c-j>', function()
       require('neocodeium').accept()
     end)
     vim.keymap.set('i', '<c-w>', function()

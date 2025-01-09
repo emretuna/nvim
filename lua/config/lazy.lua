@@ -59,7 +59,7 @@ require('lazy').setup({ { import = 'plugins' } }, {
       },
     },
   },
-  install = {},
+  install = { },
   checker = {
     enabled = true,
     notify = false,

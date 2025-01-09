@@ -6,11 +6,13 @@ return {
   ft = { 'markdown', 'norg', 'rmd', 'org', 'vimwiki' },
   opts = {
     filetypes = { 'markdown', 'norg', 'rmd', 'org', 'vimwiki' },
-    buf_ignore = {},
+    buf_ignore = { 'nofile' },
     code = {
       sign = false,
       width = 'block',
       right_pad = 1,
+      border = 'none',
+      disable_background = true,
     },
     heading = {
       sign = false,

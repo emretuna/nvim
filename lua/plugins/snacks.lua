@@ -1,6 +1,7 @@
 return {
   'folke/snacks.nvim',
   priority = 1000,
+  -- enabled = false,
   lazy = false,
   ---@type snacks.Config
   opts = {
@@ -31,10 +32,11 @@ return {
     animate = { enabled = false },
     profiler = { enabled = false },
     bigfile = { enabled = true },
-    input = { enabled = true },
+    input = { enabled = true, styles = { border = vim.g.border_style } },
     notifier = {
       enabled = true,
       timeout = 3000,
+      style = 'fancy',
     },
     quickfile = { enabled = true },
     words = { enabled = true },
@@ -42,6 +44,7 @@ return {
     terminal = {
       enabled = true,
       win = {
+        relative = 'editor',
         style = 'terminal',
         border = vim.g.border_style,
         position = 'float',
@@ -51,6 +54,7 @@ return {
     },
     styles = {
       notification = {
+        relative = 'editor',
         border = vim.g.border_style,
         wo = { wrap = true }, -- Wrap notifications
         history = {
@@ -58,6 +62,7 @@ return {
         },
       },
       scratch = {
+        relative = 'editor',
         border = vim.g.border_style,
       },
     },
@@ -83,6 +88,7 @@ return {
     { "<c-/>",      function() Snacks.terminal() end, desc = "Toggle Terminal" },
     { "<F7>",       function() Snacks.terminal(nil,{win = { position = 'bottom', height = 20 }}) end, desc = "Toggle Terminal" },
     { "<leader>ml", function() Snacks.terminal("lazydocker") end, desc = "LazyDocker" },
+    { "<leader>mt", function() Snacks.terminal("tokei",{win = {position = 'bottom'}}) end, desc = "Tokei" },
     { "]]",         function() Snacks.words.jump(vim.v.count1) end, desc = "Next Reference", mode = { "n", "t" } },
     { "[[",         function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference", mode = { "n", "t" } },
   },
@@ -110,6 +116,12 @@ return {
         Snacks.toggle.treesitter():map '<leader>uT'
         Snacks.toggle.option('background', { off = 'light', on = 'dark', name = 'Dark Background' }):map '<leader>ub'
         Snacks.toggle.inlay_hints():map '<leader>uh'
+      end,
+    })
+    vim.api.nvim_create_autocmd('User', {
+      pattern = 'MiniFilesActionRename',
+      callback = function(event)
+        Snacks.rename.on_rename_file(event.data.from, event.data.to)
       end,
     })
   end,

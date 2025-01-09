@@ -5,7 +5,7 @@ return {
     version = '*',
     name = 'nvim-cmp', -- Otherwise highlighting gets messed up
     event = 'InsertEnter',
-    -- enabled = false,
+    enabled = false,
     dependencies = {
       'monkoose/neocodeium',
       'onsails/lspkind.nvim',

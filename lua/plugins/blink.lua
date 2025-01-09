@@ -1,27 +1,26 @@
 return {
   'saghen/blink.cmp',
   -- optional: provides snippets for the snippet source
-  enabled = false,
+  -- enabled = false,
   dependencies = {
     'rafamadriz/friendly-snippets',
   },
   -- enabled = false,
   -- use a release tag to download pre-built binaries
-  version = 'v0.*',
+  version = '*',
   -- OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
   -- build = 'cargo build --release',
   -- On musl libc based systems you need to add this flag
   -- build = 'RUSTFLAGS="-C target-feature=-crt-static" cargo build --release',
   -- If you use nix, you can build from source using latest nightly rust with:
   -- build = 'nix run .#build-plugin',
-
+  event = 'InsertEnter',
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
   opts = {
     fuzzy = {
       prebuilt_binaries = {
         download = true,
-        force_version = 'v0.8.1',
       },
     },
     appearance = {
@@ -32,15 +31,24 @@ return {
     -- experimental auto-brackets support
     -- accept = { auto_brackets = { enabled = true } }
     completion = {
+      list = {
+        selection = {
+          preselect = true,
+          auto_insert = false,
+        },
+      },
       keyword = { range = 'full' },
       accept = { auto_brackets = { enabled = true } },
-      list = { selection = 'preselect' },
       menu = {
+        min_width = 35,
         border = vim.g.border_style,
-        winblend = vim.o.pumblend,
+        scrolloff = 2,
+        scrollbar = false,
         draw = {
           columns = { { 'kind_icon' }, { 'label', 'kind', 'source_name', gap = 1 } },
           components = {
+            label = { width = { min = 20, fill = true } }, -- default is true
+            label_description = { width = { fill = true } },
             kind_icon = {
               ellipsis = false,
               text = function(ctx)
@@ -51,6 +59,13 @@ return {
               highlight = function(ctx)
                 local _, hl, _ = require('mini.icons').get('lsp', ctx.kind)
                 return hl
+              end,
+            },
+            kind = { width = { fill = true } },
+            source_name = {
+              width = { fill = true },
+              text = function(ctx)
+                return '[' .. ctx.source_name .. ']'
               end,
             },
           },
@@ -82,6 +97,19 @@ return {
     -- adding any nvim-cmp sources here will enable them
     -- with blink.compat
     default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer', 'dadbod' },
+    cmdline = function()
+      local type = vim.fn.getcmdtype()
+      -- Search forward and backward
+      if type == '/' or type == '?' then
+        return { 'buffer' }
+      end
+      -- Commands
+      if type == ':' then
+        return { 'cmdline' }
+      end
+      return {}
+    end,
+    min_keyword_length = 0,
     providers = {
       path = {
         name = 'path',
@@ -126,18 +154,42 @@ return {
   },
   config = function(_, opts)
     require('blink.cmp').setup(opts)
-    local neocodeium = require 'neocodeium'
-    vim.api.nvim_create_autocmd('User', {
-      pattern = 'BlinkCmpCompletionMenuOpen',
-      callback = function()
-        neocodeium.clear()
-      end,
-    })
-    vim.api.nvim_create_autocmd('User', {
-      pattern = 'BlinkCmpCompletionMenuClose',
-      callback = function()
-        neocodeium.cycle_or_complete()
-      end,
-    })
+    -- Initialize AI assistant based on configuration
+    local ai_module
+    if vim.g.ai_assistant == 'codeium' then
+      ai_module = {
+        clear = function()
+          require('neocodeium').clear()
+        end,
+        complete = function()
+          require('neocodeium').cycle_or_complete()
+        end,
+      }
+    elseif vim.g.ai_assistant == 'supermaven' then
+      ai_module = {
+        clear = function()
+          require('supermaven-nvim.api').stop()
+        end,
+        complete = function()
+          require('supermaven-nvim.api').start()
+        end,
+      }
+    end
+
+    -- Only set up autocmds if an AI assistant is configured
+    if ai_module then
+      vim.api.nvim_create_autocmd('User', {
+        pattern = 'BlinkCmpMenuOpen',
+        callback = function()
+          ai_module.clear()
+        end,
+      })
+      vim.api.nvim_create_autocmd('User', {
+        pattern = 'BlinkCmpMenuClose',
+        callback = function()
+          ai_module.complete()
+        end,
+      })
+    end
   end,
 }

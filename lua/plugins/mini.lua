@@ -320,6 +320,7 @@ return {
   {
     'echasnovski/mini.hipatterns',
     event = 'VeryLazy',
+    -- enabled = false,
     opts = function()
       return {
         highlighters = {
@@ -417,7 +418,20 @@ return {
       }
     end,
   },
-  { 'echasnovski/mini.tabline', event = 'VimEnter', opts = { show_icons = true } },
+  {
+    'echasnovski/mini.tabline',
+    event = 'VimEnter',
+    opts = {
+      show_icons = true,
+      format = function(buf_id, label)
+        local suffix = vim.bo[buf_id].modified and ' ' or ''
+        return MiniTabline.default_format(buf_id, label) .. suffix
+      end,
+    },
+    config = function(_, opts)
+      require('mini.tabline').setup(opts)
+    end,
+  },
   {
     'echasnovski/mini.extra',
     event = 'VeryLazy',
