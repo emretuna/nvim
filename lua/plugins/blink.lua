@@ -49,19 +49,12 @@ return {
           components = {
             label = { width = { min = 20, fill = true } }, -- default is true
             label_description = { width = { fill = true } },
-            kind_icon = {
-              ellipsis = false,
+            kind = {
+              width = { fill = true },
               text = function(ctx)
-                local kind_icon, _, _ = require('mini.icons').get('lsp', ctx.kind)
-                return kind_icon
-              end,
-              -- Optionally, you may also use the highlights from mini.icons
-              highlight = function(ctx)
-                local _, hl, _ = require('mini.icons').get('lsp', ctx.kind)
-                return hl
+                return '' .. ctx.kind .. ''
               end,
             },
-            kind = { width = { fill = true } },
             source_name = {
               width = { fill = true },
               text = function(ctx)

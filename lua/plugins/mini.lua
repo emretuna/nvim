@@ -311,9 +311,13 @@ return {
         ['tsconfig.build.json'] = { glyph = '', hl = 'MiniIconsAzure' },
         ['yarn.lock'] = { glyph = '', hl = 'MiniIconsBlue' },
       },
+      lsp = {
+        supermaven = { glyph = '', hl = 'MiniIconsYellow' },
+        codeium = { glyph = '', hl = 'MiniIconsGreen' },
+      },
     },
-    config = function()
-      require('mini.icons').setup()
+    config = function(_, opts)
+      require('mini.icons').setup(opts)
       MiniIcons.mock_nvim_web_devicons()
     end,
   },

@@ -4,24 +4,7 @@ return {
   -- change the command in the config to whatever the name of that colorscheme is.
   --
   -- If you want to see what colorschemes are already installed, you can use `:FzfLua colorschemes`.
-  {
-    'aktersnurra/no-clown-fiesta.nvim',
-    lazy = false,
-    priority = 1000,
-    enabled = false,
-    opts = {
-      transparent = true,
-      styles = {
-        comments = {
-          italic = true,
-        },
-      },
-    },
-    config = function(_, opts)
-      require('no-clown-fiesta').setup(opts)
-      vim.cmd 'colorscheme no-clown-fiesta'
-    end,
-  },
+
   {
     'ramojus/mellifluous.nvim',
     lazy = false,
@@ -38,6 +21,33 @@ return {
     config = function(_, opts)
       require('mellifluous').setup(opts)
       vim.cmd 'colorscheme mellifluous'
+    end,
+  },
+  {
+    'folke/tokyonight.nvim',
+    lazy = false,
+    priority = 1000,
+    enabled = false,
+    init = function()
+      vim.cmd 'colorscheme tokyonight'
+    end,
+  },
+  {
+    'aktersnurra/no-clown-fiesta.nvim',
+    lazy = false,
+    priority = 1000,
+    enabled = false,
+    opts = {
+      transparent = true,
+      styles = {
+        comments = {
+          italic = true,
+        },
+      },
+    },
+    config = function(_, opts)
+      require('no-clown-fiesta').setup(opts)
+      vim.cmd 'colorscheme no-clown-fiesta'
     end,
   },
   {
