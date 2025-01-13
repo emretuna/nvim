@@ -2,10 +2,7 @@ return {
   'saghen/blink.cmp',
   -- optional: provides snippets for the snippet source
   -- enabled = false,
-  dependencies = {
-    'rafamadriz/friendly-snippets',
-  },
-  -- enabled = false,
+  dependencies = { 'L3MON4D3/LuaSnip', version = 'v2.*', dependencies = { 'rafamadriz/friendly-snippets' } },
   -- use a release tag to download pre-built binaries
   version = '*',
   -- OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
@@ -117,6 +114,7 @@ return {
     },
   },
   snippets = {
+    snippets = { preset = 'luasnip' },
     -- Function to use when expanding LSP provided snippets
     expand = function(snippet)
       vim.snippet.expand(snippet)

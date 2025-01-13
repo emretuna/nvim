@@ -1,4 +1,5 @@
 {
+  "LuaSnip": { "branch": "master", "commit": "03c8e67eb7293c404845b3982db895d59c0d1538" },
   "ashen.nvim": { "branch": "main", "commit": "e42fb457ba4cd9697667153c7307c09a6ce44785" },
   "avante.nvim": { "branch": "main", "commit": "ba9f014b7563760ed217ad665a6f45c051f119d7" },
   "blink.cmp": { "branch": "main", "commit": "1cc3b1a908fbcfd15451c4772759549724f38524" },
