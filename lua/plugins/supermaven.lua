@@ -9,9 +9,10 @@ return {
   },
   opts = {
     keymaps = {
-      accept_suggestion = '<C-j>',
+      accept_suggestion = '<C-y>',
       accept_word = '<C-w>',
     },
+    log_level = 'off',
     color = {
       suggestion_color = '#a6a69c',
     },

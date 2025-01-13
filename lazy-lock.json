@@ -12,6 +12,7 @@
   "cmp-nvim-lsp": { "branch": "main", "commit": "32a511e862811db68c894b541bdc7546ce552e50" },
   "cmp-nvim-lua": { "branch": "main", "commit": "e7823d08c5072e8390fef3be4bcabce702c8cab5" },
   "cmp-rg": { "branch": "master", "commit": "70a43543f61b6083ba9c3b7deb9ccee671410ac6" },
+  "cmp-spell": { "branch": "master", "commit": "694a4e50809d6d645c1ea29015dad0c293f019d6" },
   "cmp_luasnip": { "branch": "master", "commit": "98d9cb5c2c38532bd9bdb481067b20fea8f32e90" },
   "conform.nvim": { "branch": "master", "commit": "70019124aa4f2e6838be9fbd2007f6d13b27a96d" },
   "cyberdream.nvim": { "branch": "main", "commit": "dd6b502050413be60c7375563142e37c3d8e71f2" },

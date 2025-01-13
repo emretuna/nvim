@@ -59,31 +59,39 @@ return {
       { 'iguanacucumber/mag-buffer', name = 'cmp-buffer' },
       { 'iguanacucumber/mag-cmdline', name = 'cmp-cmdline' },
       'https://codeberg.org/FelipeLema/cmp-async-path', -- not by me, but better than cmp-path
+      'f3fora/cmp-spell',
       'hrsh7th/cmp-emoji',
     },
     config = function()
       -- See `:help cmp`
       local cmp = require 'cmp'
       local luasnip = require 'luasnip'
-
       -- Initialize AI assistant based on configuration
       local ai_module
       if vim.g.ai_assistant == 'codeium' then
+        local neocodeium = require 'neocodeium'
         ai_module = {
           clear = function()
-            require('neocodeium').clear()
+            neocodeium.clear()
           end,
           complete = function()
-            require('neocodeium').cycle_or_complete()
+            neocodeium.cycle_or_complete()
           end,
         }
       elseif vim.g.ai_assistant == 'supermaven' then
+        local supermaven = require 'supermaven-nvim.api'
         ai_module = {
           clear = function()
-            require('supermaven-nvim.api').stop()
+            if supermaven.is_running() then
+              supermaven.stop()
+            end
           end,
           complete = function()
-            require('supermaven-nvim.api').start()
+            if supermaven.is_running() then
+              return
+            else
+              supermaven.start()
+            end
           end,
         }
       end
@@ -177,6 +185,17 @@ return {
             -- Try it when you feel cmp performance is poor
             keyword_length = 3,
           },
+          {
+            name = 'spell',
+            priority = 500,
+            option = {
+              keep_all_entries = false,
+              enable_in_context = function()
+                return true
+              end,
+              preselect_correct_word = false,
+            },
+          },
           { name = 'emoji', priority = 50 },
         },
         formatting = {
@@ -194,8 +213,8 @@ return {
                 vim.api.nvim_set_hl(0, hl, { fg = color })
               end
 
-              vim_item.menu = '█'
-              -- vim_item.menu = ''
+              -- vim_item.menu = '█'
+              vim_item.menu = ''
               vim_item.menu_hl_group = hl
 
               -- else
