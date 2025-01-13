@@ -24,6 +24,20 @@ return {
     end,
   },
   {
+    'ficcdaf/ashen.nvim',
+    lazy = false,
+    priority = 1000,
+    enabled = false,
+    opts = {
+      transparent = true,
+      -- your settings here
+    },
+    config = function(_, opts)
+      require('ashen').setup(opts)
+      vim.cmd 'colorscheme ashen'
+    end,
+  },
+  {
     'folke/tokyonight.nvim',
     lazy = false,
     priority = 1000,

@@ -27,9 +27,6 @@ return {
       'williamboman/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
       'b0o/schemastore.nvim',
-      -- Useful status updates for LSP.
-      -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim', opts = {} },
     },
     config = function()
       require('lspconfig.ui.windows').default_options.border = vim.g.border_style

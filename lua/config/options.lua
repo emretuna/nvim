@@ -51,7 +51,7 @@ vim.g.dap_enabled = false
 vim.g.dadbod_enabled = false
 vim.g.precognition_enabled = false
 vim.g.neotest_enabled = false
-
+vim.g.laravel_enabled = false
 -- AI assistant configuration
 -- Options: 'codeium' or 'supermaven'
 vim.g.ai_assistant = 'codeium'
