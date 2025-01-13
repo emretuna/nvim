@@ -69,6 +69,7 @@ return {
     },
     config = function(_, opts)
       require('mini.pick').setup(opts)
+      vim.ui.select = MiniPick.ui_select
       vim.keymap.set('n', '<leader>f.', function()
         MiniPick.builtin.files()
       end, { desc = 'Search Files' })

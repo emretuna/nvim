@@ -25,7 +25,6 @@ return {
   },
   dependencies = {
     'nvim-treesitter/nvim-treesitter',
-    { 'stevearc/dressing.nvim', opts = { input = { enabled = false } } },
     'nvim-lua/plenary.nvim',
     'MunifTanjim/nui.nvim',
     --- The below dependencies are optional,
