@@ -5,7 +5,7 @@ return {
     version = '*',
     name = 'nvim-cmp', -- Otherwise highlighting gets messed up
     event = 'InsertEnter',
-    enabled = false,
+    -- enabled = false,
     dependencies = {
       'monkoose/neocodeium',
       'onsails/lspkind.nvim',
@@ -65,15 +65,33 @@ return {
       -- See `:help cmp`
       local cmp = require 'cmp'
       local luasnip = require 'luasnip'
-      local neocodeium = require 'neocodeium'
-      local commands = require 'neocodeium.commands'
-      cmp.event:on('menu_opened', function()
-        neocodeium.clear()
-      end)
 
+      -- Initialize AI assistant based on configuration
+      local ai_module
+      if vim.g.ai_assistant == 'codeium' then
+        ai_module = {
+          clear = function()
+            require('neocodeium').clear()
+          end,
+          complete = function()
+            require('neocodeium').cycle_or_complete()
+          end,
+        }
+      elseif vim.g.ai_assistant == 'supermaven' then
+        ai_module = {
+          clear = function()
+            require('supermaven-nvim.api').stop()
+          end,
+          complete = function()
+            require('supermaven-nvim.api').start()
+          end,
+        }
+      end
+      cmp.event:on('menu_opened', function()
+        ai_module.clear()
+      end)
       cmp.event:on('menu_closed', function()
-        commands.enable()
-        neocodeium.cycle_or_complete()
+        ai_module.complete()
       end)
       -- border opts
       local border_opts = {

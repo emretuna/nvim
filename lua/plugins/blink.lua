@@ -1,8 +1,16 @@
 return {
   'saghen/blink.cmp',
   -- optional: provides snippets for the snippet source
-  -- enabled = false,
-  dependencies = { 'L3MON4D3/LuaSnip', version = 'v2.*', dependencies = { 'rafamadriz/friendly-snippets' } },
+  enabled = false,
+  dependencies = {
+    {
+      'L3MON4D3/LuaSnip',
+      version = 'v2.*',
+      dependencies = { 'rafamadriz/friendly-snippets' },
+    },
+    'moyiz/blink-emoji.nvim',
+    'Kaiser-Yang/blink-cmp-dictionary',
+  },
   -- use a release tag to download pre-built binaries
   version = '*',
   -- OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
@@ -11,7 +19,7 @@ return {
   -- build = 'RUSTFLAGS="-C target-feature=-crt-static" cargo build --release',
   -- If you use nix, you can build from source using latest nightly rust with:
   -- build = 'nix run .#build-plugin',
-  event = 'InsertEnter',
+  event = { 'InsertEnter *', 'CmdlineEnter *' },
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
   opts = {
@@ -86,7 +94,7 @@ return {
   sources = {
     -- adding any nvim-cmp sources here will enable them
     -- with blink.compat
-    default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer', 'dadbod' },
+    default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer', 'dadbod', 'emoji', 'dictionary' },
     cmdline = function()
       local type = vim.fn.getcmdtype()
       -- Search forward and backward
@@ -111,10 +119,45 @@ return {
       },
       lazydev = { name = 'LazyDev', module = 'lazydev.integrations.blink', score_offset = 100, fallbacks = { 'lsp' } },
       dadbod = { name = 'Dadbod', module = 'vim_dadbod_completion.blink' },
+      emoji = {
+        name = 'Emoji',
+        module = 'blink-emoji',
+        score_offset = 15, -- the higher the number, the higher the priority
+        opts = { insert = true }, -- Insert emoji (default) or complete its name
+      },
+      dictionary = {
+        module = 'blink-cmp-dictionary',
+        name = 'Dict',
+        score_offset = 20, -- the higher the number, the higher the priority
+        -- https://github.com/Kaiser-Yang/blink-cmp-dictionary/issues/2
+        enabled = true,
+        max_items = 8,
+        min_keyword_length = 3,
+        opts = {
+          -- -- The dictionary by default now uses fzf, make sure to have it
+          -- -- installed
+          -- -- https://github.com/Kaiser-Yang/blink-cmp-dictionary/issues/2
+          --
+          -- Do not specify a file, just the path, and in the path you need to
+          -- have your .txt files
+          -- dictionary_directories = { vim.fn.expand '~/.dotfiles/dictionaries' },
+          -- --  NOTE: To disable the definitions uncomment this section below
+          -- separate_output = function(output)
+          --   local items = {}
+          --   for line in output:gmatch("[^\r\n]+") do
+          --     table.insert(items, {
+          --       label = line,
+          --       insert_text = line,
+          --       documentation = nil,
+          --     })
+          --   end
+          --   return items
+          -- end,
+        },
+      },
     },
   },
   snippets = {
-    snippets = { preset = 'luasnip' },
     -- Function to use when expanding LSP provided snippets
     expand = function(snippet)
       vim.snippet.expand(snippet)

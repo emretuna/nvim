@@ -1,6 +1,6 @@
 return {
   'yetone/avante.nvim',
-  event = 'VeryLazy',
+  event = { 'BufReadPre', 'BufNewFile' },
   build = 'make',
   version = false,
   opts = {
