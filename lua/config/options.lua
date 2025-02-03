@@ -44,7 +44,7 @@ vim.g.completion_round_borders_enabled = true
 
 -- Set to true if you have a Nerd Font installed
 vim.g.have_nerd_font = true
-vim.o.spell = true
+vim.o.spell = false
 vim.o.spelllang = 'en_us'
 -- Disable some plugins to reduce startup time
 vim.g.dap_enabled = false
@@ -55,7 +55,9 @@ vim.g.laravel_enabled = false
 -- AI assistant configuration
 -- Options: 'codeium' or 'supermaven'
 vim.g.ai_assistant = 'codeium'
-
+-- vim.o.pumblend = 10 -- Make builtin completion menus slightly transparent
+-- vim.o.pumheight = 10 -- Make popup menu smaller
+-- vim.o.winblend = 10 -- Make floating windows slightly transparent
 -- Misc Settings
 vim.opt.undofile = true -- Enable persistent undo between session and reboots.
 vim.opt.backup = false -- Don't store backup while overwriting the file
@@ -71,7 +73,7 @@ vim.opt.splitright = true
 
 vim.opt.ruler = false -- Don't show cursor position in command line
 vim.opt.showmode = false -- Disable showing mode since we have a statusline
-vim.opt.wrap = false -- Disable wrapping of lines longer than the width of window.
+vim.opt.wrap = true -- Disable wrapping of lines longer than the width of window.
 vim.opt.signcolumn = 'yes' -- Always show the sign column
 vim.opt.fillchars = 'eob: ' -- Don't show `~` outside of buffer
 vim.opt.ignorecase = true -- Case insensitive searching

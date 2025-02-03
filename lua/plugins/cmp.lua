@@ -8,7 +8,6 @@ return {
     -- enabled = false,
     dependencies = {
       'monkoose/neocodeium',
-      'onsails/lspkind.nvim',
       'lukas-reineke/cmp-rg',
       -- Snippet Engine & its associated nvim-cmp source
       {
@@ -60,6 +59,7 @@ return {
       { 'iguanacucumber/mag-cmdline', name = 'cmp-cmdline' },
       'https://codeberg.org/FelipeLema/cmp-async-path', -- not by me, but better than cmp-path
       'f3fora/cmp-spell',
+      'hrsh7th/cmp-nvim-lsp-signature-help',
       'hrsh7th/cmp-emoji',
     },
     config = function()
@@ -178,12 +178,13 @@ return {
           { name = 'nvim_lsp', priority = 1000 },
           { name = 'luasnip', priority = 750 },
           { name = 'nvim_lua', priority = 750 },
-          { name = 'lazydev', priority = 500 },
+          { name = 'lazydev', priority = 750 },
           { name = 'async_path', priority = 500 },
           {
             name = 'rg',
             -- Try it when you feel cmp performance is poor
             keyword_length = 3,
+            priority = 500,
           },
           {
             name = 'spell',
@@ -196,11 +197,13 @@ return {
               preselect_correct_word = false,
             },
           },
+          { name = 'nvim_lsp_signature_help' },
+          { name = 'sql', priority = 500, keyword_length = 3 },
           { name = 'emoji', priority = 50 },
         },
         formatting = {
           expandable_indicator = true,
-          fields = { 'kind', 'abbr', 'menu' },
+          fields = { 'abbr', 'kind', 'menu' },
           format = function(entry, vim_item)
             local icon, hl = require('mini.icons').get('lsp', vim_item.kind)
             vim_item.kind = icon .. ' ' .. vim_item.kind
@@ -213,13 +216,8 @@ return {
                 vim.api.nvim_set_hl(0, hl, { fg = color })
               end
 
-              -- vim_item.menu = '█'
               vim_item.menu = ''
               vim_item.menu_hl_group = hl
-
-              -- else
-              -- add your lspkind icon here!
-              -- vim_item.menu_hl_group = vim_item.kind_hl_group
             end
             return vim_item
           end,

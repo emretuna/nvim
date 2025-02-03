@@ -59,7 +59,9 @@ require('lazy').setup({ { import = 'plugins' } }, {
       },
     },
   },
-  install = { },
+  install = {
+    colorscheme = { 'mellifluous' },
+  },
   checker = {
     enabled = true,
     notify = false,

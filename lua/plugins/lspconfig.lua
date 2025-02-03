@@ -66,7 +66,7 @@ return {
           -- or a suggestion from your LSP for this to activate.
           map('ga', vim.lsp.buf.code_action, 'LSP: Code Action')
           -- Restart LSP server
-          map('<leader>ms', ':LspRestart', 'LSP Restart')
+          map('grR', '<cmd>:LspRestart<cr>', 'LSP Restart')
 
           map('gd', function()
             require('mini.extra').pickers.lsp { scope = 'definition' }

@@ -50,6 +50,9 @@ return {
         position = 'float',
         height = 0.8,
         width = 0.8,
+        wo = {
+          winbar = '',
+        },
       },
     },
     styles = {
@@ -116,6 +119,7 @@ return {
         Snacks.toggle.treesitter():map '<leader>uT'
         Snacks.toggle.option('background', { off = 'light', on = 'dark', name = 'Dark Background' }):map '<leader>ub'
         Snacks.toggle.inlay_hints():map '<leader>uh'
+        Snacks.toggle.dim():map '<leader>uD'
       end,
     })
     vim.api.nvim_create_autocmd('User', {

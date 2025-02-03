@@ -5,7 +5,7 @@ return {
     opts = {
       ---@type false | "classic" | "modern" | "helix"
       preset = 'helix',
-      win = { border = 'none' },
+      win = { border = vim.g.border_style },
       icons = {
         -- set icon mappings to true if you have a Nerd Font
         mappings = false,

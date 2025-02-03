@@ -9,7 +9,7 @@ return {
     'ramojus/mellifluous.nvim',
     lazy = false,
     priority = 1000,
-    -- enabled = false,
+    enabled = false,
     opts = {
       flat_background = { line_numbers = true, floating_windows = true },
       colorset = 'kanagawa_dragon', -- 'kanagawa_dragon','melliflous','alduin','mountain','tender'
@@ -24,17 +24,17 @@ return {
     end,
   },
   {
-    'ficcdaf/ashen.nvim',
+    'zenbones-theme/zenbones.nvim',
+    -- Optionally install Lush. Allows for more configuration or extending the colorscheme
+    -- If you don't want to install lush, make sure to set g:zenbones_compat = 1
+    -- In Vim, compat mode is turned on as Lush only works in Neovim.
+    dependencies = { 'rktjmp/lush.nvim', event = 'VeryLazy', priority = 1000 },
     lazy = false,
     priority = 1000,
-    enabled = false,
-    opts = {
-      transparent = true,
-      -- your settings here
-    },
-    config = function(_, opts)
-      require('ashen').setup(opts)
-      vim.cmd 'colorscheme ashen'
+    -- enabled = false,
+    -- you can set set configuration options here
+    config = function()
+      vim.cmd.colorscheme 'zenbones'
     end,
   },
   {
@@ -62,30 +62,6 @@ return {
     config = function(_, opts)
       require('no-clown-fiesta').setup(opts)
       vim.cmd 'colorscheme no-clown-fiesta'
-    end,
-  },
-  {
-    'scottmckendry/cyberdream.nvim',
-    lazy = false,
-    priority = 1000,
-    enabled = false,
-    opts = {
-      -- Enable transparent background
-      transparent = true,
-      -- Enable italics comments
-      italic_comments = true,
-      -- Replace all fillchars with ' ' for the ultimate clean look
-      hide_fillchars = true,
-      -- Modern borderless telescope theme - also applies to fzf-lua
-      borderless_telescope = false,
-      -- Improve start up time by caching highlights. Generate cache with :CyberdreamBuildCache and clear with :CyberdreamClearCache
-      cache = true,
-      theme = {
-        variant = 'default',
-      },
-    },
-    init = function()
-      vim.cmd 'colorscheme cyberdream'
     end,
   },
   {

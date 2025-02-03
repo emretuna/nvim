@@ -252,6 +252,9 @@ return {
       vim.keymap.set('n', '<leader>vp', function()
         MiniExtra.pickers.visit_paths()
       end, { desc = 'Visit Paths' })
+      vim.keymap.set('n', '<leader>fS', function()
+        MiniSessions.select()
+      end, { desc = 'Select Session' })
     end,
   },
   {
@@ -263,8 +266,10 @@ return {
         permanent_delete = false,
       },
       mappings = {
-        go_in = '<S-Enter>',
-        go_in_plus = '<Enter>',
+        -- go_in = '<S-Enter>',
+        -- go_in_plus = '<Enter>',
+        go_in = 'L',
+        go_in_plus = 'l',
         synchronize = '<C-s>',
       },
       windows = {
