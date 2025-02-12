@@ -1,7 +1,6 @@
 return {
   'monkoose/neocodeium',
   enabled = vim.g.ai_assistant == 'codeium',
-  lazy = true,
   opts = {
     manual = false,
     show_label = true,

@@ -1,5 +1,6 @@
 return {
   'ahmedkhalf/project.nvim',
+  enabled = false,
   cmd = 'ProjectRoot',
   event = 'VeryLazy',
   opts = {

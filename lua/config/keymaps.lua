@@ -6,7 +6,7 @@
 vim.keymap.set('n', '<C-S>', '<Cmd>silent! update | redraw<CR>', { desc = 'Save' })
 vim.keymap.set({ 'i', 'x' }, '<C-S>', '<Esc><Cmd>silent! update | redraw<CR>', { desc = 'Save and go to Normal mode' })
 
-vim.keymap.set('n', '<leader>fe', '<Cmd>Lexplore!<CR>', { silent = true, desc = 'Open netrw on right side' }) -- Try Vex or Vex! to open in a split
+vim.keymap.set('n', '<leader>e', '<Cmd>Lexplore!<CR>', { silent = true, desc = 'Open netrw on right side' }) -- Try Vex or Vex! to open in a split
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
@@ -103,40 +103,47 @@ vim.keymap.set('n', '<leader>ba', '<cmd>new<cr>', { desc = 'Buffer Add' })
 -- better indent
 vim.keymap.set('x', '<Tab>', '>gv', { desc = 'Indent Line' })
 vim.keymap.set('x', '<S-Tab>', '<gv', { desc = 'Unindent Line' })
--- toggles
 
-vim.keymap.set('n', '<leader>ui', '<Cmd>setlocal ignorecase! ignorecase?<CR>', { desc = 'Toggle ignorecase' })
-vim.keymap.set('n', '<leader>uL', '<Cmd>setlocal list! list?<CR>', { desc = 'Toggle list' })
-vim.keymap.set('n', '<leader>uN', '<Cmd>setlocal number! number?<CR>', { desc = 'Toggle number' })
-
---git tui
--- vim.keymap.set('n', '<leader>g.', function()
---   local git_dir = vim.fn.finddir('.git', vim.fn.getcwd() .. ';')
---   if git_dir ~= '' then
---     if vim.fn.executable 'keychain' == 1 then
---       vim.cmd 'TermExec cmd="eval `keychain --eval ~/.ssh/github.key` && lazygit && exit"'
---     else
---       vim.cmd "TermExec cmd='lazygit && exit'"
---     end
---   else
---     vim.notify('Not a git repository', vim.log.levels.WARN)
---   end
--- end, { desc = 'Lazygit' })
-
--- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
--- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
--- is not what someone will guess without a bit more experience.
-vim.keymap.set('t', '<esc><esc>', '<c-\\><c-n>', { desc = 'Exit Terminal Mode' })
+-- Move to window using the <ctrl> arrow keys
 vim.keymap.set('t', '<C-h>', '<cmd>wincmd h<cr>', { desc = 'Go to Left Window' })
 vim.keymap.set('t', '<C-j>', '<cmd>wincmd j<cr>', { desc = 'Go to Lower Window' })
 vim.keymap.set('t', '<C-k>', '<cmd>wincmd k<cr>', { desc = 'Go to Upper Window' })
 vim.keymap.set('t', '<C-l>', '<cmd>wincmd l<cr>', { desc = 'Go to Right Window' })
-vim.keymap.set('t', '<C-/>', '<cmd>close<cr>', { desc = 'Hide Terminal' })
 
 -- Quickfix list keybinds
 vim.keymap.set('n', '<leader>qn', '<Cmd>cnext<CR>', { desc = 'Go to next item in Quickfix list' })
 vim.keymap.set('n', '<leader>qp', '<Cmd>cprev<CR>', { desc = 'Go to previous item in Quickfix list' })
-vim.keymap.set('n', '<leader>qo', '<Cmd>copen<CR>', { desc = 'Open Quickfix List' })
+vim.keymap.set('n', '<leader>q.', '<Cmd>copen<CR>', { desc = 'Open Quickfix List' })
 vim.keymap.set('n', '<leader>qc', '<Cmd>cclose<CR>', { desc = 'Close Quickfix List' })
+
+-- Toggle keybinds
+vim.keymap.set(
+  'n',
+  '<leader>mb',
+  '<Cmd>lua vim.o.background = vim.o.background == "dark" and "light" or "dark"; vim.notify(vim.o.background)<CR>',
+  { desc = 'Toggle background' }
+)
+local function toggle_option(option)
+  vim.cmd('setlocal ' .. option .. '!')
+  vim.notify(option .. ' set to ' .. tostring(vim.api.nvim_get_option_value(option, { scope = 'local' })), vim.log.levels.INFO)
+end
+vim.keymap.set('n', '<leader>mi', function()
+  toggle_option 'ignorecase'
+end, { desc = 'Toggle ignorecase' })
+vim.keymap.set('n', '<leader>ml', function()
+  toggle_option 'list'
+end, { desc = 'Toggle list' })
+vim.keymap.set('n', '<leader>mn', function()
+  toggle_option 'number'
+end, { desc = 'Toggle number' })
+vim.keymap.set('n', '<leader>mr', function()
+  toggle_option 'relativenumber'
+end, { desc = 'Toggle relativenumber' })
+vim.keymap.set('n', '<leader>ms', function()
+  toggle_option 'spell'
+end, { desc = 'Toggle spell' })
+vim.keymap.set('n', '<leader>mw', function()
+  toggle_option 'wrap'
+end, { desc = 'Toggle wrap' })
 
 -- vim: ts=2 sts=2 sw=2 et

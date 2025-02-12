@@ -60,7 +60,7 @@ require('lazy').setup({ { import = 'plugins' } }, {
     },
   },
   install = {
-    colorscheme = { 'mellifluous' },
+    colorscheme = { 'zenbones' },
   },
   checker = {
     enabled = true,

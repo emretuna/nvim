@@ -1,5 +1,93 @@
 return {
   {
+    'echasnovski/mini.clue',
+    lazy = false,
+    opts = function()
+      return {
+        window = {
+          delay = 300,
+          scroll_down = '<C-d>',
+          scroll_up = '<C-u>',
+          config = {
+            width = '30',
+            border = vim.g.border_style,
+          },
+        },
+        triggers = {
+          -- Leader triggers
+          { mode = 'n', keys = '<Leader>' },
+          { mode = 'x', keys = '<Leader>' },
+
+          -- Built-in completion
+          { mode = 'i', keys = '<C-x>' },
+
+          -- `g` key
+          { mode = 'n', keys = 'g' },
+          { mode = 'x', keys = 'g' },
+
+          -- Marks
+          { mode = 'n', keys = "'" },
+          { mode = 'n', keys = '`' },
+          { mode = 'x', keys = "'" },
+          { mode = 'x', keys = '`' },
+
+          -- Registers
+          { mode = 'n', keys = '"' },
+          { mode = 'x', keys = '"' },
+          { mode = 'i', keys = '<C-r>' },
+          { mode = 'c', keys = '<C-r>' },
+
+          -- Window commands
+          { mode = 'n', keys = '<C-w>' },
+
+          -- `z` key
+          { mode = 'n', keys = 'z' },
+          { mode = 'x', keys = 'z' },
+
+          -- Bracketed Keybinds
+          { mode = 'n', keys = ']' },
+          { mode = 'n', keys = '[' },
+
+          -- Surround Keybinds
+          { mode = 'n', keys = 's' },
+        },
+
+        clues = {
+          -- Enhance this by adding descriptions for <Leader> mapping groups
+          require('mini.clue').gen_clues.builtin_completion(),
+          require('mini.clue').gen_clues.g(),
+          require('mini.clue').gen_clues.marks(),
+          require('mini.clue').gen_clues.registers(),
+          require('mini.clue').gen_clues.windows(),
+          require('mini.clue').gen_clues.z(),
+          -- Custom clues
+          { mode = 'n', keys = '<Leader>a', desc = 'Avante' },
+          { mode = 'x', keys = '<Leader>a', desc = 'Avante' },
+          { mode = 'n', keys = '<Leader>b', desc = 'Buffer' },
+          { mode = 'n', keys = '<Leader>f', desc = 'Find' },
+          { mode = 'n', keys = '<Leader>g', desc = 'Git' },
+          { mode = 'n', keys = '<Leader>h', desc = 'Http' },
+          { mode = 'n', keys = '<Leader>l', desc = 'LSP' },
+          { mode = 'n', keys = '<Leader>n', desc = 'Notes' },
+          { mode = 'n', keys = '<Leader>o', desc = 'Overseer' },
+          { mode = 'n', keys = '<Leader>q', desc = 'Quickfix' },
+          { mode = 'n', keys = '<Leader>r', desc = 'Refactor' },
+          { mode = 'n', keys = '<Leader>s', desc = 'Search' },
+          { mode = 'n', keys = '<Leader>t', desc = 'Tabs' },
+          { mode = 'n', keys = '<Leader>m', desc = 'Misc' },
+          { mode = 'n', keys = '<Leader>u', desc = 'UI' },
+          { mode = 'n', keys = '<Leader>v', desc = 'Visits' },
+          { mode = 'n', keys = '<Leader>w', desc = 'Window' },
+          { mode = 'n', keys = '<Leader>x', desc = 'Trouble' },
+          { mode = 'n', keys = '<Leader><Leader>', desc = 'Smart Splits' },
+        },
+      }
+    end,
+    config = function(_, opts)
+      require('mini.clue').setup(opts)
+    end,
+  },
+  {
     'echasnovski/mini.sessions',
     event = 'VeryLazy',
     opts = {
@@ -8,6 +96,51 @@ return {
     },
     config = function(_, opts)
       require('mini.sessions').setup(opts)
+    end,
+  },
+  {
+    'echasnovski/mini.bufremove',
+    event = 'VeryLazy',
+    opts = {
+      set_vim_settings = false,
+    },
+    config = function()
+      require('mini.bufremove').setup()
+      -- Function to remove all buffers except the current one
+      local function remove_all_but_current()
+        local current_buf = vim.api.nvim_get_current_buf() -- Get the current buffer ID
+        local buffers = vim.api.nvim_list_bufs() -- Get a list of all buffer IDs
+        for _, buf_id in ipairs(buffers) do
+          -- Only delete the buffer if it's not the current one
+          if buf_id ~= current_buf then
+            -- Use MiniBufremove.delete to delete the buffer
+            local success = require('mini.bufremove').delete(buf_id, false) -- true = force delete
+            if not success then
+              print('Failed to delete buffer:', buf_id)
+            end
+          end
+        end
+      end
+      vim.keymap.set('n', '<leader>bx', '<cmd>lua MiniBufremove.delete()<CR>', { desc = 'Delete Buffer' })
+      vim.keymap.set('n', '<leader>bw', '<cmd>lua MiniBufremove.wipeout()<CR>', { desc = 'Wipeout Buffer' })
+      vim.keymap.set('n', '<leader>bc', function()
+        remove_all_but_current()
+      end, { desc = 'Delete All Buffers' })
+    end,
+  },
+  {
+    'echasnovski/mini.notify',
+    event = 'VeryLazy',
+    opts = {
+      window = {
+        config = {
+          border = vim.g.border_style,
+        },
+      },
+    },
+    config = function(_, opts)
+      require('mini.notify').setup(opts)
+      vim.notify = require('mini.notify').make_notify()
     end,
   },
   {
@@ -70,6 +203,14 @@ return {
     config = function(_, opts)
       require('mini.pick').setup(opts)
       vim.ui.select = MiniPick.ui_select
+
+      MiniPick.registry.buffers = function(local_opts)
+        local wipeout_func = function()
+          MiniBufremove.delete(MiniPick.get_picker_matches().current.bufnr, false)
+        end
+        MiniPick.builtin.buffers(local_opts, { mappings = { wipeout = { char = '<C-d>', func = wipeout_func } } })
+      end
+
       vim.keymap.set('n', '<leader>f.', function()
         MiniPick.builtin.files()
       end, { desc = 'Search Files' })
@@ -111,7 +252,7 @@ return {
       end, { desc = 'Search Diagnostics' })
 
       vim.keymap.set('n', '<leader>b.', function()
-        MiniPick.builtin.buffers()
+        MiniPick.registry.buffers { include_current = false }
       end, { desc = 'Find Buffers' })
 
       vim.keymap.set('n', '<leader>fH', function()
@@ -217,7 +358,11 @@ return {
         MiniExtra.pickers.marks()
       end, { desc = 'Search Marks' })
 
-      vim.keymap.set('n', '<leader>fr', function()
+      vim.keymap.set('n', '<leader>fn', function()
+        MiniNotify.show_history()
+      end, { desc = 'Show Notifications' })
+
+      vim.keymap.set('n', '<leader>fR', function()
         MiniExtra.pickers.registers()
       end, { desc = 'Search Registers' })
 
@@ -583,6 +728,26 @@ return {
         use_icons = vim.g.have_nerd_font,
         content = {
           active = function()
+            local function neocodeium_status()
+              local symbols = {
+                status = {
+                  [0] = ' 󰚩 ', -- Enabled
+                  [1] = ' 󱚧 ', -- Disabled Globally
+                  [2] = ' 󱙻 ', -- Disabled for Buffer
+                  [3] = ' 󱙺 ', -- Disabled for Buffer filetype
+                  [4] = ' 󱙺 ', -- Disabled for Buffer with enabled function
+                  [5] = ' 󱚠 ', -- Disabled for Buffer encoding
+                },
+                server_status = {
+                  [0] = '', -- Connected
+                  [1] = ' 󰣻 ', -- Connecting
+                  [2] = ' 󰣽 ', -- Disconnected
+                },
+              }
+
+              local status, server_status = require('neocodeium').get_status()
+              return (symbols.status[status] or '') .. (symbols.server_status[server_status] or '')
+            end
             local mode, mode_hl = MiniStatusline.section_mode { trunc_width = 120 }
             local git = MiniStatusline.section_git { trunc_width = 75 }
             local diff = MiniStatusline.section_diff { trunc_width = 75 }
@@ -599,7 +764,7 @@ return {
               { hl = 'MiniStatuslineFilename', strings = { filename } },
               '%=', -- End left alignment
               { hl = 'MiniStatuslineFilename', strings = { macro } },
-              { hl = 'MiniStatuslineFileinfo', strings = { fileinfo } },
+              { hl = 'MiniStatuslineFileinfo', strings = { fileinfo, neocodeium_status() } },
               { hl = mode_hl, strings = { search, location } },
             }
           end,

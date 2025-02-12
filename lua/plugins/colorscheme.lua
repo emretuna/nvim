@@ -35,6 +35,7 @@ return {
     -- you can set set configuration options here
     config = function()
       vim.cmd.colorscheme 'zenbones'
+      vim.g.zenbones_compat = 1
     end,
   },
   {
