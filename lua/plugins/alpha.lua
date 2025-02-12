@@ -23,20 +23,20 @@ return {
 
     -- Buttons
     dashboard.section.buttons.val = {
-      dashboard.button('n', '📋 New          ', '<cmd>enew<CR>                                    '),
-      dashboard.button('o', '🌩️ Recent       ', '<cmd>lua MiniExtra.pickers.oldfiles()<CR>        '),
-      dashboard.button('f', '🐙 Find         ', '<cmd>lua MiniPick.builtin.files()<cr>            '),
-      dashboard.button('g', '🔎 Grep         ', '<cmd>lua MiniPick.builtin.grep()<CR>             '),
-      dashboard.button('b', '📔 Bookmarks    ', '<cmd>lua MiniExtra.pickers.visit_labels()<CR>    '),
-      dashboard.button('s', '⏳ Sessions     ', '<cmd>lua MiniSessions.select()<CR>               '),
-      dashboard.button('l', '💤 Lazy         ', '<cmd>Lazy <cr>                                   '),
-      dashboard.button('p', '💼 Projects     ', ':lua vim.api.nvim_input("<leader>fP")<CR>        '),
+      dashboard.button('n', '📋 New          ', '<cmd>enew<CR>                                         '),
+      dashboard.button('o', '🌩️ Recent       ', ':lua vim.api.nvim_input("<leader>fo")<CR>             '),
+      dashboard.button('f', '🐙 Find         ', ':lua vim.api.nvim_input("<leader>f.")<CR>             '),
+      dashboard.button('g', '🔎 Grep         ', ':lua vim.api.nvim_input("<leader>f/")<CR>             '),
+      dashboard.button('b', '📔 Bookmarks    ', ':lua vim.api.nvim_input("<leader>vl")<CR>             '),
+      dashboard.button('s', '⏳ Sessions     ', '<cmd>lua MiniSessions.select()<CR>                    '),
+      dashboard.button('l', '💤 Lazy         ', '<cmd>Lazy <cr>                                        '),
+      dashboard.button('p', '💼 Projects     ', ':lua vim.api.nvim_input("<leader>fP")<CR>             '),
       dashboard.button(' ', '                '),
-      dashboard.button('q', '🚪 Quit         ', '<cmd>exit<CR>                                    '),
+      dashboard.button('q', '🚪 Quit         ', '<cmd>exit<CR>                                         '),
     }
 
     ---- Vertical margins
-    dashboard.config.layout[1].val = vim.fn.max { 2, vim.fn.floor(vim.fn.winheight(0) * 0.20) } -- Above header
+    dashboard.config.layout[1].val = vim.fn.max { 2, vim.fn.floor(vim.fn.winheight(0) * 0.10) } -- Above header
     dashboard.config.layout[3].val = vim.fn.max { 2, vim.fn.floor(vim.fn.winheight(0) * 0.10) } -- Above buttons
     return dashboard
   end,

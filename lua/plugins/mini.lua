@@ -67,7 +67,6 @@ return {
           { mode = 'n', keys = '<Leader>f', desc = 'Find' },
           { mode = 'n', keys = '<Leader>g', desc = 'Git' },
           { mode = 'n', keys = '<Leader>h', desc = 'Http' },
-          { mode = 'n', keys = '<Leader>l', desc = 'LSP' },
           { mode = 'n', keys = '<Leader>n', desc = 'Notes' },
           { mode = 'n', keys = '<Leader>o', desc = 'Overseer' },
           { mode = 'n', keys = '<Leader>q', desc = 'Quickfix' },
@@ -96,6 +95,7 @@ return {
     },
     config = function(_, opts)
       require('mini.sessions').setup(opts)
+      vim.keymap.set('n', '<leader>mS', ':lua MiniSessions.write(vim.fn.input("Session Name >"))<CR>', { desc = 'Save Session' })
     end,
   },
   {
@@ -205,10 +205,10 @@ return {
       vim.ui.select = MiniPick.ui_select
 
       MiniPick.registry.buffers = function(local_opts)
-        local wipeout_func = function()
+        local wipeout_buffer = function()
           MiniBufremove.delete(MiniPick.get_picker_matches().current.bufnr, false)
         end
-        MiniPick.builtin.buffers(local_opts, { mappings = { wipeout = { char = '<C-d>', func = wipeout_func } } })
+        MiniPick.builtin.buffers(local_opts, { mappings = { wipeout = { char = '<C-d>', func = wipeout_buffer } } })
       end
 
       vim.keymap.set('n', '<leader>f.', function()
@@ -759,12 +759,12 @@ return {
             local macro = vim.g.macro_recording
             return MiniStatusline.combine_groups {
               { hl = mode_hl, strings = { mode } },
-              { hl = 'MiniStatuslineDevinfo', strings = { git, diff, diagnostics } },
+              { hl = 'MiniStatuslineDevinfo', strings = { git, diff, diagnostics, neocodeium_status() } },
               '%<', -- Mark general truncate point
               { hl = 'MiniStatuslineFilename', strings = { filename } },
               '%=', -- End left alignment
               { hl = 'MiniStatuslineFilename', strings = { macro } },
-              { hl = 'MiniStatuslineFileinfo', strings = { fileinfo, neocodeium_status() } },
+              { hl = 'MiniStatuslineFileinfo', strings = { fileinfo } },
               { hl = mode_hl, strings = { search, location } },
             }
           end,

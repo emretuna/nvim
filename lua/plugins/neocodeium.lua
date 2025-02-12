@@ -1,6 +1,7 @@
 return {
   'monkoose/neocodeium',
   enabled = vim.g.ai_assistant == 'codeium',
+  event = 'BufReadPost',
   opts = {
     manual = false,
     show_label = true,

@@ -46,9 +46,9 @@ return {
       { '<F1>', dap.step_into, desc = 'Debug: Step Into' },
       { '<F2>', dap.step_over, desc = 'Debug: Step Over' },
       { '<F3>', dap.step_out, desc = 'Debug: Step Out' },
-      { 'gb', dap.toggle_breakpoint, desc = 'Debug: Toggle Breakpoint' },
+      { 'gz', dap.toggle_breakpoint, desc = 'Debug: Toggle Breakpoint' },
       {
-        'gB',
+        'gZ',
         function()
           dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
         end,

@@ -123,6 +123,7 @@ vim.keymap.set(
   '<Cmd>lua vim.o.background = vim.o.background == "dark" and "light" or "dark"; vim.notify(vim.o.background)<CR>',
   { desc = 'Toggle background' }
 )
+
 local function toggle_option(option)
   vim.cmd('setlocal ' .. option .. '!')
   vim.notify(option .. ' set to ' .. tostring(vim.api.nvim_get_option_value(option, { scope = 'local' })), vim.log.levels.INFO)
