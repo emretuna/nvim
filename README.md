@@ -52,6 +52,7 @@ NVIM_APPNAME=emretuna/nvim/ nvim
 ### comment
 
 - [danymat/neogen](https://dotfyle.com/plugins/danymat/neogen)
+- [folke/ts-comments.nvim](https://dotfyle.com/plugins/folke/ts-comments.nvim)
 
 ### completion
 
