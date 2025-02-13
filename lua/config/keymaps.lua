@@ -6,7 +6,7 @@
 vim.keymap.set('n', '<C-S>', '<Cmd>silent! update | redraw<CR>', { desc = 'Save' })
 vim.keymap.set({ 'i', 'x' }, '<C-S>', '<Esc><Cmd>silent! update | redraw<CR>', { desc = 'Save and go to Normal mode' })
 
-vim.keymap.set('n', '<leader>e', '<Cmd>Lexplore!<CR>', { silent = true, desc = 'Open netrw on right side' }) -- Try Vex or Vex! to open in a split
+vim.keymap.set('n', '<leader>e', '<Cmd>Lexplore!<CR>', { silent = true, desc = 'Open netrw' }) -- Try Vex or Vex! to open in a split
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true

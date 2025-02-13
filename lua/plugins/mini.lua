@@ -78,7 +78,6 @@ return {
           { mode = 'n', keys = '<Leader>v', desc = 'Visits' },
           { mode = 'n', keys = '<Leader>w', desc = 'Window' },
           { mode = 'n', keys = '<Leader>x', desc = 'Trouble' },
-          { mode = 'n', keys = '<Leader><Leader>', desc = 'Smart Splits' },
         },
       }
     end,
