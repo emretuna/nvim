@@ -35,20 +35,23 @@ NVIM_APPNAME=emretuna/nvim/ nvim
 ### color
 
 - [NvChad/nvim-colorizer.lua](https://dotfyle.com/plugins/NvChad/nvim-colorizer.lua)
+- [folke/twilight.nvim](https://dotfyle.com/plugins/folke/twilight.nvim)
 - [echasnovski/mini.hipatterns](https://dotfyle.com/plugins/echasnovski/mini.hipatterns)
 
 ### colorscheme
 
 - [slugbyte/lackluster.nvim](https://dotfyle.com/plugins/slugbyte/lackluster.nvim)
-- [ficcdaf/ashen.nvim](https://dotfyle.com/plugins/ficcdaf/ashen.nvim)
 - [folke/tokyonight.nvim](https://dotfyle.com/plugins/folke/tokyonight.nvim)
 - [ramojus/mellifluous.nvim](https://dotfyle.com/plugins/ramojus/mellifluous.nvim)
-- [scottmckendry/cyberdream.nvim](https://dotfyle.com/plugins/scottmckendry/cyberdream.nvim)
+- [zenbones-theme/zenbones.nvim](https://dotfyle.com/plugins/zenbones-theme/zenbones.nvim)
+
+### colorscheme-creation
+
+- [rktjmp/lush.nvim](https://dotfyle.com/plugins/rktjmp/lush.nvim)
 
 ### comment
 
 - [danymat/neogen](https://dotfyle.com/plugins/danymat/neogen)
-- [folke/ts-comments.nvim](https://dotfyle.com/plugins/folke/ts-comments.nvim)
 
 ### completion
 
@@ -71,15 +74,14 @@ NVIM_APPNAME=emretuna/nvim/ nvim
 
 - [echasnovski/mini.ai](https://dotfyle.com/plugins/echasnovski/mini.ai)
 - [echasnovski/mini.pairs](https://dotfyle.com/plugins/echasnovski/mini.pairs)
+- [folke/zen-mode.nvim](https://dotfyle.com/plugins/folke/zen-mode.nvim)
 - [windwp/nvim-ts-autotag](https://dotfyle.com/plugins/windwp/nvim-ts-autotag)
 - [echasnovski/mini.splitjoin](https://dotfyle.com/plugins/echasnovski/mini.splitjoin)
 - [nvim-treesitter/nvim-treesitter-context](https://dotfyle.com/plugins/nvim-treesitter/nvim-treesitter-context)
-- [folke/snacks.nvim](https://dotfyle.com/plugins/folke/snacks.nvim)
 - [echasnovski/mini.move](https://dotfyle.com/plugins/echasnovski/mini.move)
 
 ### file-explorer
 
-- [stevearc/oil.nvim](https://dotfyle.com/plugins/stevearc/oil.nvim)
 - [echasnovski/mini.files](https://dotfyle.com/plugins/echasnovski/mini.files)
 
 ### formatting
@@ -89,7 +91,6 @@ NVIM_APPNAME=emretuna/nvim/ nvim
 
 ### fuzzy-finder
 
-- [ibhagwan/fzf-lua](https://dotfyle.com/plugins/ibhagwan/fzf-lua)
 - [echasnovski/mini.visits](https://dotfyle.com/plugins/echasnovski/mini.visits)
 - [echasnovski/mini.extra](https://dotfyle.com/plugins/echasnovski/mini.extra)
 - [echasnovski/mini.pick](https://dotfyle.com/plugins/echasnovski/mini.pick)
@@ -102,7 +103,6 @@ NVIM_APPNAME=emretuna/nvim/ nvim
 ### icon
 
 - [echasnovski/mini.icons](https://dotfyle.com/plugins/echasnovski/mini.icons)
-- [nvim-tree/nvim-web-devicons](https://dotfyle.com/plugins/nvim-tree/nvim-web-devicons)
 
 ### indent
 
@@ -110,11 +110,10 @@ NVIM_APPNAME=emretuna/nvim/ nvim
 
 ### keybinding
 
-- [folke/which-key.nvim](https://dotfyle.com/plugins/folke/which-key.nvim)
+- [echasnovski/mini.clue](https://dotfyle.com/plugins/echasnovski/mini.clue)
 
 ### lsp
 
-- [onsails/lspkind.nvim](https://dotfyle.com/plugins/onsails/lspkind.nvim)
 - [neovim/nvim-lspconfig](https://dotfyle.com/plugins/neovim/nvim-lspconfig)
 - [mfussenegger/nvim-lint](https://dotfyle.com/plugins/mfussenegger/nvim-lint)
 
@@ -124,7 +123,6 @@ NVIM_APPNAME=emretuna/nvim/ nvim
 
 ### markdown-and-latex
 
-- [OXY2DEV/markview.nvim](https://dotfyle.com/plugins/OXY2DEV/markview.nvim)
 - [MeanderingProgrammer/render-markdown.nvim](https://dotfyle.com/plugins/MeanderingProgrammer/render-markdown.nvim)
 
 ### media
@@ -144,7 +142,6 @@ NVIM_APPNAME=emretuna/nvim/ nvim
 
 - [MunifTanjim/nui.nvim](https://dotfyle.com/plugins/MunifTanjim/nui.nvim)
 - [echasnovski/mini.misc](https://dotfyle.com/plugins/echasnovski/mini.misc)
-- [kkharji/sqlite.lua](https://dotfyle.com/plugins/kkharji/sqlite.lua)
 - [nvim-lua/plenary.nvim](https://dotfyle.com/plugins/nvim-lua/plenary.nvim)
 - [folke/lazydev.nvim](https://dotfyle.com/plugins/folke/lazydev.nvim)
 
@@ -156,10 +153,6 @@ NVIM_APPNAME=emretuna/nvim/ nvim
 
 - [dmmulroy/ts-error-translator.nvim](https://dotfyle.com/plugins/dmmulroy/ts-error-translator.nvim)
 - [adalessa/laravel.nvim](https://dotfyle.com/plugins/adalessa/laravel.nvim)
-
-### project
-
-- [ahmedkhalf/project.nvim](https://dotfyle.com/plugins/ahmedkhalf/project.nvim)
 
 ### quickfix
 
@@ -180,7 +173,12 @@ NVIM_APPNAME=emretuna/nvim/ nvim
 
 ### split-and-window
 
+- [echasnovski/mini.bufremove](https://dotfyle.com/plugins/echasnovski/mini.bufremove)
 - [mrjones2014/smart-splits.nvim](https://dotfyle.com/plugins/mrjones2014/smart-splits.nvim)
+
+### startup
+
+- [goolord/alpha-nvim](https://dotfyle.com/plugins/goolord/alpha-nvim)
 
 ### statusline
 
@@ -207,8 +205,8 @@ NVIM_APPNAME=emretuna/nvim/ nvim
 ### utility
 
 - [echasnovski/mini.animate](https://dotfyle.com/plugins/echasnovski/mini.animate)
+- [echasnovski/mini.notify](https://dotfyle.com/plugins/echasnovski/mini.notify)
 - [kevinhwang91/nvim-ufo](https://dotfyle.com/plugins/kevinhwang91/nvim-ufo)
-- [folke/noice.nvim](https://dotfyle.com/plugins/folke/noice.nvim)
 
 ### web-development
 
