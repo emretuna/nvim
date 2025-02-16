@@ -52,6 +52,10 @@ return {
     end
     -- Footer
     require('alpha').setup(opts.config)
+    -- Disable folding on alpha buffer
+    vim.cmd [[
+    autocmd FileType alpha setlocal nofoldenable
+    ]]
     vim.api.nvim_create_autocmd('User', {
       pattern = 'LazyVimStarted',
       desc = 'Add Alpha dashboard footer',

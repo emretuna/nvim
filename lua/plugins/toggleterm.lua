@@ -31,8 +31,20 @@ return {
     vim.keymap.set('t', '<esc><esc>', '<c-\\><c-n>', { desc = 'Exit Terminal Mode' })
     vim.keymap.set('t', '<C-\\>', '<cmd>close<cr>', { desc = 'Hide Terminal' })
 
-    -- Determine the correct command based on keychain availability
-    local lazygit_cmd = vim.fn.executable 'keychain' == 1 and "bash -c 'eval $(keychain --eval ~/.ssh/github.key) && lazygit'" or 'lazygit'
+    -- LazyGit configuration
+    local function get_lazygit_cmd()
+      local config_path = vim.fn.expand '$HOME/.config/lazygit/config.yml'
+      local config_arg = string.format('--use-config-file="%s"', config_path)
+
+      local has_keychain = vim.fn.executable 'keychain' == 1
+      if has_keychain then
+        return string.format("bash -c 'eval $(keychain --eval ~/.ssh/github.key) && lazygit %s'", config_arg)
+      end
+
+      return string.format('lazygit %s', config_arg)
+    end
+
+    local lazygit_cmd = get_lazygit_cmd()
 
     -- LazyGit terminal instance
     local lazygit = Terminal:new {
@@ -40,6 +52,15 @@ return {
       hidden = true,
       direction = 'float',
       close_on_exit = true,
+      float_opts = {
+        border = vim.g.border_style,
+        width = function()
+          return math.floor(vim.o.columns * 0.9)
+        end,
+        height = function()
+          return math.floor(vim.o.lines * 0.9)
+        end,
+      },
       on_open = function()
         vim.cmd 'startinsert!'
       end,
