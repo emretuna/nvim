@@ -80,12 +80,21 @@ local function get_color(v)
 end
 
 function M.generate_lazygit_theme()
+  -- Get current colorscheme name, fallback to 'default' if not set
   local current_theme = vim.g.colors_name or 'default'
-  if vim.g.last_lazygit_theme == current_theme then
+
+  -- Initialize last_lazygit_theme if it doesn't exist
+  vim.g.last_lazygit_theme = vim.g.last_lazygit_theme or current_theme
+
+  -- If no colorscheme change, do nothing
+  if current_theme == vim.g.last_lazygit_theme then
     return
   end
-  vim.g.last_lazygit_theme = current_theme -- Store the new theme globally
+
+  -- Store the new theme globally for future comparisons
+  vim.g.last_lazygit_theme = current_theme
   local theme = {
+    [241] = get_color { fg = 'Special' },
     activeBorderColor = get_color { fg = 'MatchParen', bold = true },
     inactiveBorderColor = get_color { fg = 'FloatBorder' },
     optionsTextColor = get_color { fg = 'Function' },
