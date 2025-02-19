@@ -11,7 +11,11 @@ end
 --   pattern = '*',
 --   command = 'silent! update | redraw',
 -- })
-
+vim.api.nvim_create_autocmd('ColorScheme', {
+  callback = function()
+    vim.defer_fn(require('config.utils').generate_lazygit_theme, 100)
+  end,
+})
 -- macro function of mini.statusline
 vim.api.nvim_create_autocmd('RecordingEnter', {
   pattern = '*',

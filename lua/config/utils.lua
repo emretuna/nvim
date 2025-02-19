@@ -55,4 +55,61 @@ function M.reloadConfig()
   vim.notify('Nvim configuration reloaded!', vim.log.levels.INFO)
 end
 
+local function get_color(v)
+  ---@type string[]
+  local color = {}
+  for _, c in ipairs { 'fg', 'bg' } do
+    if v[c] then
+      local name = v[c]
+      local hl = vim.api.nvim_get_hl(0, { name = name, link = false })
+      local hl_color ---@type number?
+      if c == 'fg' then
+        hl_color = hl and hl.fg or hl.foreground
+      else
+        hl_color = hl and hl.bg or hl.background
+      end
+      if hl_color then
+        table.insert(color, string.format('#%06x', hl_color))
+      end
+    end
+  end
+  if v.bold then
+    table.insert(color, 'bold')
+  end
+  return color
+end
+
+function M.generate_lazygit_theme()
+  local theme = {
+    activeBorderColor = get_color { fg = 'MatchParen', bold = true },
+    inactiveBorderColor = get_color { fg = 'FloatBorder' },
+    optionsTextColor = get_color { fg = 'Function' },
+    selectedLineBgColor = get_color { bg = 'Visual' },
+    cherryPickedCommitBgColor = get_color { fg = 'Identifier' },
+    cherryPickedCommitFgColor = get_color { fg = 'Function' },
+    unstagedChangesColor = get_color { fg = 'DiagnosticError' },
+    defaultFgColor = get_color { fg = 'Normal' },
+    searchingActiveBorderColor = get_color { fg = 'MatchParen', bold = true },
+  }
+
+  local authorColors = { ['*'] = get_color({ fg = 'Constant' })[1] }
+
+  local yaml_content = 'gui:\n  theme:\n'
+  for key, value in pairs(theme) do
+    yaml_content = yaml_content .. string.format('    %s:\n', key)
+    for _, v in ipairs(value) do
+      yaml_content = yaml_content .. string.format("      - '%s'\n", v)
+    end
+  end
+  yaml_content = yaml_content .. "\n  authorColors:\n    '*': '" .. authorColors['*'] .. "'\n"
+
+  local file = io.open(vim.fn.stdpath 'config' .. '/lazygit-theme.yml', 'w')
+  if file then
+    file:write(yaml_content)
+    file:close()
+    -- vim.notify('LazyGit theme updated!', vim.log.levels.INFO)
+  else
+    vim.notify('Could not write lazygit-theme.yml', vim.log.levels.ERROR)
+  end
+end
 return M
