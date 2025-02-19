@@ -11,11 +11,22 @@ end
 --   pattern = '*',
 --   command = 'silent! update | redraw',
 -- })
+
+-- Generate lazygit theme
 vim.api.nvim_create_autocmd('ColorScheme', {
   callback = function()
     vim.defer_fn(require('config.utils').generate_lazygit_theme, 100)
   end,
 })
+
+-- Update workspace on rename using LSP
+vim.api.nvim_create_autocmd('User', {
+  pattern = 'MiniFilesActionRename',
+  callback = function(event)
+    require('config.utils').on_rename_file(event.data.from, event.data.to)
+  end,
+})
+
 -- macro function of mini.statusline
 vim.api.nvim_create_autocmd('RecordingEnter', {
   pattern = '*',

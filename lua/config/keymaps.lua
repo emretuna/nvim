@@ -98,6 +98,11 @@ vim.keymap.set('n', '<leader>tf', '<cmd>tabnew %<CR>', { desc = 'Open current bu
 
 -- vim.keymap.set('n', ']b', '<cmd>bnext<cr>', { desc = 'Buffer next' })
 -- vim.keymap.set('n', '[b', '<cmd>bprevious<cr>', { desc = 'Buffer previous' })
+
+vim.keymap.set('n', '<leader>mR', function()
+  require('config.utils').rename_file()
+end, { desc = 'Rename file' })
+
 vim.keymap.set('n', '<leader>`', '<cmd>e #<cr>', { desc = 'Switch Buffer' })
 vim.keymap.set('n', '<leader>ba', '<cmd>new<cr>', { desc = 'Buffer Add' })
 -- better indent
