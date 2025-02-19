@@ -117,7 +117,7 @@ function M.generate_lazygit_theme()
   end
   yaml_content = yaml_content .. "\n  authorColors:\n    '*': '" .. authorColors['*'] .. "'\n"
 
-  local file = io.open(vim.fn.stdpath 'config' .. '/lazygit-theme.yml', 'w')
+  local file = io.open(vim.fn.stdpath 'cache' .. '/lazygit-theme.yml', 'w')
   if file then
     file:write(yaml_content)
     file:close()

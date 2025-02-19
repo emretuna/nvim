@@ -33,7 +33,7 @@ return {
 
     -- LazyGit configuration
     local function get_lazygit_cmd()
-      local config_path = vim.fn.expand '$HOME/.config/nvim/lazygit-theme.yml'
+      local config_path = vim.fn.expand(vim.fn.stdpath 'cache' .. '/lazygit-theme.yml')
       local config_arg = string.format('--use-config-file="%s"', config_path)
 
       local has_keychain = vim.fn.executable 'keychain' == 1
