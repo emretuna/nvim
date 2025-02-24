@@ -1,5 +1,59 @@
 return {
   {
+    'echasnovski/mini.starter',
+    lazy = false,
+    opts = function()
+      local function header()
+        return [[
+        ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗ 
+        ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║ 
+        ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║ 
+        ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║ 
+        ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║ 
+        ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ 
+        ]]
+      end
+      return {
+        evaluate_single = true,
+        query_updaters = 'abcdefghijklmnopqrstuvwxyz0123456789',
+        header = header,
+        items = {
+          require('mini.starter').sections.builtin_actions(),
+          require('mini.starter').sections.pick(),
+          require('mini.starter').sections.recent_files(10, false),
+          -- require('mini.starter').sections.recent_files(10, true),
+          require('mini.starter').sections.sessions(5, true),
+          {
+
+            { name = 'Lazy', action = 'Lazy', section = 'Builtin actions' },
+            { name = 'Mason', action = 'Mason', section = 'Builtin actions' },
+          },
+        },
+        content_hooks = {
+          require('mini.starter').gen_hook.adding_bullet(),
+          require('mini.starter').gen_hook.aligning('center', 'center'),
+          require('mini.starter').gen_hook.indexing('all', { 'Builtin actions' }),
+          require('mini.starter').gen_hook.padding(3, 2),
+        },
+      }
+    end,
+    config = function(_, opts)
+      require('mini.starter').setup(opts)
+      vim.api.nvim_create_autocmd('User', {
+        pattern = 'LazyVimStarted',
+        callback = function()
+          local stats = require('lazy').stats()
+          local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
+          require('mini.starter').config.footer = function()
+            return '  Loaded plugins: ' .. stats.loaded .. '/' .. stats.count .. '\n⚡ Startup time: ' .. ms .. ' ms'
+          end
+          -- https://github.com/LazyVim/LazyVim/commit/dc66887b57ecdee8d33b5e07ca031288260e2971
+          vim.cmd [[do VimResized]]
+        end,
+      })
+    end,
+  },
+  {
     'echasnovski/mini.clue',
     lazy = false,
     opts = function()
@@ -87,9 +141,9 @@ return {
   },
   {
     'echasnovski/mini.sessions',
-    event = 'VeryLazy',
+    event = 'VimEnter',
     opts = {
-      autoread = true,
+      autoread = false,
       autowrite = true,
     },
     config = function(_, opts)
@@ -414,6 +468,8 @@ return {
         -- go_in_plus = '<Enter>',
         go_in = 'L',
         go_in_plus = 'l',
+        go_out = 'h',
+        go_out_plus = 'H',
         synchronize = '<C-s>',
       },
       windows = {
@@ -497,6 +553,7 @@ return {
       require('mini.misc').setup()
       require('mini.misc').setup_restore_cursor()
       require('mini.misc').setup_auto_root()
+      require('mini.misc').setup_termbg_sync()
     end,
   },
   {

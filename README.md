@@ -4,6 +4,10 @@
 <a href="https://dotfyle.com/emretuna/nvim"><img src="https://dotfyle.com/emretuna/nvim/badges/leaderkey?style=flat" /></a>
 <a href="https://dotfyle.com/emretuna/nvim"><img src="https://dotfyle.com/emretuna/nvim/badges/plugin-manager?style=flat" /></a>
 
+## Screenshots
+
+[screenshots](https://imgur.com/a/BDx0bu9)
+
 ## Install Instructions
 
 > Install requires Neovim 0.9+. Always review the code before installing a configuration.

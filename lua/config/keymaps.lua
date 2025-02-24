@@ -98,11 +98,26 @@ vim.keymap.set('n', '<leader>tf', '<cmd>tabnew %<CR>', { desc = 'Open current bu
 
 -- vim.keymap.set('n', ']b', '<cmd>bnext<cr>', { desc = 'Buffer next' })
 -- vim.keymap.set('n', '[b', '<cmd>bprevious<cr>', { desc = 'Buffer previous' })
-
+--
+-- Rename file using LSP
 vim.keymap.set('n', '<leader>mR', function()
   require('config.utils').rename_file()
 end, { desc = 'Rename file' })
 
+-- Open file under cursor
+vim.keymap.set('n', '<leader>mo', function()
+  local osType = os.getenv 'OS'
+  local filepath = vim.fn.expand '<cfile>' -- Get the file under the cursor
+  if vim.fn.filereadable(filepath) == 1 then
+    if osType == 'Darwin' then
+      vim.fn.jobstart({ 'open', filepath }, { detach = true })
+    else
+      vim.fn.jobstart({ 'xdg-open', filepath }, { detach = true })
+    end
+  else
+    vim.notify('No readable file under cursor', vim.log.levels.ERROR)
+  end
+end, { desc = 'Open file under cursor with open' })
 vim.keymap.set('n', '<leader>`', '<cmd>e #<cr>', { desc = 'Switch Buffer' })
 vim.keymap.set('n', '<leader>ba', '<cmd>new<cr>', { desc = 'Buffer Add' })
 -- better indent

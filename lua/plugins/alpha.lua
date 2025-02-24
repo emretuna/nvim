@@ -1,7 +1,7 @@
 return {
   'goolord/alpha-nvim',
   event = 'VimEnter',
-  -- enabled = false,
+  enabled = false,
   cmd = 'Alpha',
   -- setup header and buttonts
   opts = function()
