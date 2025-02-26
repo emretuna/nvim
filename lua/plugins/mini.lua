@@ -1,7 +1,7 @@
 return {
   {
     'echasnovski/mini.starter',
-    lazy = false,
+    event = 'VimEnter',
     opts = function()
       local function header()
         return [[
@@ -56,7 +56,7 @@ return {
   },
   {
     'echasnovski/mini.clue',
-    lazy = false,
+    event = 'VimEnter',
     opts = function()
       return {
         window = {
@@ -224,6 +224,7 @@ return {
   },
   {
     'echasnovski/mini.pick',
+    event = 'VeryLazy',
     -- enabled = false,
     opts = {
       options = {
@@ -579,7 +580,7 @@ return {
   },
   {
     'echasnovski/mini.misc',
-    lazy = false,
+    event = 'VeryLazy',
     config = function()
       require('mini.misc').setup()
       require('mini.misc').setup_restore_cursor()
@@ -615,6 +616,7 @@ return {
   },
   {
     'echasnovski/mini.splitjoin',
+    event = 'VeryLazy',
     config = function()
       require('mini.splitjoin').setup {
         mappings = {
@@ -743,7 +745,7 @@ return {
   {
     'echasnovski/mini.animate',
     -- enabled = false,
-    event = 'VeryLazy',
+    event = 'VimEnter',
     opts = function()
       -- don't use animate when scrolling with the mouse
       local mouse_scrolled = false
@@ -785,12 +787,12 @@ return {
   },
   {
     'echasnovski/mini.move',
-    event = 'BufReadPost',
+    event = 'VeryLazy',
     config = true,
   },
   {
     'echasnovski/mini.diff',
-    event = 'BufReadPost',
+    event = 'VeryLazy',
     opts = {
       view = {
         style = 'sign',
@@ -800,6 +802,7 @@ return {
   },
   {
     'echasnovski/mini-git',
+    event = 'VeryLazy',
     config = function()
       require('mini.git').setup()
       vim.keymap.set({ 'n', 'x' }, '<Leader>gs', '<CMD>lua MiniGit.show_at_cursor()<CR>', { desc = 'Show at cursor' })
@@ -809,7 +812,7 @@ return {
   },
   {
     'echasnovski/mini.statusline',
-    event = 'VeryLazy',
+    event = 'VimEnter',
     opts = function()
       return {
         use_icons = vim.g.have_nerd_font,

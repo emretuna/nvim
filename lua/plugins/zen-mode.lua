@@ -5,6 +5,7 @@ return {
   dependencies = {
     {
       'folke/twilight.nvim',
+      event = 'VeryLazy',
       config = function()
         require('twilight').setup()
         vim.keymap.set('n', '<leader>ut', '<cmd>Twilight<cr>', { desc = 'Twilight' })
