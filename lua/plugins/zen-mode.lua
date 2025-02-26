@@ -7,7 +7,7 @@ return {
       'folke/twilight.nvim',
       config = function()
         require('twilight').setup()
-        vim.keymap.set('n', '<leader>mt', '<cmd>Twilight<cr>', { desc = 'Twilight' })
+        vim.keymap.set('n', '<leader>ut', '<cmd>Twilight<cr>', { desc = 'Twilight' })
       end,
     },
   },
@@ -35,6 +35,6 @@ return {
   config = function(_, opts)
     require('zen-mode').setup(opts)
 
-    vim.keymap.set('n', '<leader>mz', ':ZenMode<cr>', { desc = 'Zen Mode' })
+    vim.keymap.set('n', '<leader>uz', ':ZenMode<cr>', { desc = 'Zen Mode' })
   end,
 }

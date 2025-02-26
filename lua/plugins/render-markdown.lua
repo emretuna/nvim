@@ -26,6 +26,6 @@ return {
   },
   config = function(_, opts)
     require('render-markdown').setup(opts)
-    vim.keymap.set('n', '<leader>mM', '<cmd>RenderMarkdown toggle<cr>', { desc = 'Render Markdown' })
+    vim.keymap.set('n', '<leader>mr', '<cmd>RenderMarkdown toggle<cr>', { desc = 'Render Markdown' })
   end,
 }

@@ -66,7 +66,7 @@ vim.keymap.set('n', 'gV', '"`[" . strpart(getregtype(), 0, 1) . "`]"', { expr = 
 vim.keymap.set('x', 'g/', '<esc>/\\%V', { silent = false, desc = 'Search inside visual selection' })
 vim.keymap.set(
   'n',
-  '<leader>uH',
+  '<leader>uh',
   '<Cmd>let v:hlsearch = 1 - v:hlsearch | echo (v:hlsearch ? "  " : "no") . "hlsearch"<CR>',
   { desc = 'Toggle search highlight' }
 )
@@ -142,7 +142,7 @@ vim.keymap.set('n', '<leader>qc', '<Cmd>cclose<CR>', { desc = 'Close Quickfix Li
 -- Toggle keybinds
 vim.keymap.set(
   'n',
-  '<leader>mb',
+  '<leader>ub',
   '<Cmd>lua vim.o.background = vim.o.background == "dark" and "light" or "dark"; vim.notify(vim.o.background)<CR>',
   { desc = 'Toggle background' }
 )
@@ -151,22 +151,22 @@ local function toggle_option(option)
   vim.cmd('setlocal ' .. option .. '!')
   vim.notify(option .. ' set to ' .. tostring(vim.api.nvim_get_option_value(option, { scope = 'local' })), vim.log.levels.INFO)
 end
-vim.keymap.set('n', '<leader>mi', function()
+vim.keymap.set('n', '<leader>ui', function()
   toggle_option 'ignorecase'
 end, { desc = 'Toggle ignorecase' })
-vim.keymap.set('n', '<leader>ml', function()
+vim.keymap.set('n', '<leader>ul', function()
   toggle_option 'list'
 end, { desc = 'Toggle list' })
-vim.keymap.set('n', '<leader>mn', function()
+vim.keymap.set('n', '<leader>un', function()
   toggle_option 'number'
 end, { desc = 'Toggle number' })
-vim.keymap.set('n', '<leader>mr', function()
+vim.keymap.set('n', '<leader>ur', function()
   toggle_option 'relativenumber'
 end, { desc = 'Toggle relativenumber' })
-vim.keymap.set('n', '<leader>ms', function()
+vim.keymap.set('n', '<leader>us', function()
   toggle_option 'spell'
 end, { desc = 'Toggle spell' })
-vim.keymap.set('n', '<leader>mw', function()
+vim.keymap.set('n', '<leader>uw', function()
   toggle_option 'wrap'
 end, { desc = 'Toggle wrap' })
 
