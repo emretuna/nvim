@@ -27,6 +27,7 @@ return {
 
             { name = 'Lazy', action = 'Lazy', section = 'Builtin actions' },
             { name = 'Mason', action = 'Mason', section = 'Builtin actions' },
+            { name = 'Notes', action = 'ObsidianQuickSwitch', section = 'Builtin actions' },
           },
         },
         content_hooks = {

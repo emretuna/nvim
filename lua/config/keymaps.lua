@@ -1,5 +1,8 @@
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
+vim.keymap.set('n', 'XX', ':q<CR>', { silent = true })
+-- Saves modified documents, and then exits
+vim.keymap.set('n', 'ZZ', ':xa<CR>', { silent = true })
 
 -- Alternative way to save and exit in Normal mode.
 -- NOTE: Adding `redraw` helps with `cmdheight=0` if buffer is not modified
