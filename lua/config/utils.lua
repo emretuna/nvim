@@ -79,6 +79,33 @@ local function get_color(v)
   return color
 end
 
+---@param theme table
+---@param authorColors table
+local function generate_yaml_content(theme, authorColors)
+  local lines = {
+    'gui:',
+    '  nerdFontsVersion: "3"',
+    '  theme:',
+  }
+
+  -- Add theme colors
+  for key, value in pairs(theme) do
+    table.insert(lines, string.format('    %s:', key))
+    for _, v in ipairs(value) do
+      table.insert(lines, string.format("      - '%s'", v))
+    end
+  end
+
+  -- Add author colors
+  table.insert(lines, '    authorColors:')
+  table.insert(lines, string.format("      '*': '%s'", authorColors['*']))
+
+  -- Add OS settings with proper nvim-remote configuration
+  table.insert(lines, 'os:')
+  table.insert(lines, "  editPreset: 'nvim-remote'")
+  return table.concat(lines, '\n') .. '\n'
+end
+
 function M.generate_lazygit_theme()
   -- Get current colorscheme name, fallback to 'default' if not set
   local current_theme = vim.g.colors_name or 'default'
@@ -93,6 +120,8 @@ function M.generate_lazygit_theme()
 
   -- Store the new theme globally for future comparisons
   vim.g.last_lazygit_theme = current_theme
+
+  -- Define theme colors
   local theme = {
     [241] = get_color { fg = 'Special' },
     activeBorderColor = get_color { fg = 'MatchParen', bold = true },
@@ -108,16 +137,12 @@ function M.generate_lazygit_theme()
 
   local authorColors = { ['*'] = get_color({ fg = 'Constant' })[1] }
 
-  local yaml_content = 'gui:\n  theme:\n'
-  for key, value in pairs(theme) do
-    yaml_content = yaml_content .. string.format('    %s:\n', key)
-    for _, v in ipairs(value) do
-      yaml_content = yaml_content .. string.format("      - '%s'\n", v)
-    end
-  end
-  yaml_content = yaml_content .. "\n  authorColors:\n    '*': '" .. authorColors['*'] .. "'\n"
+  -- Generate YAML content
+  local yaml_content = generate_yaml_content(theme, authorColors)
 
-  local file = io.open(vim.fn.stdpath 'cache' .. '/lazygit-theme.yml', 'w')
+  -- Write to file
+  local theme_path = vim.fn.stdpath 'cache' .. '/lazygit-theme.yml'
+  local file = io.open(theme_path, 'w')
   if file then
     file:write(yaml_content)
     file:close()

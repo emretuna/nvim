@@ -212,6 +212,7 @@ return {
   },
   {
     'echasnovski/mini.align',
+    event = 'VeryLazy',
     opts = {
       mappings = {
         start = 'gb',
@@ -561,7 +562,7 @@ return {
   },
   {
     'echasnovski/mini.hipatterns',
-    event = 'VeryLazy',
+    event = 'BufReadPost',
     -- enabled = false,
     opts = function()
       return {
@@ -597,7 +598,7 @@ return {
   },
   {
     'echasnovski/mini.pairs',
-    event = 'VeryLazy',
+    event = 'BufReadPost',
     opts = {
       modes = { insert = true, command = true, terminal = false },
       -- skip autopair when next character is one of these
@@ -792,7 +793,7 @@ return {
   },
   {
     'echasnovski/mini.diff',
-    event = 'VeryLazy',
+    event = 'BufReadPost',
     opts = {
       view = {
         style = 'sign',

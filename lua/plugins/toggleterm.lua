@@ -61,8 +61,17 @@ return {
           return math.floor(vim.o.lines * 0.9)
         end,
       },
-      on_open = function()
+      on_open = function(_)
         vim.cmd 'startinsert!'
+        -- Set up terminal buffer-local options
+        vim.opt_local.signcolumn = 'no'
+        vim.opt_local.foldcolumn = '0'
+        vim.opt_local.statuscolumn = ''
+      end,
+      on_exit = function(_)
+        vim.cmd 'startinsert!'
+        -- Refresh buffers when lazygit exits
+        vim.cmd 'checktime'
       end,
     }
 
