@@ -24,6 +24,7 @@ local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
 -- Safely execute immediately
 
 local function mini()
+  -- require with spesific configurations
   require 'plugins.mini.ai'
   require 'plugins.mini.align'
   require 'plugins.mini.animate'
@@ -37,9 +38,9 @@ local function mini()
   require 'plugins.mini.notify'
   require 'plugins.mini.pairs'
   require 'plugins.mini.pick'
-  require 'plugins.mini.statusline'
-  require 'plugins.mini.tabline'
   require 'plugins.mini.visits'
+
+  -- add mini plugins
   require('mini.jump').setup()
   require('mini.jump2d').setup()
   require('mini.misc').setup()
@@ -427,15 +428,18 @@ now(function()
   require 'config.autocmds'
   require 'config.utils'
 
+  -- these should be now() for start-up screen
+  require 'plugins.mini.statusline'
   require 'plugins.mini.sessions'
+  require 'plugins.mini.tabline'
   require 'plugins.mini.starter'
 end)
 
 later(function()
-  mini()
-  completion()
   treesitter()
   lsp()
+  mini()
+  completion()
   typescript()
   ai()
   formatting()

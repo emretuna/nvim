@@ -12,7 +12,6 @@ vim.g.maplocalleader = ' '
 
 vim.opt.cmdheight = 0 -- Hide command line spacing
 
-vim.g.big_file = { size = 1024 * 100, lines = 10000 } -- For files bigger than this, disable 'treesitter' (+100kb).
 -- Netrw settings
 vim.g.netrw_banner = 0
 vim.g.netrw_liststyle = 3

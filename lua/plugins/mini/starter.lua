@@ -20,10 +20,14 @@ require('mini.starter').setup {
     -- require('mini.starter').sections.recent_files(10, true),
     require('mini.starter').sections.sessions(5, true),
     {
-
-      { name = 'DepsUpdate', action = 'DepsUpdate', section = 'Builtin actions' },
-      { name = 'Mason', action = 'Mason', section = 'Builtin actions' },
       { name = 'Notes', action = 'ObsidianQuickSwitch', section = 'Builtin actions' },
+      {
+        name = 'Git',
+        action = 'LazyGit',
+        section = 'Builtin actions',
+      },
+      { name = 'Mason', action = 'Mason', section = 'Builtin actions' },
+      { name = 'DepsUpdate', action = 'DepsUpdate', section = 'Builtin actions' },
     },
   },
   content_hooks = {

@@ -69,11 +69,15 @@ local lazygit = Terminal:new {
 }
 
 -- Toggle LazyGit only if inside a Git repository
-vim.keymap.set('n', '<leader>g.', function()
+-- Create LazyGit command and keymap
+local function toggle_lazygit()
   if vim.fn.finddir('.git', vim.fn.getcwd() .. ';') ~= '' then
     lazygit:toggle()
   else
     vim.notify('Not a git repository', vim.log.levels.WARN)
   end
-end, { desc = 'Toggle LazyGit' })
+end
+
+vim.api.nvim_create_user_command('LazyGit', toggle_lazygit, { desc = 'Toggle LazyGit terminal' })
+vim.keymap.set('n', '<leader>g.', toggle_lazygit, { desc = 'Toggle LazyGit' })
 return {}

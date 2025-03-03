@@ -203,18 +203,6 @@ vim.keymap.set('n', '<leader>fp', function()
   end
 end, { desc = 'Search Builtin Pick Commands' })
 
--- Only works with lazy
-vim.keymap.set('n', '<leader>mP', function()
-  local plugin = MiniPick.start {
-    source = {
-      name = ' Reload Plugins ',
-      items = require('config.utils').pluginNames(),
-    },
-  }
-  if plugin ~= nil then
-    vim.cmd('Lazy reload ' .. plugin)
-  end
-end, { desc = 'Pick plugins to reload' })
 -- Visits keymap
 vim.keymap.set('n', '<leader>vl', function()
   MiniExtra.pickers.visit_labels()
