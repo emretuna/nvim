@@ -23,6 +23,10 @@ vim.g.netrw_altv = 1
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
+vim.g.db_ui_use_nerd_fonts = 1
+vim.g.vim_dadbod_completion_mark = '󱘲'
+
+vim.g.startuptime_tries = 10
 -- Global variable to control borders for every plugins
 vim.g.border_style = 'rounded'
 

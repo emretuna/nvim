@@ -1,8 +1,4 @@
-return {
-  'stevearc/conform.nvim',
-  event = { 'BufReadPre', 'BufNewFile' }, -- to disable, comment this out
-  lazy = true,
-  opts = {
+    require('conform').setup({
     stop_after_first = true,
     notify_on_error = true,
     log_level = vim.log.levels.TRACE,
@@ -58,9 +54,7 @@ return {
       -- is found.
       -- javascript = { { "prettierd", "prettier" } },
     },
-  },
-  config = function(_, opts)
-    require('conform').setup(opts)
+  })
 
     vim.api.nvim_create_user_command('FormatDisable', function(args)
       if args.bang then
@@ -90,5 +84,3 @@ return {
         vim.cmd 'FormatDisable'
       end
     end, { desc = 'Toggle Format' })
-  end,
-}
