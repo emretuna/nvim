@@ -21,7 +21,7 @@ require('mini.starter').setup {
     require('mini.starter').sections.sessions(5, true),
     {
 
-      { name = 'Lazy', action = 'Lazy', section = 'Builtin actions' },
+      { name = 'DepsUpdate', action = 'DepsUpdate', section = 'Builtin actions' },
       { name = 'Mason', action = 'Mason', section = 'Builtin actions' },
       { name = 'Notes', action = 'ObsidianQuickSwitch', section = 'Builtin actions' },
     },

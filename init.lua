@@ -37,8 +37,6 @@ local function mini()
   require 'plugins.mini.notify'
   require 'plugins.mini.pairs'
   require 'plugins.mini.pick'
-  require 'plugins.mini.sessions'
-  require 'plugins.mini.starter'
   require 'plugins.mini.statusline'
   require 'plugins.mini.tabline'
   require 'plugins.mini.visits'
@@ -429,10 +427,12 @@ now(function()
   require 'config.autocmds'
   require 'config.utils'
 
-  mini()
+  require 'plugins.mini.sessions'
+  require 'plugins.mini.starter'
 end)
 
 later(function()
+  mini()
   completion()
   treesitter()
   lsp()
