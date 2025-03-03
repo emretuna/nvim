@@ -1,3 +1,8 @@
+local add = MiniDeps.add
+add {
+  source = 'epwalsh/obsidian.nvim',
+}
+
 require('obsidian').setup {
   workspaces = {
     {
@@ -78,5 +83,3 @@ vim.keymap.set('n', '<leader>ns', ':ObsidianSearch<cr>', { desc = 'Search' })
 vim.keymap.set('n', '<leader>n.', ':ObsidianQuickSwitch<cr>', { desc = 'Quickswitch' })
 -- Obsidian Open In App
 vim.keymap.set('n', '<leader>no', ':ObsidianOpen<cr>', { desc = 'Open In App' })
-
-return {}

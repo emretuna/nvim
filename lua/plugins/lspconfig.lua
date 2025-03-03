@@ -1,3 +1,19 @@
+local add = MiniDeps.add
+add {
+  source = 'neovim/nvim-lspconfig',
+  -- Supply dependencies near target plugin
+  depends = {
+    -- Automatically install LSPs and related tools to stdpath for Neovim
+    'williamboman/mason.nvim',
+    'williamboman/mason-lspconfig.nvim',
+    'WhoIsSethDaniel/mason-tool-installer.nvim',
+    'b0o/schemastore.nvim',
+    'folke/lazydev.nvim',
+  },
+}
+
+vim.cmd 'LspStart'
+
 require('lspconfig.ui.windows').default_options.border = vim.g.border_style
 local home = os.getenv 'HOME'
 -- LSP provides Neovim with features like:
@@ -338,6 +354,7 @@ vim.list_extend(ensure_installed, {
 })
 require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
+--@diagnostic disable-next-line: missing-fields
 require('mason-lspconfig').setup {
   handlers = {
     function(server_name)
@@ -350,4 +367,3 @@ require('mason-lspconfig').setup {
     end,
   },
 }
-return {}

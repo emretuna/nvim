@@ -1,3 +1,10 @@
+local add = MiniDeps.add
+
+add {
+  source = 'MeanderingProgrammer/render-markdown.nvim',
+  depends = { 'nvim-treesitter/nvim-treesitter' },
+}
+
 require('render-markdown').setup {
   filetypes = { 'markdown', 'norg', 'rmd', 'org', 'vimwiki', 'Avante' },
   buf_ignore = { 'nofile' },
@@ -17,4 +24,3 @@ require('render-markdown').setup {
   },
 }
 vim.keymap.set('n', '<leader>mr', '<cmd>RenderMarkdown toggle<cr>', { desc = 'Render Markdown' })
-return {}

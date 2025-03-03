@@ -1,3 +1,7 @@
+local add = MiniDeps.add
+add {
+  source = 'mistweaverco/kulala.nvim',
+}
 require('kulala').setup {
   default_view = 'headers_body',
 }

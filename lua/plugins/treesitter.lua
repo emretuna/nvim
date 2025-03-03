@@ -1,3 +1,20 @@
+local add = MiniDeps.add
+
+add {
+  source = 'nvim-treesitter/nvim-treesitter',
+  -- Use 'master' while monitoring updates in 'main'
+  checkout = 'master',
+  monitor = 'main',
+  depends = {
+    'folke/ts-comments.nvim',
+  },
+  -- Perform action after every checkout
+  hooks = {
+    post_checkout = function()
+      vim.cmd 'TSUpdate'
+    end,
+  },
+}
 -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
 
 -- Prefer git instead of curl in order to improve connectivity in some environments

@@ -1,3 +1,9 @@
+local add = MiniDeps.add
+
+add {
+  source = 'mfussenegger/nvim-lint',
+}
+
 local lint = require 'lint'
 lint.linters_by_ft = {
   markdown = { 'markdownlint' },
@@ -62,4 +68,3 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost', 'InsertLeave' }, {
 -- vim.keymap.set('n', '<leader>ul', function()
 --   require('lint').try_lint()
 -- end, { desc = 'Trigger linting for current file' })
-return {}

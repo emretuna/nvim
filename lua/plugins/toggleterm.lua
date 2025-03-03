@@ -1,3 +1,7 @@
+local add = MiniDeps.add
+add {
+  source = 'akinsho/toggleterm.nvim',
+}
 require('toggleterm').setup {
   highlights = {
     Normal = { link = 'Normal' },
@@ -80,4 +84,3 @@ end
 
 vim.api.nvim_create_user_command('LazyGit', toggle_lazygit, { desc = 'Toggle LazyGit terminal' })
 vim.keymap.set('n', '<leader>g.', toggle_lazygit, { desc = 'Toggle LazyGit' })
-return {}

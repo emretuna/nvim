@@ -1,3 +1,8 @@
+local add = MiniDeps.add
+add {
+  source = 'stevearc/overseer.nvim',
+}
+
 require('overseer').setup()
 
 -- Create custom command for restarting last task
@@ -20,5 +25,3 @@ vim.keymap.set('n', '<leader>oq', '<cmd>OverseerQuickAction<cr>', { desc = 'Acti
 vim.keymap.set('n', '<leader>or', '<cmd>OverseerRun<cr>', { desc = 'Run task' })
 vim.keymap.set('n', '<leader>ot', '<cmd>OverseerTaskAction<cr>', { desc = 'Task action' })
 vim.keymap.set('n', '<leader>oT', '<cmd>OverseerToggle<cr>', { desc = 'Task list' })
-
-return {}

@@ -1,3 +1,12 @@
+local add = MiniDeps.add
+
+add {
+  source = 'folke/zen-mode.nvim',
+  depends = {
+    'folke/twilight.nvim',
+  },
+}
+
 require('zen-mode').setup {
   plugins = {
     twilight = {

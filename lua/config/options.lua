@@ -19,12 +19,7 @@ vim.g.netrw_browse_split = 4
 vim.g.netrw_winsize = 25
 vim.g.netrw_altv = 1
 
--- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = true
-
-vim.g.db_ui_use_nerd_fonts = 1
-vim.g.vim_dadbod_completion_mark = '󱘲'
-
+-- settings for vim-startuptime
 vim.g.startuptime_tries = 10
 -- Global variable to control borders for every plugins
 vim.g.border_style = 'rounded'
@@ -49,18 +44,16 @@ vim.g.completion_round_borders_enabled = true
 vim.g.have_nerd_font = true
 vim.o.spell = false
 vim.o.spelllang = 'en_us'
--- Disable some plugins to reduce startup time
-vim.g.dap_enabled = false
-vim.g.dadbod_enabled = false
-vim.g.precognition_enabled = false
-vim.g.neotest_enabled = false
-vim.g.laravel_enabled = false
+
 -- AI assistant configuration
 -- Options: 'codeium' or 'supermaven'
 vim.g.ai_assistant = 'codeium'
+
+-- Make popup menu slightly transparent
 -- vim.o.pumblend = 10 -- Make builtin completion menus slightly transparent
 -- vim.o.pumheight = 10 -- Make popup menu smaller
 -- vim.o.winblend = 10 -- Make floating windows slightly transparent
+
 -- Misc Settings
 vim.opt.undofile = true -- Enable persistent undo between session and reboots.
 vim.opt.backup = false -- Don't store backup while overwriting the file

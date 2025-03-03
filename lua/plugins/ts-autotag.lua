@@ -1,3 +1,9 @@
+local add = MiniDeps.add
+add {
+  source = 'windwp/nvim-ts-autotag',
+}
+
+--@diagnostic disable-next-line: required-fields
 require('nvim-ts-autotag').setup {
   opts = {
     -- Defaults
@@ -14,4 +20,3 @@ require('nvim-ts-autotag').setup {
     },
   },
 }
-return {}

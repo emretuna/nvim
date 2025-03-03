@@ -1,3 +1,7 @@
+local add = MiniDeps.add
+add {
+  source = 'mrjones2014/smart-splits.nvim',
+}
 require('smart-splits').setup()
 -- recommended mappings
 -- resizing splits
@@ -18,5 +22,3 @@ vim.keymap.set('n', 'wh', require('smart-splits').swap_buf_left, { desc = 'Swap 
 vim.keymap.set('n', 'wj', require('smart-splits').swap_buf_down, { desc = 'Swap Buffer Down' })
 vim.keymap.set('n', 'wk', require('smart-splits').swap_buf_up, { desc = 'Swap Buffer Up' })
 vim.keymap.set('n', 'wl', require('smart-splits').swap_buf_right, { desc = 'Swap Buffer Right' })
-
-return {}

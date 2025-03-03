@@ -1,3 +1,10 @@
+local add = MiniDeps.add
+add {
+  source = 'kevinhwang91/nvim-ufo',
+  depends = {
+    'kevinhwang91/promise-async',
+  },
+}
 local opts = {
   filetype_exclude = { 'help', 'alpha', 'dashboard', 'neo-tree', 'Trouble', 'lazy', 'mason', 'dbui' },
   preview = {

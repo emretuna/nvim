@@ -1,3 +1,10 @@
+local add = MiniDeps.add
+
+add {
+  source = 'ThePrimeagen/refactoring.nvim',
+  depends = { 'nvim-lua/plenary.nvim' },
+}
+
 require('refactoring').setup {
   prompt_func_param_type = {
     cpp = true,
@@ -25,5 +32,3 @@ vim.keymap.set({ 'n', 'x' }, '<leader>r.', function()
   require('refactoring').select_refactor {}
 end, { desc = 'Open Refactoring Menu' })
 -- Note that not all refactor support both normal and visual mode
-
-return {}

@@ -1,3 +1,43 @@
+local add = MiniDeps.add
+
+add {
+  source = 'L3MON4D3/LuaSnip',
+  checkout = 'v2.*',
+  post_checkout = function()
+    return 'make install_jsregexp'
+  end,
+  depends = {
+    'rafamadriz/friendly-snippets',
+  },
+}
+require('luasnip').setup { history = true, delete_check_events = 'TextChanged' }
+require('luasnip.loaders.from_vscode').lazy_load()
+require('luasnip.loaders.from_vscode').lazy_load { paths = { vim.fn.stdpath 'config' .. '/snippets' } }
+
+local extends = {
+  typescript = { 'tsdoc' },
+  javascript = { 'jsdoc' },
+  lua = { 'luadoc' },
+  python = { 'pydoc' },
+  rust = { 'rustdoc' },
+  cs = { 'csharpdoc' },
+  java = { 'javadoc' },
+  c = { 'cdoc' },
+  cpp = { 'cppdoc' },
+  php = { 'phpdoc' },
+  kotlin = { 'kdoc' },
+  ruby = { 'rdoc' },
+  sh = { 'shelldoc' },
+}
+-- friendly-snippets - enable standardized comments snippets
+for ft, snips in pairs(extends) do
+  require('luasnip').filetype_extend(ft, snips)
+end
+add {
+  source = 'Saghen/blink.cmp',
+  checkout = 'v0.11.0',
+}
+
 require('blink.cmp').setup {
   fuzzy = {
     prebuilt_binaries = {
@@ -99,5 +139,3 @@ require('blink.cmp').setup {
   },
   -- opts_extend = { 'sources.default' },
 }
-
-return {}

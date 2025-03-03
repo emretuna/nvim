@@ -1,5 +1,4 @@
 local M = {}
--- Bigfile (https://github.com/folke/snacks.nvim/blob/e937bfaa741c4ac7379026b09ec252bd7a9409a6/lua/snacks/bigfile.lua#L19C1-L32C5)
 local size = 1.5 * 1024 * 1024 -- 1.5MB
 
 vim.filetype.add {

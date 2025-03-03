@@ -1,3 +1,17 @@
+local add = MiniDeps.add
+
+add {
+  source = 'mfussenegger/nvim-dap',
+  depends = {
+    'rcarriga/nvim-dap-ui',
+    'williamboman/mason.nvim',
+    'jay-babu/mason-nvim-dap.nvim',
+    'nvim-neotest/nvim-nio',
+    -- "leoluz/nvim-dap-go",
+    -- "mfussenegger/nvim-dap-python",
+  },
+}
+
 local dap = require 'dap'
 local dapui = require 'dapui'
 
@@ -55,5 +69,3 @@ dap.listeners.before.event_exited['dapui_config'] = dapui.close
 
 -- require('dap-go').setup()
 -- require('dap-python').setup()
-
-return {}

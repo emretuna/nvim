@@ -1,6 +1,7 @@
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 vim.keymap.set('n', 'XX', ':q<CR>', { silent = true })
+
 -- Saves modified documents, and then exits
 vim.keymap.set('n', 'ZZ', ':xa<CR>', { silent = true })
 

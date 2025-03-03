@@ -1,3 +1,15 @@
+local add = MiniDeps.add
+add {
+  source = 'pmizio/typescript-tools.nvim',
+  depends = {
+    'nvim-lua/plenary.nvim',
+    'dmmulroy/ts-error-translator.nvim',
+  },
+}
+require('ts-error-translator').setup {
+  auto_override_publish_diagnostics = true,
+}
+
 require('typescript-tools').setup {
   single_file_support = false,
   root_dir = require('lspconfig').util.root_pattern('tsconfig.json', 'jsconfig.json', 'package.json', '.git'),
@@ -41,4 +53,3 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   pattern = '*.ts*',
   command = ':TSToolsRemoveUnusedImports sync',
 })
-return {}
