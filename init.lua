@@ -21,6 +21,16 @@ require('mini.deps').setup { path = { package = path_package } }
 -- startup and are optional.
 local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
 
+local function misc()
+  add {
+    source = 'dstein64/vim-startuptime',
+  }
+  add {
+    source = 'aserowy/tmux.nvim',
+  }
+  require('tmux').setup()
+end
+
 -- MiniDeps now and later functions to execute code safely
 now(function()
   add {
@@ -63,14 +73,11 @@ later(function()
   require 'plugins.toggleterm'
   require 'plugins.overseer'
   require 'plugins.refactoring'
-  require 'plugins.smart-splits'
   require 'plugins.ufo'
   require 'plugins.trouble'
   require 'plugins.zen-mode'
   -- require 'plugins.dadbod'
   -- require 'plugins.debug'
   -- require 'plugins.neotest'
-  add {
-    source = 'dstein64/vim-startuptime',
-  }
+  misc()
 end)
