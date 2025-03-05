@@ -1,12 +1,12 @@
+## Screenshots
+
+[screenshots](https://imgur.com/a/BDx0bu9)
+
 # nvim/
 
 <a href="https://dotfyle.com/emretuna/nvim"><img src="https://dotfyle.com/emretuna/nvim/badges/plugins?style=flat" /></a>
 <a href="https://dotfyle.com/emretuna/nvim"><img src="https://dotfyle.com/emretuna/nvim/badges/leaderkey?style=flat" /></a>
 <a href="https://dotfyle.com/emretuna/nvim"><img src="https://dotfyle.com/emretuna/nvim/badges/plugin-manager?style=flat" /></a>
-
-## Screenshots
-
-[screenshots](https://imgur.com/a/BDx0bu9)
 
 ## Install Instructions
 
@@ -28,9 +28,9 @@ NVIM_APPNAME=emretuna/nvim/ nvim
 
 ### ai
 
-- [supermaven-inc/supermaven-nvim](https://dotfyle.com/plugins/supermaven-inc/supermaven-nvim)
-- [monkoose/neocodeium](https://dotfyle.com/plugins/monkoose/neocodeium)
 - [yetone/avante.nvim](https://dotfyle.com/plugins/yetone/avante.nvim)
+- [monkoose/neocodeium](https://dotfyle.com/plugins/monkoose/neocodeium)
+- [supermaven-inc/supermaven-nvim](https://dotfyle.com/plugins/supermaven-inc/supermaven-nvim)
 
 ### code-runner
 
@@ -40,13 +40,9 @@ NVIM_APPNAME=emretuna/nvim/ nvim
 
 - [NvChad/nvim-colorizer.lua](https://dotfyle.com/plugins/NvChad/nvim-colorizer.lua)
 - [folke/twilight.nvim](https://dotfyle.com/plugins/folke/twilight.nvim)
-- [echasnovski/mini.hipatterns](https://dotfyle.com/plugins/echasnovski/mini.hipatterns)
 
 ### colorscheme
 
-- [slugbyte/lackluster.nvim](https://dotfyle.com/plugins/slugbyte/lackluster.nvim)
-- [folke/tokyonight.nvim](https://dotfyle.com/plugins/folke/tokyonight.nvim)
-- [ramojus/mellifluous.nvim](https://dotfyle.com/plugins/ramojus/mellifluous.nvim)
 - [zenbones-theme/zenbones.nvim](https://dotfyle.com/plugins/zenbones-theme/zenbones.nvim)
 
 ### colorscheme-creation
@@ -60,16 +56,14 @@ NVIM_APPNAME=emretuna/nvim/ nvim
 
 ### completion
 
-- [hrsh7th/nvim-cmp](https://dotfyle.com/plugins/hrsh7th/nvim-cmp)
-- [iguanacucumber/magazine.nvim](https://dotfyle.com/plugins/iguanacucumber/magazine.nvim)
-- [lukas-reineke/cmp-rg](https://dotfyle.com/plugins/lukas-reineke/cmp-rg)
 - [zbirenbaum/copilot.lua](https://dotfyle.com/plugins/zbirenbaum/copilot.lua)
+- [Saghen/blink.cmp](https://dotfyle.com/plugins/Saghen/blink.cmp)
 
 ### debugging
 
-- [rcarriga/nvim-dap-ui](https://dotfyle.com/plugins/rcarriga/nvim-dap-ui)
-- [andrewferrier/debugprint.nvim](https://dotfyle.com/plugins/andrewferrier/debugprint.nvim)
 - [mfussenegger/nvim-dap](https://dotfyle.com/plugins/mfussenegger/nvim-dap)
+- [andrewferrier/debugprint.nvim](https://dotfyle.com/plugins/andrewferrier/debugprint.nvim)
+- [rcarriga/nvim-dap-ui](https://dotfyle.com/plugins/rcarriga/nvim-dap-ui)
 
 ### diagnostics
 
@@ -77,50 +71,22 @@ NVIM_APPNAME=emretuna/nvim/ nvim
 
 ### editing-support
 
-- [echasnovski/mini.ai](https://dotfyle.com/plugins/echasnovski/mini.ai)
-- [echasnovski/mini.pairs](https://dotfyle.com/plugins/echasnovski/mini.pairs)
+- [nvim-treesitter/nvim-treesitter-context](https://dotfyle.com/plugins/nvim-treesitter/nvim-treesitter-context)
 - [folke/zen-mode.nvim](https://dotfyle.com/plugins/folke/zen-mode.nvim)
 - [windwp/nvim-ts-autotag](https://dotfyle.com/plugins/windwp/nvim-ts-autotag)
-- [echasnovski/mini.splitjoin](https://dotfyle.com/plugins/echasnovski/mini.splitjoin)
-- [nvim-treesitter/nvim-treesitter-context](https://dotfyle.com/plugins/nvim-treesitter/nvim-treesitter-context)
-- [echasnovski/mini.move](https://dotfyle.com/plugins/echasnovski/mini.move)
-
-### file-explorer
-
-- [echasnovski/mini.files](https://dotfyle.com/plugins/echasnovski/mini.files)
 
 ### formatting
 
-- [echasnovski/mini.align](https://dotfyle.com/plugins/echasnovski/mini.align)
 - [stevearc/conform.nvim](https://dotfyle.com/plugins/stevearc/conform.nvim)
-
-### fuzzy-finder
-
-- [echasnovski/mini.visits](https://dotfyle.com/plugins/echasnovski/mini.visits)
-- [echasnovski/mini.extra](https://dotfyle.com/plugins/echasnovski/mini.extra)
-- [echasnovski/mini.pick](https://dotfyle.com/plugins/echasnovski/mini.pick)
-
-### git
-
-- [echasnovski/mini.diff](https://dotfyle.com/plugins/echasnovski/mini.diff)
-- [echasnovski/mini-git](https://dotfyle.com/plugins/echasnovski/mini-git)
 
 ### icon
 
 - [echasnovski/mini.icons](https://dotfyle.com/plugins/echasnovski/mini.icons)
 
-### indent
-
-- [echasnovski/mini.indentscope](https://dotfyle.com/plugins/echasnovski/mini.indentscope)
-
-### keybinding
-
-- [echasnovski/mini.clue](https://dotfyle.com/plugins/echasnovski/mini.clue)
-
 ### lsp
 
-- [neovim/nvim-lspconfig](https://dotfyle.com/plugins/neovim/nvim-lspconfig)
 - [mfussenegger/nvim-lint](https://dotfyle.com/plugins/mfussenegger/nvim-lint)
+- [neovim/nvim-lspconfig](https://dotfyle.com/plugins/neovim/nvim-lspconfig)
 
 ### lsp-installer
 
@@ -134,30 +100,20 @@ NVIM_APPNAME=emretuna/nvim/ nvim
 
 - [HakonHarnes/img-clip.nvim](https://dotfyle.com/plugins/HakonHarnes/img-clip.nvim)
 
-### motion
-
-- [echasnovski/mini.bracketed](https://dotfyle.com/plugins/echasnovski/mini.bracketed)
-- [folke/flash.nvim](https://dotfyle.com/plugins/folke/flash.nvim)
-
 ### note-taking
 
 - [epwalsh/obsidian.nvim](https://dotfyle.com/plugins/epwalsh/obsidian.nvim)
 
 ### nvim-dev
 
-- [MunifTanjim/nui.nvim](https://dotfyle.com/plugins/MunifTanjim/nui.nvim)
-- [echasnovski/mini.misc](https://dotfyle.com/plugins/echasnovski/mini.misc)
-- [nvim-lua/plenary.nvim](https://dotfyle.com/plugins/nvim-lua/plenary.nvim)
 - [folke/lazydev.nvim](https://dotfyle.com/plugins/folke/lazydev.nvim)
-
-### plugin-manager
-
-- [folke/lazy.nvim](https://dotfyle.com/plugins/folke/lazy.nvim)
+- [nvim-lua/plenary.nvim](https://dotfyle.com/plugins/nvim-lua/plenary.nvim)
+- [MunifTanjim/nui.nvim](https://dotfyle.com/plugins/MunifTanjim/nui.nvim)
 
 ### programming-languages-support
 
-- [dmmulroy/ts-error-translator.nvim](https://dotfyle.com/plugins/dmmulroy/ts-error-translator.nvim)
 - [adalessa/laravel.nvim](https://dotfyle.com/plugins/adalessa/laravel.nvim)
+- [dmmulroy/ts-error-translator.nvim](https://dotfyle.com/plugins/dmmulroy/ts-error-translator.nvim)
 
 ### quickfix
 
@@ -167,37 +123,15 @@ NVIM_APPNAME=emretuna/nvim/ nvim
 
 - [MagicDuck/grug-far.nvim](https://dotfyle.com/plugins/MagicDuck/grug-far.nvim)
 
-### session
-
-- [echasnovski/mini.sessions](https://dotfyle.com/plugins/echasnovski/mini.sessions)
-
 ### snippet
 
 - [L3MON4D3/LuaSnip](https://dotfyle.com/plugins/L3MON4D3/LuaSnip)
 - [rafamadriz/friendly-snippets](https://dotfyle.com/plugins/rafamadriz/friendly-snippets)
 
-### split-and-window
-
-- [echasnovski/mini.bufremove](https://dotfyle.com/plugins/echasnovski/mini.bufremove)
-- [mrjones2014/smart-splits.nvim](https://dotfyle.com/plugins/mrjones2014/smart-splits.nvim)
-
-### startup
-
-- [goolord/alpha-nvim](https://dotfyle.com/plugins/goolord/alpha-nvim)
-
-### statusline
-
-- [echasnovski/mini.statusline](https://dotfyle.com/plugins/echasnovski/mini.statusline)
-
 ### syntax
 
-- [nvim-treesitter/nvim-treesitter](https://dotfyle.com/plugins/nvim-treesitter/nvim-treesitter)
 - [nvim-treesitter/nvim-treesitter-textobjects](https://dotfyle.com/plugins/nvim-treesitter/nvim-treesitter-textobjects)
-- [echasnovski/mini.surround](https://dotfyle.com/plugins/echasnovski/mini.surround)
-
-### tabline
-
-- [echasnovski/mini.tabline](https://dotfyle.com/plugins/echasnovski/mini.tabline)
+- [nvim-treesitter/nvim-treesitter](https://dotfyle.com/plugins/nvim-treesitter/nvim-treesitter)
 
 ### terminal-integration
 
@@ -207,11 +141,14 @@ NVIM_APPNAME=emretuna/nvim/ nvim
 
 - [nvim-neotest/neotest](https://dotfyle.com/plugins/nvim-neotest/neotest)
 
+### tmux
+
+- [aserowy/tmux.nvim](https://dotfyle.com/plugins/aserowy/tmux.nvim)
+
 ### utility
 
-- [echasnovski/mini.animate](https://dotfyle.com/plugins/echasnovski/mini.animate)
-- [echasnovski/mini.notify](https://dotfyle.com/plugins/echasnovski/mini.notify)
 - [kevinhwang91/nvim-ufo](https://dotfyle.com/plugins/kevinhwang91/nvim-ufo)
+- [echasnovski/mini.nvim](https://dotfyle.com/plugins/echasnovski/mini.nvim)
 
 ### web-development
 

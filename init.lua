@@ -21,12 +21,6 @@ require('mini.deps').setup { path = { package = path_package } }
 -- startup and are optional.
 local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
 
--- Use 'mini.misc' for some useful helpers
-require('mini.misc').setup()
-MiniMisc.setup_restore_cursor()
-MiniMisc.setup_auto_root()
-MiniMisc.setup_termbg_sync()
-
 local function other_plugins()
   add {
     source = 'dstein64/vim-startuptime',
@@ -49,19 +43,24 @@ now(function()
   require 'config.keymaps'
   require 'config.autocmds'
   require 'config.utils'
-  -- these should be now() for start-up screen
-  require 'plugins.mini.statusline'
-  require 'plugins.mini.sessions'
-  require 'plugins.mini.tabline'
-  require 'plugins.mini.starter'
-  require 'plugins.mini.clue'
 
+  -- Use 'mini.misc' for some useful helpers
+  require('mini.misc').setup()
+  MiniMisc.setup_restore_cursor()
+  MiniMisc.setup_auto_root()
+  MiniMisc.setup_termbg_sync()
   require('mini.basics').setup {
     options = { basic = true },
     mappings = { option_toggle_prefix = [[\]], move_with_alt = true },
     autocommands = { relnum_in_visual_mode = true },
     silent = true,
   }
+  -- these should be now() for start-up screen
+  require 'plugins.mini.statusline'
+  require 'plugins.mini.sessions'
+  require 'plugins.mini.tabline'
+  require 'plugins.mini.starter'
+  require 'plugins.mini.clue'
 end)
 
 later(function()
