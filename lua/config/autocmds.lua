@@ -12,36 +12,6 @@ end
 --   command = 'silent! update | redraw',
 -- })
 
--- Generate lazygit theme
-vim.api.nvim_create_autocmd('ColorScheme', {
-  callback = function()
-    vim.defer_fn(require('config.utils').generate_lazygit_theme, 100)
-  end,
-})
-
--- Update workspace on rename using LSP
-vim.api.nvim_create_autocmd('User', {
-  pattern = 'MiniFilesActionRename',
-  callback = function(event)
-    require('config.utils').on_rename_file(event.data.from, event.data.to)
-  end,
-})
-
--- macro function of mini.statusline
-vim.api.nvim_create_autocmd('RecordingEnter', {
-  pattern = '*',
-  callback = function()
-    vim.cmd 'redrawstatus'
-  end,
-})
-
--- Autocmd to track the end of macro recording
-vim.api.nvim_create_autocmd('RecordingLeave', {
-  pattern = '*',
-  callback = function()
-    vim.cmd 'redrawstatus'
-  end,
-})
 -- create directories when needed, when saving a file
 vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
   pattern = '*',
@@ -168,35 +138,6 @@ vim.api.nvim_create_autocmd('VimEnter', {
     vim.fn.setreg('/', '') -- Clears the search register
     vim.cmd 'let @/ = ""' -- Clear the search register using Vim command
   end,
-})
-
--- Highlight text on yank
-vim.api.nvim_create_autocmd('TextYankPost', {
-  desc = 'Highlight yanked text',
-  group = augroup 'highlight_yank',
-  pattern = '*',
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-})
-
--- Show relative numbers only in visual modes
-vim.api.nvim_create_autocmd('ModeChanged', {
-  pattern = '*:[V\x16]*',
-  callback = function()
-    if vim.wo.number then
-      vim.wo.relativenumber = true
-    end
-  end,
-  desc = 'Show relative line numbers in visual modes',
-})
-
-vim.api.nvim_create_autocmd('ModeChanged', {
-  pattern = '[V\x16]*:*',
-  callback = function()
-    vim.wo.relativenumber = string.find(vim.fn.mode(), '^[V\22]') ~= nil
-  end,
-  desc = 'Hide relative line numbers when not in visual modes',
 })
 
 -- Close some filetypes with <q>

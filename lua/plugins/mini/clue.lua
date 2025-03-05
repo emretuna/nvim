@@ -44,6 +44,9 @@ require('mini.clue').setup {
     { mode = 'n', keys = '[' },
 
     -- Surround Keybinds
+    { mode = 'n', keys = [[\]] },
+
+    -- Toggle Keybinds
     { mode = 'n', keys = 's' },
   },
 

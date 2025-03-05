@@ -49,40 +49,9 @@ vim.o.spelllang = 'en_us'
 -- Options: 'codeium' or 'supermaven'
 vim.g.ai_assistant = 'codeium'
 
--- Make popup menu slightly transparent
--- vim.o.pumblend = 10 -- Make builtin completion menus slightly transparent
--- vim.o.pumheight = 10 -- Make popup menu smaller
--- vim.o.winblend = 10 -- Make floating windows slightly transparent
-
--- Misc Settings
-vim.opt.undofile = true -- Enable persistent undo between session and reboots.
-vim.opt.backup = false -- Don't store backup while overwriting the file
-vim.opt.writebackup = false -- Disable making a backup before overwriting a file.
-vim.opt.mouse = 'a' -- Enable mouse mode, can be useful for resizing splits for example! To disable set it to " "
-
-vim.opt.breakindent = true -- Enable break indent
-vim.opt.cursorline = true -- Show which line your cursor is on
-vim.opt.linebreak = true -- Wrap long lines at 'breakat' (if 'wrap' is set)
-vim.opt.number = true -- Make line numbers default
-vim.opt.splitbelow = true
-vim.opt.splitright = true
-
-vim.opt.ruler = false -- Don't show cursor position in command line
-vim.opt.showmode = false -- Disable showing mode since we have a statusline
-vim.opt.wrap = true -- Disable wrapping of lines longer than the width of window.
-vim.opt.signcolumn = 'yes' -- Always show the sign column
-vim.opt.fillchars = 'eob: ' -- Don't show `~` outside of buffer
-vim.opt.ignorecase = true -- Case insensitive searching
-vim.opt.incsearch = true -- Show search results while typing
-vim.opt.infercase = true -- Infer letter cases for a richer built-in keyword completion
-vim.opt.smartcase = true -- Case sensitive when using capital letters
-vim.opt.smartindent = true -- Make indenting smart
-vim.opt.completeopt = 'menuone,noinsert,noselect' -- Customize completions
-vim.opt.virtualedit = 'block' -- Allow going past end of line in visual block mode.
-vim.opt.formatoptions = 'qjl1' -- Don't have 'o' add a comment, From new tjdrevis video
-vim.opt.termguicolors = true -- Enable 24-bit RGB color in the TUI.
 -- vim.opt.list = true
 -- vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+-- vim.opt.number = true
 -- vim.opt.relativenumber = true -- Make relative line numbers default
 
 vim.opt.timeoutlen = 500 -- Shorten key timeout length a little bit for which-key.
@@ -115,4 +84,39 @@ vim.opt.scrolloff = 10 -- Number of lines to leave before/after the cursor when 
 vim.opt.sidescrolloff = 10 -- Same but for side scrolling.
 vim.opt.selection = 'old' -- Don't select the newline symbol when using <End> on visual mode.
 
+local function disable_builtin_plugins()
+  local disabled_plugins = {
+    'gzip',
+    'matchit',
+    'matchparen',
+    'netrwPlugin',
+    'rplugin',
+    'tarPlugin',
+    'tutor',
+    'zipPlugin',
+    '2html_plugin',
+    'osc52',
+    'tohtml',
+    'getscript',
+    'getscriptPlugin',
+    'logipat',
+    'netrw',
+    'netrwSettings',
+    'netrwFileHandlers',
+    'tar',
+    'rrhelper',
+    'zip',
+    'syntax',
+    'synmenu',
+    'optwin',
+    'bugreport',
+    'ftplugin',
+  }
+  for i = 1, #disabled_plugins do
+    vim.g['loaded_' .. disabled_plugins[i]] = 1
+  end
+end
+
+-- Call the function to disable built-in plugins
+disable_builtin_plugins()
 -- vim: ts=2 sts=2 sw=2 et
