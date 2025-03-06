@@ -127,12 +127,12 @@ vim.keymap.set('n', '<leader>fD', function()
   MiniExtra.pickers.explorer {
     cwd = os.getenv 'HOME' .. '/.dotfiles',
   }
-end, { desc = 'Search Trash' })
+end, { desc = 'Search Dotfiles' })
 vim.keymap.set('n', '<leader>fT', function()
   MiniExtra.pickers.explorer {
     cwd = os.getenv 'HOME' .. '/.local/share/nvim/mini.files/trash',
   }
-end, { desc = 'Search Dotfiles' })
+end, { desc = 'Search Trash' })
 vim.keymap.set('n', '<leader>fP', function()
   MiniExtra.pickers.explorer {
     cwd = os.getenv 'HOME' .. '/Code',

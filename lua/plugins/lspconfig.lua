@@ -9,6 +9,7 @@ add {
     'WhoIsSethDaniel/mason-tool-installer.nvim',
     'b0o/schemastore.nvim',
     'folke/lazydev.nvim',
+    'saghen/blink.cmp',
   },
 }
 
@@ -33,6 +34,8 @@ local home = os.getenv 'HOME'
 --    That is to say, every time a new file is opened that is associated with
 --    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
 --    function will be executed to configure the current buffer
+
+---@diagnostic disable-next-line: missing-fields
 require('lazydev').setup {
   library = {
     -- Load luvit types when the `vim.uv` word is found
@@ -163,16 +166,7 @@ end
 --  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
 --  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-
-local function safe_extend(module_name, extend_func)
-  local success, module = pcall(require, module_name)
-  if success and module[extend_func] then
-    capabilities = vim.tbl_deep_extend('force', capabilities, module[extend_func]())
-  end
-end
-
--- safe_extend('cmp_nvim_lsp', 'default_capabilities')
-safe_extend('blink.cmp', 'get_lsp_capabilities')
+capabilities = vim.tbl_deep_extend('force', capabilities, require('blink.cmp').get_lsp_capabilities(capabilities))
 
 local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
 

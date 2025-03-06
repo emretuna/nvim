@@ -3,7 +3,7 @@ add {
   source = 'windwp/nvim-ts-autotag',
 }
 
---@diagnostic disable-next-line: required-fields
+---@diagnostic disable-next-line: missing-fields
 require('nvim-ts-autotag').setup {
   opts = {
     -- Defaults

@@ -4,7 +4,7 @@ add {
   source = 'L3MON4D3/LuaSnip',
   checkout = 'v2.*',
   post_checkout = function()
-    return 'make install_jsregexp'
+    vim.cmd 'make install_jsregexp'
   end,
   depends = {
     'rafamadriz/friendly-snippets',
@@ -35,23 +35,23 @@ for ft, snips in pairs(extends) do
 end
 add {
   source = 'Saghen/blink.cmp',
-  checkout = 'v0.11.0',
+  checkout = 'v0.13.1',
+  depends = {
+    'rafamadriz/friendly-snippets',
+  },
 }
 
 require('blink.cmp').setup {
   fuzzy = {
     prebuilt_binaries = {
       download = true,
-      force_version = 'v0.11.0',
+      force_version = 'v0.13.1',
     },
   },
 
   keymap = {
     preset = 'default',
     ['<C-y>'] = { 'select_and_accept', 'fallback' },
-    cmdline = {
-      preset = 'default',
-    },
   },
 
   appearance = {
@@ -113,24 +113,19 @@ require('blink.cmp').setup {
       border = vim.g.border_style,
     },
   },
-
+  cmdline = {
+    enabled = true,
+    keymap = { preset = 'cmdline' },
+    completion = {
+      menu = { auto_show = true },
+    },
+  },
   sources = {
-    default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer' },
-    cmdline = function()
-      local type = vim.fn.getcmdtype()
-      -- Search forward and backward
-      if type == '/' or type == '?' then
-        return { 'buffer' }
-      end
-      -- Commands
-      if type == ':' then
-        return { 'cmdline' }
-      end
-      return {}
-    end,
+    default = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev', 'markdown' },
     min_keyword_length = 0,
     providers = {
       lazydev = { name = 'LazyDev', module = 'lazydev.integrations.blink', score_offset = 100, fallbacks = { 'lsp' } },
+      markdown = { name = 'RenderMarkdown', module = 'render-markdown.integ.blink', fallbacks = { 'lsp' } },
     },
   },
 

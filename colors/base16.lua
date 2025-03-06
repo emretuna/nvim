@@ -1,5 +1,5 @@
 local dark_palette = {
-  base00 = '#171717', -- Darkest background
+  base00 = '#1C1917', -- Darkest background
   base01 = '#1e1e1e', -- Slightly lighter for contrast
   base02 = '#262626', -- Mid dark for UI elements
   base03 = '#303030', -- Comments and subtle text

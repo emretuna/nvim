@@ -2,12 +2,11 @@ local add = MiniDeps.add
 
 add {
   source = 'MeanderingProgrammer/render-markdown.nvim',
-  depends = { 'nvim-treesitter/nvim-treesitter' },
+  depends = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' },
 }
 
 require('render-markdown').setup {
-  filetypes = { 'markdown', 'norg', 'rmd', 'org', 'vimwiki', 'Avante' },
-  buf_ignore = { 'nofile' },
+  file_types = { 'markdown', 'norg', 'rmd', 'org', 'vimwiki', 'Avante' },
   code = {
     sign = false,
     width = 'block',

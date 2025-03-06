@@ -20,8 +20,8 @@ require('mini.files').setup {
   },
   border = vim.g.border_style,
 }
-vim.keymap.set('n', '_', '<CMD>lua MiniFiles.open()<CR>', { desc = 'Mini Files' })
-vim.keymap.set('n', '-', '<CMD>lua MiniFiles.open(vim.api.nvim_buf_get_name(0))<CR>', { desc = 'Mini Files' })
+vim.keymap.set('n', '-', '<CMD>lua MiniFiles.open()<CR>', { desc = 'Mini Files' })
+vim.keymap.set('n', '_', '<CMD>lua MiniFiles.open(vim.api.nvim_buf_get_name(0))<CR>', { desc = 'Mini Files' })
 vim.api.nvim_create_autocmd('User', {
   pattern = { 'MiniFilesWindowOpen', 'MiniFilesWindowUpdate' },
   callback = function(args)

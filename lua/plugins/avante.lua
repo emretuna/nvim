@@ -10,7 +10,6 @@ add {
     --- The below dependencies are optional,
     'echasnovski/mini.icons', -- or echasnovski/mini.icons
     -- 'zbirenbaum/copilot.lua', -- for providers='copilot'
-    'HakonHarnes/img-clip.nvim',
   },
   hooks = {
     post_checkout = function()
