@@ -38,6 +38,8 @@ local home = os.getenv 'HOME'
 ---@diagnostic disable-next-line: missing-fields
 require('lazydev').setup {
   library = {
+    'mini.nvim',
+    'MiniDeps',
     -- Load luvit types when the `vim.uv` word is found
     { path = 'luvit-meta/library', words = { 'vim%.uv' } },
   },
@@ -348,7 +350,7 @@ vim.list_extend(ensure_installed, {
 })
 require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
---@diagnostic disable-next-line: missing-fields
+---@diagnostic disable-next-line: missing-fields
 require('mason-lspconfig').setup {
   handlers = {
     function(server_name)
