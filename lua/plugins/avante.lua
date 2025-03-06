@@ -37,6 +37,9 @@ require('avante').setup {
       prefix = '󱙺 ',
     },
   },
+  file_selector = {
+    provider = 'mini.pick',
+  },
 }
 
 vim.keymap.set('n', '<leader>mp', function()

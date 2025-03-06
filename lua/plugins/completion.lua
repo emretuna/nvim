@@ -38,6 +38,7 @@ add {
   checkout = 'v0.13.1',
   depends = {
     'rafamadriz/friendly-snippets',
+    'saghen/blink.compat',
   },
 }
 
@@ -121,11 +122,29 @@ require('blink.cmp').setup {
     },
   },
   sources = {
-    default = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev', 'markdown' },
+    default = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev', 'markdown', 'avante_commands', 'avante_mentions', 'avante_files' },
     min_keyword_length = 0,
     providers = {
       lazydev = { name = 'LazyDev', module = 'lazydev.integrations.blink', score_offset = 100, fallbacks = { 'lsp' } },
       markdown = { name = 'RenderMarkdown', module = 'render-markdown.integ.blink', fallbacks = { 'lsp' } },
+      avante_commands = {
+        name = 'avante_commands',
+        module = 'blink.compat.source',
+        score_offset = 90, -- show at a higher priority than lsp
+        opts = {},
+      },
+      avante_files = {
+        name = 'avante_files',
+        module = 'blink.compat.source',
+        score_offset = 100, -- show at a higher priority than lsp
+        opts = {},
+      },
+      avante_mentions = {
+        name = 'avante_mentions',
+        module = 'blink.compat.source',
+        score_offset = 1000, -- show at a higher priority than lsp
+        opts = {},
+      },
     },
   },
 
