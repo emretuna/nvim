@@ -124,6 +124,7 @@ require('blink.cmp').setup {
   sources = {
     default = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev', 'markdown', 'avante_commands', 'avante_mentions', 'avante_files' },
     min_keyword_length = 0,
+    per_filetype = { sql = { 'dadbod' } },
     providers = {
       lazydev = { name = 'LazyDev', module = 'lazydev.integrations.blink', score_offset = 100, fallbacks = { 'lsp' } },
       markdown = { name = 'RenderMarkdown', module = 'render-markdown.integ.blink', fallbacks = { 'lsp' } },
@@ -144,6 +145,10 @@ require('blink.cmp').setup {
         module = 'blink.compat.source',
         score_offset = 1000, -- show at a higher priority than lsp
         opts = {},
+      },
+      dadbod = {
+        name = 'Dadbod',
+        module = 'vim_dadbod_completion.blink',
       },
     },
   },

@@ -16,7 +16,9 @@ require('mini.starter').setup {
   items = {
     require('mini.starter').sections.builtin_actions(),
     require('mini.starter').sections.pick(),
-    require('mini.starter').sections.recent_files(10, false),
+    require('mini.starter').sections.recent_files(10, false, function(path)
+      return ' ' .. vim.fn.fnamemodify(path, ':~:.:h') .. '/'
+    end),
     -- require('mini.starter').sections.recent_files(10, true),
     require('mini.starter').sections.sessions(5, true),
     {
