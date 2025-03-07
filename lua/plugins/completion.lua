@@ -2,13 +2,8 @@ local add = MiniDeps.add
 
 add {
   source = 'L3MON4D3/LuaSnip',
-  checkout = 'v2.*',
-  post_checkout = function()
-    vim.cmd 'make install_jsregexp'
-  end,
-  depends = {
-    'rafamadriz/friendly-snippets',
-  },
+  checkout = 'master',
+  hooks = { 'make install_jsregexp' },
 }
 require('luasnip').setup { history = true, delete_check_events = 'TextChanged' }
 require('luasnip.loaders.from_vscode').lazy_load()

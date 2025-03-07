@@ -305,6 +305,9 @@ local servers = {
     },
     schemas = require('schemastore').yaml.schemas(),
   },
+  emmet_language_server = {
+    filetypes = { 'css', 'eruby', 'html', 'htmldjango', 'javascriptreact', 'less', 'pug', 'sass', 'scss', 'typescriptreact', 'htmlangular' },
+  },
 }
 
 -- Ensure the servers and tools above are installed
