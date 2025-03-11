@@ -56,7 +56,7 @@ vim.opt.autoindent = true -- Copy indent from current line
 vim.opt.updatetime = 250 -- Decrease update time
 vim.opt.inccommand = 'split' -- Preview substitutions live, as you type!
 vim.opt.whichwrap = '<,>,[,],l,h' -- Which characters can go through wrap on a line
-
+vim.opt.sessionoptions = { 'buffers', 'curdir', 'tabpages', 'winsize', 'help', 'globals', 'skiprtp', 'folds' }
 vim.opt.colorcolumn = '80' -- PEP8 like character limit vertical bar.
 -- vim.opt.mousescroll = 'ver:2,hor:5' -- Disables hozirontal scroll in neovim.
 -- vim.opt.guicursor = 'n:blinkon200,i-ci-ve:ver25' -- Enable cursor blink.

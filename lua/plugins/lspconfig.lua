@@ -325,6 +325,7 @@ vim.list_extend(ensure_installed, {
   'blade-formatter',
   'cssls',
   'css_variables',
+  'deno',
   'dockerls',
   'docker_compose_language_service',
   'emmet-language-server',
