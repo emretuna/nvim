@@ -10,9 +10,10 @@ add {
     'b0o/schemastore.nvim',
     'folke/lazydev.nvim',
     'saghen/blink.cmp',
+    'folke/neoconf.nvim',
   },
 }
-
+require('neoconf').setup()
 vim.cmd 'LspStart'
 
 require('lspconfig.ui.windows').default_options.border = vim.g.border_style
@@ -307,6 +308,11 @@ local servers = {
   },
   emmet_language_server = {
     filetypes = { 'css', 'eruby', 'html', 'htmldjango', 'javascriptreact', 'less', 'pug', 'sass', 'scss', 'typescriptreact', 'htmlangular' },
+  },
+  denols = {
+    root_dir = require('lspconfig').util.root_pattern { 'deno.json', 'deno.jsonc' },
+    single_file_support = false,
+    settings = {},
   },
 }
 
