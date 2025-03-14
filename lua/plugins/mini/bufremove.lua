@@ -21,5 +21,3 @@ vim.keymap.set('n', '<leader>bw', '<cmd>lua MiniBufremove.wipeout()<CR>', { desc
 vim.keymap.set('n', '<leader>bc', function()
   remove_all_but_current()
 end, { desc = 'Delete All Buffers' })
-
-return {}

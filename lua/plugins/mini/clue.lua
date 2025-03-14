@@ -77,5 +77,3 @@ require('mini.clue').setup {
     { mode = 'n', keys = '<Leader>x', desc = 'Trouble' },
   },
 }
-
-return {}

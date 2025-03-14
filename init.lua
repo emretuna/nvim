@@ -89,7 +89,7 @@ later(function()
   require 'plugins.ufo'
   require 'plugins.trouble'
   require 'plugins.zen-mode'
-  -- require 'plugins.dadbod'
+  require 'plugins.dadbod'
   -- require 'plugins.debug'
   -- require 'plugins.neotest'
   other_plugins()

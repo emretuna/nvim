@@ -10,4 +10,3 @@ require('mini.pairs').setup {
   -- better deal with markdown code blocks
   markdown = true,
 }
-return {}

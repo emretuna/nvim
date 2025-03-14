@@ -5,4 +5,3 @@ require('mini.tabline').setup {
     return MiniTabline.default_format(buf_id, label) .. suffix
   end,
 }
-return {}

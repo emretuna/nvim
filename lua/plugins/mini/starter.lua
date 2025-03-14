@@ -17,7 +17,9 @@ require('mini.starter').setup {
     require('mini.starter').sections.builtin_actions(),
     require('mini.starter').sections.pick(),
     require('mini.starter').sections.recent_files(10, false, function(path)
-      return ' ' .. vim.fn.fnamemodify(path, ':~:.:h') .. '/'
+      local parent = vim.fn.fnamemodify(path, ':h:t')
+      local filename = vim.fn.fnamemodify(path, ':t')
+      return string.format(' ../%s/%s', parent, filename)
     end),
     -- require('mini.starter').sections.recent_files(10, true),
     require('mini.starter').sections.sessions(5, true),
@@ -55,5 +57,3 @@ vim.api.nvim_create_autocmd('VimEnter', {
     vim.cmd [[do VimResized]]
   end,
 })
-
-return {}

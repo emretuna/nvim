@@ -47,5 +47,3 @@ require('mini.ai').setup {
     end,
   },
 }
-
-return {}

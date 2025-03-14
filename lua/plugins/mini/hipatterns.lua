@@ -7,4 +7,3 @@ require('mini.hipatterns').setup {
     fixme = require('mini.extra').gen_highlighter.words({ 'FIXME', 'Fixme', 'fixme' }, 'MiniHipatternsFixme'),
   },
 }
-return {}

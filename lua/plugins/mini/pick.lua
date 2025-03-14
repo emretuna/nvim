@@ -213,5 +213,3 @@ end, { desc = 'Visit Paths' })
 vim.keymap.set('n', '<leader>fS', function()
   MiniSessions.select()
 end, { desc = 'Select Session' })
-
-return {}

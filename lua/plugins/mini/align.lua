@@ -4,4 +4,3 @@ require('mini.align').setup {
     start_with_preview = 'gB',
   },
 }
-return {}

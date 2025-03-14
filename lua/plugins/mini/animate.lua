@@ -31,5 +31,3 @@ require('mini.animate').setup {
     timing = animate.gen_timing.linear { duration = 26, unit = 'total' },
   },
 }
-
-return {}

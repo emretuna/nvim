@@ -307,7 +307,19 @@ local servers = {
     schemas = require('schemastore').yaml.schemas(),
   },
   emmet_language_server = {
-    filetypes = { 'css', 'eruby', 'html', 'htmldjango', 'javascriptreact', 'less', 'pug', 'sass', 'scss', 'typescriptreact', 'htmlangular' },
+    filetypes = {
+      'css',
+      'eruby',
+      'html',
+      'htmldjango',
+      'less',
+      'pug',
+      'sass',
+      'scss',
+      -- 'typescriptreact',
+      -- 'javascriptreact',
+      'htmlangular',
+    },
   },
   denols = {
     root_dir = require('lspconfig').util.root_pattern { 'deno.json', 'deno.jsonc' },

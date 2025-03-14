@@ -24,4 +24,3 @@ require('mini.statusline').setup {
     end,
   },
 }
-return {}

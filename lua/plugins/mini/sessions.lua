@@ -3,5 +3,3 @@ require('mini.sessions').setup {
   autowrite = true,
 }
 vim.keymap.set('n', '<leader>mS', ':lua MiniSessions.write(vim.fn.input("Session Name >"))<CR>', { desc = 'Save Session' })
-
-return {}
