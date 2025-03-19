@@ -306,18 +306,21 @@ local servers = {
     },
     schemas = require('schemastore').yaml.schemas(),
   },
-  emmet_language_server = {
+  emmet_ls = {
     filetypes = {
+      'astro',
       'css',
       'eruby',
       'html',
       'htmldjango',
+      'javascriptreact',
       'less',
       'pug',
       'sass',
       'scss',
-      -- 'typescriptreact',
-      -- 'javascriptreact',
+      'svelte',
+      'typescriptreact',
+      'vue',
       'htmlangular',
     },
   },
@@ -346,7 +349,7 @@ vim.list_extend(ensure_installed, {
   'deno',
   'dockerls',
   'docker_compose_language_service',
-  'emmet-language-server',
+  'emmet-ls',
   'eslint_d', -- js linter
   'gitui',
   'graphql',

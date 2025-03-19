@@ -45,5 +45,3 @@ vim.keymap.set('n', 'zR', require('ufo').openAllFolds, { desc = 'Open all folds'
 vim.keymap.set('n', 'zM', require('ufo').closeAllFolds, { desc = 'Close all folds' })
 vim.keymap.set('n', 'zr', require('ufo').openFoldsExceptKinds, { desc = 'Open all folds except kind' })
 vim.keymap.set('n', 'zm', require('ufo').closeFoldsWith, { desc = 'Close all folds with kind' }) -- closeAllFolds == closeFoldsWith(0)
-
-return {}

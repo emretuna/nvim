@@ -4,8 +4,10 @@ add {
   source = 'L3MON4D3/LuaSnip',
   checkout = 'master',
   hooks = { 'make install_jsregexp' },
+  depends = { 'rafamadriz/friendly-snippets' },
 }
 require('luasnip').setup { history = true, delete_check_events = 'TextChanged' }
+
 require('luasnip.loaders.from_vscode').lazy_load()
 require('luasnip.loaders.from_vscode').lazy_load { paths = { vim.fn.stdpath 'config' .. '/snippets' } }
 
@@ -32,7 +34,7 @@ add {
   source = 'Saghen/blink.cmp',
   checkout = 'v0.13.1',
   depends = {
-    'rafamadriz/friendly-snippets',
+    'mikavilpas/blink-ripgrep.nvim',
     'saghen/blink.compat',
   },
 }
@@ -47,6 +49,7 @@ require('blink.cmp').setup {
 
   keymap = {
     preset = 'default',
+    ['<C-e>'] = { 'hide', 'fallback' },
     ['<C-y>'] = { 'select_and_accept', 'fallback' },
   },
 
@@ -121,6 +124,18 @@ require('blink.cmp').setup {
     min_keyword_length = 0,
     per_filetype = { sql = { 'dadbod' } },
     providers = {
+      ripgrep = {
+        module = 'blink-ripgrep',
+        name = 'Ripgrep',
+        ---@module "blink-ripgrep"
+        ---@type blink-ripgrep.Options
+        opts = {
+          prefix_min_len = 4,
+          score_offset = 10, -- should be lower priority
+          max_filesize = '300K',
+          search_casing = '--smart-case',
+        },
+      },
       lazydev = { name = 'LazyDev', module = 'lazydev.integrations.blink', score_offset = 100, fallbacks = { 'lsp' } },
       markdown = { name = 'RenderMarkdown', module = 'render-markdown.integ.blink', fallbacks = { 'lsp' } },
       avante_commands = {
