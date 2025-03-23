@@ -62,9 +62,9 @@ require('blink.cmp').setup {
 
   completion = {
     list = {
-      selection = { preselect = true, auto_insert = true },
+      selection = { preselect = false, auto_insert = false },
     },
-    accept = { auto_brackets = { enabled = true } },
+    accept = { auto_brackets = { enabled = false } },
     menu = {
       min_width = 35,
       border = vim.g.border_style,
@@ -114,9 +114,11 @@ require('blink.cmp').setup {
   },
   cmdline = {
     enabled = true,
+
     keymap = { preset = 'cmdline' },
     completion = {
       menu = { auto_show = true },
+      list = { selection = { preselect = false, auto_insert = false } },
     },
   },
   sources = {

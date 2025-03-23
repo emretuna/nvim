@@ -40,9 +40,17 @@ vim.keymap.set('n', '<leader>f.', function()
   MiniPick.builtin.files()
 end, { desc = 'Search Files' })
 
+vim.keymap.set('n', '<leader>ff', function()
+  MiniExtra.pickers.explorer()
+end, { desc = 'File Explorer' })
+
 vim.keymap.set('n', '<leader>f/', function()
   MiniPick.builtin.grep_live()
 end, { desc = 'Search with Live Grep' })
+
+vim.keymap.set('n', '<leader>f?', function()
+  MiniExtra.pickers.hipatterns()
+end, { desc = 'Search Hipatterns' })
 
 vim.keymap.set('n', '<leader>fo', function()
   MiniExtra.pickers.oldfiles()
