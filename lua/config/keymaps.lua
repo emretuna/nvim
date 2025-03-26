@@ -4,9 +4,10 @@ vim.keymap.set('n', 'XX', ':q<CR>', { silent = true })
 
 -- Saves modified documents, and then exits
 vim.keymap.set('n', 'ZZ', ':xa<CR>', { silent = true })
-
+-- Open netrw
 vim.keymap.set('n', '<leader>e', '<Cmd>Lexplore!<CR>', { silent = true, desc = 'Open netrw' }) -- Try Vex or Vex! to open in a split
-
+-- Clear search
+vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 -- Shifted movement
 vim.keymap.set('n', '<C-d>', function()
   vim.api.nvim_feedkeys('7j', 'n', true)
