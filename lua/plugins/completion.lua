@@ -27,7 +27,6 @@ require('blink.cmp').setup {
   appearance = {
     highlight_ns = vim.api.nvim_create_namespace 'blink_cmp',
     use_nvim_cmp_as_default = false,
-    nerd_font_variant = 'mono',
   },
 
   completion = {
@@ -41,11 +40,17 @@ require('blink.cmp').setup {
       scrolloff = 2,
       scrollbar = false,
       draw = {
-        columns = { { 'kind_icon' }, { 'label', 'kind', 'source_name', gap = 1 } },
+        columns = { { 'kind_icon' }, { 'label', 'kind', 'source_name', gap = 2 } },
         align_to = 'none',
         components = {
           label = { width = { min = 20, fill = true } }, -- default is true
           label_description = { width = { fill = true } },
+          kind_icon = {
+            text = function(ctx)
+              local kind_icon, _, _ = require('mini.icons').get('lsp', ctx.kind)
+              return kind_icon
+            end,
+          },
           kind = {
             width = { fill = true },
             text = function(ctx)
