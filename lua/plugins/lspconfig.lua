@@ -1,3 +1,4 @@
+local utils = require 'config.utils'
 local add = MiniDeps.add
 add {
   source = 'neovim/nvim-lspconfig',
@@ -64,12 +65,18 @@ vim.api.nvim_create_autocmd('LspAttach', {
     -- Execute a code action, usually your cursor needs to be on top of an error
     -- or a suggestion from your LSP for this to activate.
     map('ga', vim.lsp.buf.code_action, 'LSP: Code Action')
+
     -- Restart LSP server
-    map('grR', '<cmd>:LspRestart<cr>', 'LSP Restart')
+    map('grr', '<cmd>:LspRestart<cr>', 'LSP: Restart')
+
+    utils.map_code_action('<leader>co', 'source.organizeImports', 'Typescript: Organize Imports')
+    utils.map_code_action('<leader>cM', 'source.addMissingImports.ts', 'Typescript: Add Missing Imports')
+    utils.map_code_action('<leader>cu', 'source.removeUnused.ts', 'Typescript: Remove Unused Imports')
+    utils.map_code_action('<leader>cD', 'source.fixAll.ts', 'Typescript: Fix All Diagnostics')
 
     map('gd', function()
       require('mini.extra').pickers.lsp { scope = 'definition' }
-    end, 'Goto Ddefinition')
+    end, 'Goto Definition')
 
     map('gr', function()
       require('mini.extra').pickers.lsp { scope = 'references' }
@@ -85,15 +92,16 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     map('gt', function()
       require('mini.extra').pickers.lsp { scope = 'type_definition' }
-    end, 'Type [D]definition')
+    end, 'Type Ddefinition')
 
     -- map("<leader>ds", function()
     --   require('mini.extra').pickers.lsp({ scope = "document_symbol" })
-    -- end, "[D]ocument [S]symbols")
+    -- end, "Document Symbols")
     --
     -- map("<leader>ws", function()
     --   require('mini.extra').pickers.lsp({ scope = "workspace_symbol" })
-    -- end, "[W]orkspace [S]symbols")
+    -- end, "Workspace Symbols")
+
     -- Opens a popup that displays documentation about the word under your cursor
     --  See `:help K` for why this keymap.
     map('K', vim.lsp.buf.hover, 'Hover Documentation')
@@ -329,6 +337,45 @@ local servers = {
     single_file_support = false,
     settings = {},
   },
+  vtsls = {
+    -- explicitly add default filetypes, so that we can extend
+    -- them in related extras
+    filetypes = {
+      'javascript',
+      'javascriptreact',
+      'javascript.jsx',
+      'typescript',
+      'typescriptreact',
+      'typescript.tsx',
+    },
+    settings = {
+      complete_function_calls = true,
+      vtsls = {
+        enableMoveToFileCodeAction = true,
+        autoUseWorkspaceTsdk = true,
+        experimental = {
+          maxInlayHintLength = 30,
+          completion = {
+            enableServerSideFuzzyMatch = true,
+          },
+        },
+      },
+      typescript = {
+        updateImportsOnFileMove = { enabled = 'always' },
+        suggest = {
+          completeFunctionCalls = true,
+        },
+        inlayHints = {
+          enumMemberValues = { enabled = true },
+          functionLikeReturnTypes = { enabled = true },
+          parameterNames = { enabled = 'literals' },
+          parameterTypes = { enabled = true },
+          propertyDeclarationTypes = { enabled = true },
+          variableTypes = { enabled = false },
+        },
+      },
+    },
+  },
 }
 
 -- Ensure the servers and tools above are installed
@@ -371,6 +418,7 @@ vim.list_extend(ensure_installed, {
   'stylua', -- Used to format Lua code
   'tailwindcss',
   'typos',
+  'vtsls',
   'yamlls',
 })
 require('mason-tool-installer').setup { ensure_installed = ensure_installed }

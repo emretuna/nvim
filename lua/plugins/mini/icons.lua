@@ -13,8 +13,9 @@ require('mini.icons').setup {
     ['yarn.lock'] = { glyph = '', hl = 'MiniIconsBlue' },
   },
   lsp = {
-    supermaven = { glyph = '', hl = 'MiniIconsYellow' },
+    supermaven = { glyph = '', hl = 'MiniIconsAzure' },
     codeium = { glyph = '', hl = 'MiniIconsGreen' },
+    snippet = { glyph = '', hl = 'MiniIconsYellow' },
   },
 }
 MiniIcons.mock_nvim_web_devicons()

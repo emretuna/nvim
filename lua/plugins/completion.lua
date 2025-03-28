@@ -1,41 +1,12 @@
 local add = MiniDeps.add
 
 add {
-  source = 'L3MON4D3/LuaSnip',
-  checkout = 'master',
-  hooks = { 'make install_jsregexp' },
-  depends = { 'rafamadriz/friendly-snippets' },
-}
-require('luasnip').setup { history = true, delete_check_events = 'TextChanged' }
-
-require('luasnip.loaders.from_vscode').lazy_load()
-require('luasnip.loaders.from_vscode').lazy_load { paths = { vim.fn.stdpath 'config' .. '/snippets' } }
-
-local extends = {
-  typescript = { 'tsdoc' },
-  javascript = { 'jsdoc' },
-  lua = { 'luadoc' },
-  python = { 'pydoc' },
-  rust = { 'rustdoc' },
-  cs = { 'csharpdoc' },
-  java = { 'javadoc' },
-  c = { 'cdoc' },
-  cpp = { 'cppdoc' },
-  php = { 'phpdoc' },
-  kotlin = { 'kdoc' },
-  ruby = { 'rdoc' },
-  sh = { 'shelldoc' },
-}
--- friendly-snippets - enable standardized comments snippets
-for ft, snips in pairs(extends) do
-  require('luasnip').filetype_extend(ft, snips)
-end
-add {
   source = 'Saghen/blink.cmp',
-  checkout = 'v0.13.1',
+  checkout = 'v1.0.0',
   depends = {
     'mikavilpas/blink-ripgrep.nvim',
     'saghen/blink.compat',
+    'rafamadriz/friendly-snippets',
   },
 }
 
@@ -43,7 +14,7 @@ require('blink.cmp').setup {
   fuzzy = {
     prebuilt_binaries = {
       download = true,
-      force_version = 'v0.13.1',
+      force_version = 'v1.0.0',
     },
   },
 
@@ -57,7 +28,6 @@ require('blink.cmp').setup {
     highlight_ns = vim.api.nvim_create_namespace 'blink_cmp',
     use_nvim_cmp_as_default = false,
     nerd_font_variant = 'mono',
-    kind_icons = vim.g.kind_icons,
   },
 
   completion = {
@@ -164,9 +134,19 @@ require('blink.cmp').setup {
       },
     },
   },
-
   snippets = {
-    preset = 'luasnip',
+    -- Function to use when expanding LSP provided snippets
+    expand = function(snippet)
+      vim.snippet.expand(snippet)
+    end,
+    -- Function to use when checking if a snippet is active
+    active = function(filter)
+      return vim.snippet.active(filter)
+    end,
+    -- Function to use when jumping between tab stops in a snippet, where direction can be negative or positive
+    jump = function(direction)
+      vim.snippet.jump(direction)
+    end,
   },
   -- opts_extend = { 'sources.default' },
 }

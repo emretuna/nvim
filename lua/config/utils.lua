@@ -184,4 +184,16 @@ vim.api.nvim_create_autocmd('User', {
   end,
 })
 
+function M.map_code_action(key, action, desc)
+  vim.keymap.set('n', key, function()
+    vim.lsp.buf.code_action {
+      apply = true,
+      context = {
+        only = { action },
+        diagnostics = {},
+      },
+    }
+  end, { desc = desc })
+end
+
 return M
