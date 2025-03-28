@@ -40,7 +40,7 @@ require('blink.cmp').setup {
       scrolloff = 2,
       scrollbar = false,
       draw = {
-        columns = { { 'kind_icon' }, { 'label', 'kind', 'source_name', gap = 2 } },
+        columns = { { 'kind_icon' }, { 'label', 'kind', 'source_name', gap = 4 } },
         align_to = 'none',
         components = {
           label = { width = { min = 20, fill = true } }, -- default is true
