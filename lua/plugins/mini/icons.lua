@@ -46,7 +46,7 @@ require('mini.icons').setup {
     enum = { glyph = '', hl = 'MiniIconsPurple' },
     keyword = { glyph = '󰌋', hl = 'MiniIconsRed' },
     snippet = { glyph = '', hl = 'MiniIconsYellow' },
-    color = { glyph = '󰏘', hl = 'MiniIconsRed' },
+    color = { glyph = '', hl = 'MiniIconsRed' },
     file = { glyph = '󰈙', hl = 'MiniIconsBlue' },
     reference = { glyph = '󰈇', hl = 'MiniIconsOrange' },
     folder = { glyph = '󰉋', hl = 'MiniIconsBlue' },
