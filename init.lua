@@ -86,7 +86,6 @@ later(function()
   require 'plugins.toggleterm'
   require 'plugins.overseer'
   require 'plugins.refactoring'
-  require 'plugins.ufo'
   require 'plugins.trouble'
   require 'plugins.zen-mode'
   require 'plugins.dadbod'

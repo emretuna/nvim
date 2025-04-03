@@ -12,6 +12,17 @@ vim.g.netrw_browse_split = 4
 vim.g.netrw_winsize = 25
 vim.g.netrw_altv = 1
 
+-- Fold settings
+vim.o.foldenable = true
+vim.o.foldlevel = 99
+vim.o.foldmethod = 'expr'
+-- vim.o.foldtext = ''
+vim.opt.foldcolumn = '0'
+-- vim.opt.fillchars:append { fold = ' ' }
+
+-- Default to treesitter folding
+vim.o.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+
 -- settings for vim-startuptime
 vim.g.startuptime_tries = 10
 -- Global variable to control borders for every plugins
@@ -27,11 +38,6 @@ vim.g.border = {
   { '╰', 'FloatBorder' },
   { '│', 'FloatBorder' },
 }
-
--- Enable lsp rounded borders
-vim.g.lsp_round_borders_enabled = true
--- Enable cmp rounded borders
-vim.g.completion_round_borders_enabled = true
 
 -- Set to true if you have a Nerd Font installed
 vim.g.have_nerd_font = true
