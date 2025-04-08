@@ -1,6 +1,6 @@
 local dark_palette = {
   base00 = '#1c1917', -- Background
-  base01 = '#24221f', -- Lighter background (used for status bars, line numbers, etc.)
+  base01 = '#1f1c19', -- Lighter background (used for status bars, line numbers, etc.)
   base02 = '#35332f', -- Selection background
   base03 = '#5c5c5c', -- Comments, invisibles, line highlighting
   base04 = '#6a6a6a', -- Dark foreground (used for status bars)
@@ -44,6 +44,8 @@ local function apply_palette()
     use_cterm = true,
   }
   vim.g.colors_name = 'base16' -- Set colorscheme name
+  -- Sample highlight overriding
+  -- vim.api.nvim_set_hl(0, 'Pmenu', { fg = palette.base05, bg = palette.base00 })
 end
 -- Apply the palette during initialization
 apply_palette()

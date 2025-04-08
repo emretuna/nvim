@@ -92,5 +92,16 @@ vim.keymap.set('n', '<leader>qn', '<Cmd>cnext<CR>', { desc = 'Go to next item in
 vim.keymap.set('n', '<leader>qp', '<Cmd>cprev<CR>', { desc = 'Go to previous item in Quickfix list' })
 vim.keymap.set('n', '<leader>q.', '<Cmd>copen<CR>', { desc = 'Open Quickfix List' })
 vim.keymap.set('n', '<leader>qc', '<Cmd>cclose<CR>', { desc = 'Close Quickfix List' })
-
+-- Toggle terminals
+local terminals = require 'config.utils'
+vim.keymap.set('n', '<F7>', terminals.toggle_horizontal, { desc = 'Toggle Horizontal Terminal' })
+vim.keymap.set('n', '<C-\\>', terminals.toggle_float, { desc = 'Toggle Floating Terminal' })
+vim.keymap.set('t', '<C-\\>', function()
+  -- Exit terminal mode and close the floating terminal
+  vim.cmd [[<C-\><C-n>]]
+  terminals.toggle_float()
+end, { desc = 'Toggle Floating Terminal' })
+vim.keymap.set('n', '<leader>g.', terminals.toggle_lazygit, { desc = 'Toggle LazyGit' })
+vim.keymap.set('t', '<Esc><Esc>', [[<C-\><C-n>]], { desc = 'Exit Terminal Mode' })
+vim.api.nvim_create_user_command('LazyGit', terminals.toggle_lazygit, { desc = 'Toggle LazyGit terminal' })
 -- vim: ts=2 sts=2 sw=2 et

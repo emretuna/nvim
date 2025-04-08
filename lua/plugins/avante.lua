@@ -8,6 +8,8 @@ add {
     'nvim-lua/plenary.nvim',
     'MunifTanjim/nui.nvim',
     --- The below dependencies are optional,
+    'echasnovski/mini.pick',
+    'MeanderingProgrammer/render-markdown.nvim',
     'echasnovski/mini.icons', -- or echasnovski/mini.icons
     -- 'zbirenbaum/copilot.lua', -- for providers='copilot'
   },

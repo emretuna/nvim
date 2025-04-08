@@ -196,4 +196,129 @@ function M.map_code_action(key, action, desc)
   end, { desc = desc })
 end
 
+M.state = {
+  horizontal = nil,
+  float = nil,
+  lazygit = nil,
+}
+
+function M.toggle_horizontal()
+  local term = M.state.horizontal
+  -- If already open, close it
+  if term and term.win and vim.api.nvim_win_is_valid(term.win) then
+    vim.api.nvim_win_close(term.win, true)
+    M.state.horizontal.win = nil
+    return
+  end
+
+  -- Create terminal buffer if missing
+  if not term or not term.buf or not vim.api.nvim_buf_is_valid(term.buf) then
+    local bufnr = vim.api.nvim_create_buf(false, true)
+    vim.api.nvim_buf_call(bufnr, function()
+      vim.cmd 'terminal'
+    end)
+    -- Make buffer unlisted
+    vim.api.nvim_buf_set_option(bufnr, 'buflisted', false)
+    M.state.horizontal = { buf = bufnr }
+  end
+
+  -- Open a new horizontal split
+  vim.cmd 'belowright split'
+  vim.cmd 'resize 10'
+  local win = vim.api.nvim_get_current_win()
+
+  -- Set the buffer in the window
+  vim.api.nvim_win_set_buf(win, M.state.horizontal.buf)
+  M.state.horizontal.win = win
+  vim.cmd 'startinsert'
+end
+
+function M.toggle_float()
+  local term = M.state.float
+  if term and term.win and vim.api.nvim_win_is_valid(term.win) then
+    vim.api.nvim_win_close(term.win, true)
+    M.state.float.win = nil
+    return
+  end
+
+  if not term or not term.buf or not vim.api.nvim_buf_is_valid(term.buf) then
+    -- Create a new buffer without opening a window
+    local bufnr = vim.api.nvim_create_buf(false, true)
+    vim.api.nvim_buf_call(bufnr, function()
+      vim.cmd 'terminal'
+    end)
+    -- Make buffer unlisted
+    vim.api.nvim_buf_set_option(bufnr, 'buflisted', false)
+    M.state.float = { buf = bufnr }
+  end
+
+  local width = math.floor(vim.o.columns * 0.8)
+  local height = math.floor(vim.o.lines * 0.8)
+  local row = math.floor((vim.o.lines - height) / 2)
+  local col = math.floor((vim.o.columns - width) / 2)
+
+  local win = vim.api.nvim_open_win(M.state.float.buf, true, {
+    relative = 'editor',
+    row = row,
+    col = col,
+    width = width,
+    height = height,
+    style = 'minimal',
+    border = vim.g.border_style or 'rounded',
+  })
+
+  M.state.float.win = win
+  vim.cmd 'startinsert'
+end
+
+function M.toggle_lazygit()
+  if vim.fn.finddir('.git', vim.fn.getcwd() .. ';') == '' then
+    vim.notify('Not a git repository', vim.log.levels.WARN)
+    return
+  end
+
+  local term = M.state.lazygit
+  if term and term.win and vim.api.nvim_win_is_valid(term.win) then
+    vim.api.nvim_win_close(term.win, true)
+    M.state.lazygit.win = nil
+    return
+  end
+
+  if not term or not term.buf or not vim.api.nvim_buf_is_valid(term.buf) then
+    local config_path = vim.fn.stdpath 'cache' .. '/lazygit-theme.yml'
+    local config_arg = string.format('--use-config-file="%s"', config_path)
+
+    -- Create buffer directly without opening a window
+    local bufnr = vim.api.nvim_create_buf(false, true)
+    vim.api.nvim_buf_call(bufnr, function()
+      vim.cmd('terminal lazygit ' .. config_arg)
+    end)
+    -- Make buffer unlisted
+    vim.api.nvim_buf_set_option(bufnr, 'buflisted', false)
+    M.state.lazygit = { buf = bufnr }
+  end
+
+  local width = math.floor(vim.o.columns * 0.9)
+  local height = math.floor(vim.o.lines * 0.9)
+  local row = math.floor((vim.o.lines - height) / 2)
+  local col = math.floor((vim.o.columns - width) / 2)
+
+  local win = vim.api.nvim_open_win(M.state.lazygit.buf, true, {
+    relative = 'editor',
+    row = row,
+    col = col,
+    width = width,
+    height = height,
+    style = 'minimal',
+    border = vim.g.border_style,
+  })
+
+  M.state.lazygit.win = win
+  vim.api.nvim_win_call(win, function()
+    vim.cmd 'startinsert'
+    vim.opt_local.signcolumn = 'no'
+    vim.opt_local.foldcolumn = '0'
+    vim.opt_local.statuscolumn = ''
+  end)
+end
 return M

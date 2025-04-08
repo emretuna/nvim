@@ -384,7 +384,11 @@ local servers = {
 --    :Mason
 --
 --  You can press `g?` for help in this menu.
-require('mason').setup()
+require('mason').setup {
+  ui = {
+    border = vim.g.border_style,
+  },
+}
 
 -- You can add other tools here that you want Mason to install
 -- for you, so that they are available from within Neovim.

@@ -14,6 +14,9 @@ require('render-markdown').setup {
     border = 'none',
     disable_background = true,
   },
+  completions = {
+    lsp = { enabled = true },
+  },
   latex = {
     enabled = false,
   },

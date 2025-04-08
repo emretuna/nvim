@@ -83,7 +83,6 @@ later(function()
   require 'plugins.quicker'
   require 'plugins.grug-far'
   require 'plugins.ai-assistant'
-  require 'plugins.toggleterm'
   require 'plugins.overseer'
   require 'plugins.refactoring'
   require 'plugins.trouble'
