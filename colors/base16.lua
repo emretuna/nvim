@@ -41,7 +41,7 @@ local function apply_palette()
   local palette = vim.o.background == 'dark' and dark_palette or light_palette
   require('mini.base16').setup {
     palette = palette,
-    use_cterm = true,
+    use_cterm = false,
   }
   vim.g.colors_name = 'base16' -- Set colorscheme name
   -- Sample highlight overriding

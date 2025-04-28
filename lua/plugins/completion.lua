@@ -2,20 +2,22 @@ local add = MiniDeps.add
 
 add {
   source = 'Saghen/blink.cmp',
-  checkout = 'v1.0.0',
   depends = {
     'mikavilpas/blink-ripgrep.nvim',
-    'saghen/blink.compat',
     'rafamadriz/friendly-snippets',
+    'Kaiser-Yang/blink-cmp-avante',
   },
+  checkout = 'v1.1.1',
 }
 
 require('blink.cmp').setup {
   fuzzy = {
-    prebuilt_binaries = {
-      download = true,
-      force_version = 'v1.0.0',
+    sorts = {
+      'exact',
+      'score',
+      'sort_text',
     },
+    prebuilt_binaries = { download = true, force_version = 'v1.1.1' },
   },
 
   keymap = {
@@ -33,9 +35,13 @@ require('blink.cmp').setup {
     list = {
       selection = { preselect = false, auto_insert = false },
     },
-    accept = { auto_brackets = { enabled = false } },
+    accept = {
+      auto_brackets = { enabled = false },
+      dot_repeat = false,
+    },
     menu = {
-      min_width = 35,
+      min_width = 40,
+      max_height = 20,
       border = vim.g.border_style,
       scrolloff = 2,
       scrollbar = false,
@@ -92,15 +98,38 @@ require('blink.cmp').setup {
 
     keymap = { preset = 'cmdline' },
     completion = {
-      menu = { auto_show = true },
+      menu = {
+        auto_show = function(ctx)
+          return ctx.mode ~= 'default'
+        end,
+      },
       list = { selection = { preselect = false, auto_insert = false } },
     },
   },
   sources = {
-    default = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev', 'markdown', 'avante_commands', 'avante_mentions', 'avante_files' },
+    default = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev', 'markdown', 'avante' },
     min_keyword_length = 0,
-    per_filetype = { sql = { 'dadbod' } },
+    per_filetype = { sql = { 'dadbod', 'lsp' } },
     providers = {
+      avante = {
+        module = 'blink-cmp-avante',
+        name = 'Avante',
+        opts = {
+          -- options for blink-cmp-avante
+          avante = {
+            command = {
+              get_kind_name = function(_)
+                return 'AvanteCmd'
+              end,
+            },
+            mention = {
+              get_kind_name = function(_)
+                return 'AvanteMention'
+              end,
+            },
+          },
+        },
+      },
       ripgrep = {
         module = 'blink-ripgrep',
         name = 'Ripgrep',
@@ -115,24 +144,7 @@ require('blink.cmp').setup {
       },
       lazydev = { name = 'LazyDev', module = 'lazydev.integrations.blink', score_offset = 100, fallbacks = { 'lsp' } },
       markdown = { name = 'RenderMarkdown', module = 'render-markdown.integ.blink', fallbacks = { 'lsp' } },
-      avante_commands = {
-        name = 'avante_commands',
-        module = 'blink.compat.source',
-        score_offset = 90, -- show at a higher priority than lsp
-        opts = {},
-      },
-      avante_files = {
-        name = 'avante_files',
-        module = 'blink.compat.source',
-        score_offset = 100, -- show at a higher priority than lsp
-        opts = {},
-      },
-      avante_mentions = {
-        name = 'avante_mentions',
-        module = 'blink.compat.source',
-        score_offset = 1000, -- show at a higher priority than lsp
-        opts = {},
-      },
+
       dadbod = {
         name = 'Dadbod',
         module = 'vim_dadbod_completion.blink',

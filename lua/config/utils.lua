@@ -184,18 +184,6 @@ vim.api.nvim_create_autocmd('User', {
   end,
 })
 
-function M.map_code_action(key, action, desc)
-  vim.keymap.set('n', key, function()
-    vim.lsp.buf.code_action {
-      apply = true,
-      context = {
-        only = { action },
-        diagnostics = {},
-      },
-    }
-  end, { desc = desc })
-end
-
 M.state = {
   horizontal = nil,
   float = nil,
@@ -217,8 +205,10 @@ function M.toggle_horizontal()
     vim.api.nvim_buf_call(bufnr, function()
       vim.cmd 'terminal'
     end)
-    -- Make buffer unlisted
-    vim.api.nvim_buf_set_option(bufnr, 'buflisted', false)
+    -- Make buffer unlisted and set buffer name
+    vim.bo[bufnr].buflisted = false
+    vim.api.nvim_buf_set_name(bufnr, 'term://horizontal-term')
+    vim.bo[bufnr].filetype = 'custom_term'
     M.state.horizontal = { buf = bufnr }
   end
 
@@ -247,8 +237,10 @@ function M.toggle_float()
     vim.api.nvim_buf_call(bufnr, function()
       vim.cmd 'terminal'
     end)
-    -- Make buffer unlisted
-    vim.api.nvim_buf_set_option(bufnr, 'buflisted', false)
+    -- Make buffer unlisted and set buffer name
+    vim.bo[bufnr].buflisted = false
+    vim.api.nvim_buf_set_name(bufnr, 'term://float-term')
+    vim.bo[bufnr].filetype = 'custom_term'
     M.state.float = { buf = bufnr }
   end
 
@@ -277,32 +269,49 @@ function M.toggle_lazygit()
     return
   end
 
-  local term = M.state.lazygit
-  if term and term.win and vim.api.nvim_win_is_valid(term.win) then
-    vim.api.nvim_win_close(term.win, true)
+  -- Close existing window if it exists
+  if M.state.lazygit and M.state.lazygit.win and vim.api.nvim_win_is_valid(M.state.lazygit.win) then
+    vim.api.nvim_win_close(M.state.lazygit.win, true)
     M.state.lazygit.win = nil
     return
   end
 
-  if not term or not term.buf or not vim.api.nvim_buf_is_valid(term.buf) then
-    local config_path = vim.fn.stdpath 'cache' .. '/lazygit-theme.yml'
-    local config_arg = string.format('--use-config-file="%s"', config_path)
+  -- Always create a new buffer
+  local config_path = vim.fn.stdpath 'cache' .. '/lazygit-theme.yml'
+  local config_arg = string.format('--use-config-file="%s"', config_path)
+  local bufnr = vim.api.nvim_create_buf(false, true)
 
-    -- Create buffer directly without opening a window
-    local bufnr = vim.api.nvim_create_buf(false, true)
-    vim.api.nvim_buf_call(bufnr, function()
-      vim.cmd('terminal lazygit ' .. config_arg)
-    end)
-    -- Make buffer unlisted
-    vim.api.nvim_buf_set_option(bufnr, 'buflisted', false)
-    M.state.lazygit = { buf = bufnr }
-  end
+  vim.api.nvim_buf_call(bufnr, function()
+    vim.cmd('terminal lazygit ' .. config_arg)
+  end)
 
+  -- Make buffer unlisted and set buffer name
+  vim.bo[bufnr].buflisted = false
+  vim.api.nvim_buf_set_name(bufnr, 'term://lazygit')
+  vim.bo[bufnr].filetype = 'lazygit_term'
+
+  -- Set up TermClose autocommand
+  vim.api.nvim_create_autocmd('TermClose', {
+    buffer = bufnr,
+    callback = function()
+      vim.schedule(function()
+        if M.state.lazygit and M.state.lazygit.win and vim.api.nvim_win_is_valid(M.state.lazygit.win) then
+          vim.api.nvim_win_close(M.state.lazygit.win, true)
+          M.state.lazygit.win = nil
+        end
+        -- Delete the buffer when terminal closes
+        if vim.api.nvim_buf_is_valid(bufnr) then
+          vim.api.nvim_buf_delete(bufnr, { force = true })
+        end
+      end)
+    end,
+  })
+
+  M.state.lazygit = { buf = bufnr }
   local width = math.floor(vim.o.columns * 0.9)
   local height = math.floor(vim.o.lines * 0.9)
   local row = math.floor((vim.o.lines - height) / 2)
   local col = math.floor((vim.o.columns - width) / 2)
-
   local win = vim.api.nvim_open_win(M.state.lazygit.buf, true, {
     relative = 'editor',
     row = row,
@@ -312,7 +321,6 @@ function M.toggle_lazygit()
     style = 'minimal',
     border = vim.g.border_style,
   })
-
   M.state.lazygit.win = win
   vim.api.nvim_win_call(win, function()
     vim.cmd 'startinsert'

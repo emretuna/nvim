@@ -62,7 +62,6 @@ require('mini.clue').setup {
     { mode = 'n', keys = '<Leader>a', desc = 'Avante' },
     { mode = 'x', keys = '<Leader>a', desc = 'Avante' },
     { mode = 'n', keys = '<Leader>b', desc = 'Buffer' },
-    { mode = 'n', keys = '<Leader>c', desc = 'Code' },
     { mode = 'n', keys = '<Leader>f', desc = 'Find' },
     { mode = 'n', keys = '<Leader>g', desc = 'Git' },
     { mode = 'n', keys = '<Leader>h', desc = 'Http' },

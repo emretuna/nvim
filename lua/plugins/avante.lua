@@ -31,13 +31,21 @@ require('avante').setup {
     temperature = 0,
     max_tokens = 4096,
   },
+  web_search_engine = {
+    provider = 'tavily',
+  },
   windows = {
     sidebar_header = {
       rounded = false,
     },
-
     input = {
       prefix = '󱙺 ',
+    },
+    edit = {
+      border = vim.g.border_style,
+    },
+    ask = {
+      border = vim.g.border_style,
     },
   },
   file_selector = {
@@ -50,3 +58,6 @@ vim.keymap.set('n', '<leader>mp', function()
 end, {
   desc = 'Paste Image',
 })
+
+-- views can only be fully collapsed with the global statusline
+vim.opt.laststatus = 3

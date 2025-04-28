@@ -1,3 +1,5 @@
+local utils = require 'config.utils'
+vim.api.nvim_create_user_command('LazyGit', utils.toggle_lazygit, { desc = 'Toggle LazyGit terminal' })
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 vim.keymap.set('n', 'XX', ':q<CR>', { silent = true })
@@ -20,7 +22,6 @@ vim.keymap.set('n', '<C-u>', function()
 end, {
   desc = 'Fast move up',
 })
-
 vim.keymap.set('n', '<leader>mz', function()
   MiniMisc.zoom()
 end, { desc = 'Zoom Buffer' })
@@ -48,17 +49,10 @@ vim.keymap.set('n', '<C-Right>', '<cmd>vertical resize +2<cr>', { desc = 'Increa
 vim.keymap.set('n', '<leader>to', '<cmd>tabnew<CR>', { desc = 'Open new tab' }) -- open new tab
 vim.keymap.set('n', '<leader>tx', '<cmd>tabclose<CR>', { desc = 'Close current tab' }) -- close current tab
 vim.keymap.set('n', '<leader>tf', '<cmd>tabnew %<CR>', { desc = 'Open current buffer in new tab' }) --  move current buffer to new tab
--- vim.keymap.set('n', ']t', '<cmd>tabnext<cr>', { desc = 'Tab next' })
--- vim.keymap.set('n', '[t', '<cmd>tabprevious<cr>', { desc = 'Tab previous' })
-
--- buffers
-
--- vim.keymap.set('n', ']b', '<cmd>bnext<cr>', { desc = 'Buffer next' })
--- vim.keymap.set('n', '[b', '<cmd>bprevious<cr>', { desc = 'Buffer previous' })
 --
 -- Rename file using LSP
 vim.keymap.set('n', '<leader>mR', function()
-  require('config.utils').rename_file()
+  utils.rename_file()
 end, { desc = 'Rename file' })
 
 -- Open file under cursor
@@ -93,15 +87,13 @@ vim.keymap.set('n', '<leader>qp', '<Cmd>cprev<CR>', { desc = 'Go to previous ite
 vim.keymap.set('n', '<leader>q.', '<Cmd>copen<CR>', { desc = 'Open Quickfix List' })
 vim.keymap.set('n', '<leader>qc', '<Cmd>cclose<CR>', { desc = 'Close Quickfix List' })
 -- Toggle terminals
-local terminals = require 'config.utils'
-vim.keymap.set('n', '<F7>', terminals.toggle_horizontal, { desc = 'Toggle Horizontal Terminal' })
-vim.keymap.set('n', '<C-\\>', terminals.toggle_float, { desc = 'Toggle Floating Terminal' })
+vim.keymap.set('n', '<F7>', utils.toggle_horizontal, { desc = 'Toggle Horizontal Terminal' })
+vim.keymap.set('n', '<C-\\>', utils.toggle_float, { desc = 'Toggle Floating Terminal' })
 vim.keymap.set('t', '<C-\\>', function()
   -- Exit terminal mode and close the floating terminal
   vim.cmd [[<C-\><C-n>]]
-  terminals.toggle_float()
+  utils.toggle_float()
 end, { desc = 'Toggle Floating Terminal' })
-vim.keymap.set('n', '<leader>g.', terminals.toggle_lazygit, { desc = 'Toggle LazyGit' })
+vim.keymap.set('n', '<leader>g.', '<Cmd>LazyGit<CR>', { desc = 'Toggle LazyGit' })
 vim.keymap.set('t', '<Esc><Esc>', [[<C-\><C-n>]], { desc = 'Exit Terminal Mode' })
-vim.api.nvim_create_user_command('LazyGit', terminals.toggle_lazygit, { desc = 'Toggle LazyGit terminal' })
 -- vim: ts=2 sts=2 sw=2 et

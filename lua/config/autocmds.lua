@@ -34,6 +34,7 @@ vim.api.nvim_create_autocmd('FileType', {
     vim.opt_local.spell = true
   end,
 })
+
 -- Prefer LSP folding if client supports it
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(args)
@@ -179,6 +180,8 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
     'tsplayground',
     'Oil',
     'grug-far',
+    'custom_term',
+    'lazygit_term',
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false

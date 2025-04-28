@@ -70,7 +70,7 @@ later(function()
   require 'plugins.ts-autotag'
   require 'plugins.lspconfig'
   require 'plugins.avante'
-  require 'plugins.tsc'
+  require 'plugins.typescript'
   require 'plugins.nvim-highlight-colors'
   require 'plugins.obsidian'
   require 'plugins.render-markdown'

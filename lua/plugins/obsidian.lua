@@ -1,6 +1,6 @@
 local add = MiniDeps.add
 add {
-  source = 'epwalsh/obsidian.nvim',
+  source = 'obsidian-nvim/obsidian.nvim',
 }
 
 require('obsidian').setup {
@@ -15,6 +15,10 @@ require('obsidian').setup {
     },
   },
   ui = { enable = false },
+  completion = { blink = true },
+  picker = {
+    name = 'mini.pick',
+  },
   mappings = {
     -- Overrides the 'gf' mapping to work on markdown/wiki links within your vault.
     ['gf'] = {

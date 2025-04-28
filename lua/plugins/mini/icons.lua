@@ -13,6 +13,9 @@ require('mini.icons').setup {
     ['yarn.lock'] = { glyph = '', hl = 'MiniIconsBlue' },
   },
   lsp = {
+    Avante = { glyph = '󰖷', hl = 'MiniIconsBlue' },
+    AvanteCmd = { glyph = '', hl = 'MiniIconsAzure' },
+    AvanteMention = { glyph = '', hl = 'MiniIconsRed' },
     -- IDE Features
     supermaven = { glyph = '', hl = 'MiniIconsAzure' },
     codeium = { glyph = '', hl = 'MiniIconsGreen' },

@@ -1,5 +1,6 @@
 local add = MiniDeps.add
 local ai_assistant = vim.g.ai_assistant or 'codeium' -- Default to neocodeium if not set
+local completion_engine = require 'blink.cmp'
 
 if ai_assistant == 'codeium' then
   add {
@@ -12,8 +13,17 @@ if ai_assistant == 'codeium' then
     show_label = true,
     silent = true,
     debounce = false,
+    filter = function()
+      return not completion_engine.is_visible()
+    end,
   }
 
+  vim.api.nvim_create_autocmd('User', {
+    pattern = 'BlinkCmpMenuOpen',
+    callback = function()
+      neocodeium.clear()
+    end,
+  })
   -- Neocodeium keymaps
   vim.keymap.set('i', '<c-y>', function()
     neocodeium.accept()
@@ -34,8 +44,8 @@ elseif ai_assistant == 'supermaven' then
   add {
     source = 'supermaven-inc/supermaven-nvim',
   }
-
-  require('supermaven-nvim').setup {
+  local supermaven = require 'supermaven-nvim'
+  supermaven.setup {
     keymaps = {
       accept_suggestion = '<C-y>',
       accept_word = '<C-w>',
