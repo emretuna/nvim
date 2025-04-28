@@ -1,6 +1,6 @@
 ## Screenshots
 
-[screenshots](https://imgur.com/a/BDx0bu9)
+[screenshots](https://imgur.com/a/rOVOtRa)
 
 # nvim/
 
