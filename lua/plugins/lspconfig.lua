@@ -5,20 +5,16 @@ add {
   -- Supply dependencies near target plugin
   depends = {
     -- Automatically install LSPs and related tools to stdpath for Neovim
-    'williamboman/mason.nvim',
     -- 'williamboman/mason-lspconfig.nvim',
+    'mason-org/mason.nvim',
+    'mason-org/mason-lspconfig.nvim',
     'WhoIsSethDaniel/mason-tool-installer.nvim',
     'b0o/schemastore.nvim',
     'folke/lazydev.nvim',
-    'saghen/blink.cmp',
     'folke/neoconf.nvim',
   },
 }
--- Temporary solution for postgrestools will be removed when merged
-add {
-  source = 'psteinroe/mason-lspconfig.nvim',
-  checkout = '91ebec47ca2c3e168c88d80151b8b14c478712eb',
-}
+
 require('neoconf').setup()
 vim.cmd 'LspStart'
 
@@ -92,7 +88,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     map('grt', function()
       require('mini.extra').pickers.lsp { scope = 'type_definition' }
-    end, 'Type Ddefinition')
+    end, 'Type Definition')
 
     -- map("g0", function()
     --   require('mini.extra').pickers.lsp({ scope = "document_symbol" })
@@ -203,12 +199,6 @@ vim.diagnostic.config {
   },
   -- virtual_lines = { current_line = true, severity = { min = 'ERROR' } },
 }
-
--- LSP servers and clients are able to communicate to each other what features they support.
---  By default, Neovim doesn't support everything that is in the LSP specification.
---  When you add blink.cmp, luasnip, etc. Neovim now has *more* capabilities.
---  So, we create new capabilities with blink.cmp, and then broadcast that to the servers.
-local capabilities = require('blink.cmp').get_lsp_capabilities()
 
 -- Enable the following language servers
 --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
@@ -445,14 +435,30 @@ require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
 ---@diagnostic disable-next-line: missing-fields
 require('mason-lspconfig').setup {
+  ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
+  automatic_installation = false,
   handlers = {
     function(server_name)
-      local server = servers[server_name] or {}
-      -- This handles overriding only values explicitly passed
-      -- by the server configuration above. Useful when disabling
-      -- certain features of an LSP (for example, turning off formatting for tsserver)
-      server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-      require('lspconfig')[server_name].setup(server)
+      local config = servers[server_name] or {}
+      vim.lsp.config(server_name, config)
+      vim.lsp.enable(server_name)
+      -- NOTE: Some servers still require the nvim-lspconfig setup until they are updated
+      -- Add this template inside the handler function after initializing config if you encounter issues with any lsp
+      --
+      -- if server_name == 'example_server' or server_name == 'example_server2' then
+      --   -- This handles overriding only values explicitly passed
+      --   -- by the server configuration above. Useful when disabling
+      --   -- certain features of an LSP (for example, turning off formatting for ts_ls)
+      --   local capabilities = require('blink.cmp').get_lsp_capabilities()
+      --   config.capabilities = vim.tbl_deep_extend('force', {}, capabilities, config.capabilities or {})
+      --   require('mason-lspconfig')[server_name].setup(config)
+      --   return
+      -- end
+      --
+      --  LSP servers and clients are able to communicate to each other what features they support.
+      --  With nvim-lspconfig setup, Neovim doesn't support everything that is in the LSP specification.
+      --  When you add blink.cmp, luasnip, etc. Neovim now has *more* capabilities.
+      --  So, we create new capabilities with blink.cmp, and then broadcast that to the servers.
     end,
   },
 }

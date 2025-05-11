@@ -7,10 +7,6 @@ add {
     'nvim-treesitter/nvim-treesitter',
     'nvim-lua/plenary.nvim',
     'MunifTanjim/nui.nvim',
-    --- The below dependencies are optional,
-    'echasnovski/mini.pick',
-    'MeanderingProgrammer/render-markdown.nvim',
-    'echasnovski/mini.icons', -- or echasnovski/mini.icons
     -- 'zbirenbaum/copilot.lua', -- for providers='copilot'
   },
   hooks = {
@@ -23,6 +19,7 @@ add {
 require('avante').setup {
   ---@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
   provider = 'claude', -- Recommend using Claude
+  mode = 'legacy',
   -- auto_suggestions_provider = 'claude', -- Since auto-suggestions are a high-frequency operation and therefore expensive, it is recommended to specify an inexpensive provider or even a free provider: copilot
   claude = {
     endpoint = 'https://api.anthropic.com',
@@ -43,13 +40,12 @@ require('avante').setup {
     },
     edit = {
       border = vim.g.border_style,
+      start_insert = true, -- Start insert mode when opening the edit window
     },
     ask = {
       border = vim.g.border_style,
+      start_insert = true, -- Start insert mode when opening the ask window
     },
-  },
-  file_selector = {
-    provider = 'mini.pick',
   },
 }
 
