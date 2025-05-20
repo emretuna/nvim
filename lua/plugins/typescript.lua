@@ -74,10 +74,10 @@ require('typescript-tools').setup {
   },
 }
 
--- vim.api.nvim_create_autocmd('BufWritePre', {
---   pattern = '*.ts*',
---   command = ':TSToolsRemoveUnusedImports sync',
--- })
+vim.api.nvim_create_autocmd('BufWritePre', {
+  pattern = '*.ts*',
+  command = ':TSToolsRemoveUnusedImports sync',
+})
 
 add {
   source = 'dmmulroy/tsc.nvim',

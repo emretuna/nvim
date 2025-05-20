@@ -33,12 +33,13 @@ end
 
 -- MiniDeps now and later functions to execute code safely
 now(function()
-  -- add {
-  --   source = 'zenbones-theme/zenbones.nvim',
-  --   depends = { 'rktjmp/lush.nvim' },
-  -- }
-  -- vim.cmd.colorscheme 'zenbones'
-  vim.cmd.colorscheme 'base16'
+  add {
+    source = 'zenbones-theme/zenbones.nvim',
+    depends = { 'rktjmp/lush.nvim' },
+  }
+
+  vim.cmd.colorscheme 'zenbones'
+  -- vim.cmd.colorscheme 'base16'
 
   require 'config.options'
   require 'config.keymaps'
