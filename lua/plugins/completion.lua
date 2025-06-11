@@ -7,17 +7,12 @@ add {
     'rafamadriz/friendly-snippets',
     'Kaiser-Yang/blink-cmp-avante',
   },
-  checkout = 'v1.1.1',
+  checkout = 'v1.3.1',
 }
 
 require('blink.cmp').setup {
   fuzzy = {
-    sorts = {
-      'exact',
-      'score',
-      'sort_text',
-    },
-    prebuilt_binaries = { download = true, force_version = 'v1.1.1' },
+    prebuilt_binaries = { download = true, force_version = 'v1.3.1' },
   },
 
   keymap = {

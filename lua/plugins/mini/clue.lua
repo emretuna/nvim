@@ -4,7 +4,6 @@ require('mini.clue').setup {
     scroll_down = '<C-d>',
     scroll_up = '<C-u>',
     config = {
-      width = '30',
       border = vim.g.border_style,
     },
   },
@@ -60,7 +59,6 @@ require('mini.clue').setup {
     require('mini.clue').gen_clues.z(),
     -- Custom clues
     { mode = 'n', keys = '<Leader>a', desc = 'Avante' },
-    { mode = 'x', keys = '<Leader>a', desc = 'Avante' },
     { mode = 'n', keys = '<Leader>b', desc = 'Buffer' },
     { mode = 'n', keys = '<Leader>f', desc = 'Find' },
     { mode = 'n', keys = '<Leader>g', desc = 'Git' },

@@ -22,12 +22,16 @@ require('avante').setup {
   ---@alias Mode "agentic" | "legacy"
   mode = 'agentic',
   -- auto_suggestions_provider = 'claude', -- Since auto-suggestions are a high-frequency operation and therefore expensive, it is recommended to specify an inexpensive provider or even a free provider: copilot
-  claude = {
-    endpoint = 'https://api.anthropic.com',
-    model = 'claude-3-5-sonnet-20241022',
-    -- model = 'claude-3-7-sonnet-20250219',
-    temperature = 0,
-    max_tokens = 4096,
+  providers = {
+    claude = {
+      endpoint = 'https://api.anthropic.com',
+      -- model = 'claude-3-5-sonnet-20241022',
+      model = 'claude-3-7-sonnet-20250219',
+      extra_request_body = {
+        temperature = 0.75,
+        max_tokens = 4096,
+      },
+    },
   },
   web_search_engine = {
     provider = 'tavily',
@@ -48,6 +52,31 @@ require('avante').setup {
       start_insert = true, -- Start insert mode when opening the ask window
     },
   },
+  -- Disable built-in tools to avoid conflicts with mcphub
+  disabled_tools = {
+    'list_files', -- Built-in file operations
+    'search_files',
+    'read_file',
+    'create_file',
+    'rename_file',
+    'delete_file',
+    'create_dir',
+    'rename_dir',
+    'delete_dir',
+    'bash', -- Built-in terminal access
+  },
+  -- system_prompt as function ensures LLM always has latest MCP server state
+  -- This is evaluated for every message, even in existing chats
+  system_prompt = function()
+    local hub = require('mcphub').get_hub_instance()
+    return hub and hub:get_active_servers_prompt() or ''
+  end,
+  -- Using function prevents requiring mcphub before it's loaded
+  custom_tools = function()
+    return {
+      require('mcphub.extensions.avante').mcp_tool(),
+    }
+  end,
 }
 
 vim.keymap.set('n', '<leader>mp', function()

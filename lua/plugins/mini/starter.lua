@@ -31,6 +31,7 @@ require('mini.starter').setup {
         section = 'Builtin actions',
       },
       { name = 'Mason', action = 'Mason', section = 'Builtin actions' },
+      { name = 'Hub', action = 'MCPHub', section = 'Builtin actions' },
       { name = 'DepsUpdate', action = 'DepsUpdate', section = 'Builtin actions' },
     },
   },

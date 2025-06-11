@@ -12,6 +12,7 @@ require 'plugins.mini.notify'
 require 'plugins.mini.pairs'
 require 'plugins.mini.pick'
 require 'plugins.mini.visits'
+require 'plugins.mini.diff'
 
 require('mini.jump').setup()
 require('mini.jump2d').setup()
@@ -20,4 +21,3 @@ require('mini.splitjoin').setup { mappings = { toggle = 'gS' } }
 require('mini.extra').setup()
 require('mini.surround').setup()
 require('mini.move').setup()
-require('mini.diff').setup { view = { style = 'sign', signs = { add = '+', change = '~', delete = '-' } } }

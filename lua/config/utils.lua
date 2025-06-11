@@ -329,4 +329,6 @@ function M.toggle_lazygit()
     vim.opt_local.statuscolumn = ''
   end)
 end
+
+vim.api.nvim_create_user_command('LazyGit', M.toggle_lazygit, { desc = 'Toggle LazyGit terminal' })
 return M

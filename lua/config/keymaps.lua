@@ -1,5 +1,4 @@
 local utils = require 'config.utils'
-vim.api.nvim_create_user_command('LazyGit', utils.toggle_lazygit, { desc = 'Toggle LazyGit terminal' })
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 vim.keymap.set('n', 'XX', ':q<CR>', { silent = true })
