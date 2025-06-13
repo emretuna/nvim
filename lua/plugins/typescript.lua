@@ -10,6 +10,7 @@ add {
 
 require('typescript-tools').setup {
   settings = {
+    -- tsserver_max_memory = 8192,
     code_lens_mode = 'all',
     expose_as_code_action = 'all',
     tsserver_file_preferences = {
@@ -81,20 +82,36 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 
 add {
   source = 'dmmulroy/tsc.nvim',
-  depends = {
-    'dmmulroy/ts-error-translator.nvim',
-    'Sebastian-Nielsen/better-type-hover',
-  },
-}
-require('ts-error-translator').setup {
-  auto_override_publish_diagnostics = true,
 }
 
 require('tsc').setup {
   use_trouble_qflist = true,
 }
 
+add {
+  source = 'dmmulroy/ts-error-translator.nvim',
+}
+
+require('ts-error-translator').setup {
+  auto_override_publish_diagnostics = true,
+}
+
+add {
+  source = 'Sebastian-Nielsen/better-type-hover',
+}
+
 require('better-type-hover').setup {
   -- The primary key to hit to open the main window
   openTypeDocKeymap = '<C-P>',
 }
+
+add {
+  source = 'iamkarasik/sonarqube.nvim',
+  hooks = {
+    post_checkout = function()
+      vim.cmd 'SonarQubeInstallLsp'
+    end,
+  },
+}
+
+require('sonarqube').setup {}
