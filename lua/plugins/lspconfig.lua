@@ -1,4 +1,3 @@
-local utils = require 'config.utils'
 local add = MiniDeps.add
 add {
   source = 'neovim/nvim-lspconfig',
@@ -443,7 +442,9 @@ vim.list_extend(ensure_installed, {
   'harper-ls',
   'intelephense',
   'jq',
-  'jsonls', -- 'kulala_ls',
+  'jsonls',
+  'kulala-fmt',
+  -- 'kulala_ls',
   'lua_ls',
   'markdownlint',
   'php-cs-fixer',

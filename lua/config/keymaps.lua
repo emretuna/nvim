@@ -1,4 +1,3 @@
-local utils = require 'config.utils'
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 vim.keymap.set('n', 'XX', ':q<CR>', { silent = true })
@@ -6,7 +5,7 @@ vim.keymap.set('n', 'XX', ':q<CR>', { silent = true })
 -- Saves modified documents, and then exits
 vim.keymap.set('n', 'ZZ', ':xa<CR>', { silent = true })
 -- Open netrw
-vim.keymap.set('n', '<leader>e', '<Cmd>Lexplore!<CR>', { silent = true, desc = 'Open netrw' }) -- Try Vex or Vex! to open in a split
+vim.keymap.set('n', '<leader>e', '<cmd>Lexplore!<CR>', { silent = true, desc = 'Open netrw' }) -- Try Vex or Vex! to open in a split
 -- Clear search
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 -- Shifted movement
@@ -50,9 +49,7 @@ vim.keymap.set('n', '<leader>tx', '<cmd>tabclose<CR>', { desc = 'Close current t
 vim.keymap.set('n', '<leader>tf', '<cmd>tabnew %<CR>', { desc = 'Open current buffer in new tab' }) --  move current buffer to new tab
 --
 -- Rename file using LSP
-vim.keymap.set('n', '<leader>mR', function()
-  utils.rename_file()
-end, { desc = 'Rename file' })
+vim.keymap.set('n', '<leader>mR', '<cmd>WorkspaceRenameFile<CR>', { desc = 'Rename file' })
 
 -- Open file under cursor
 vim.keymap.set('n', '<leader>mo', function()
@@ -81,18 +78,17 @@ vim.keymap.set('t', '<C-k>', '<cmd>wincmd k<cr>', { desc = 'Go to Upper Window' 
 vim.keymap.set('t', '<C-l>', '<cmd>wincmd l<cr>', { desc = 'Go to Right Window' })
 
 -- Quickfix list keybinds
-vim.keymap.set('n', '<leader>qn', '<Cmd>cnext<CR>', { desc = 'Go to next item in Quickfix list' })
-vim.keymap.set('n', '<leader>qp', '<Cmd>cprev<CR>', { desc = 'Go to previous item in Quickfix list' })
-vim.keymap.set('n', '<leader>q.', '<Cmd>copen<CR>', { desc = 'Open Quickfix List' })
-vim.keymap.set('n', '<leader>qc', '<Cmd>cclose<CR>', { desc = 'Close Quickfix List' })
+vim.keymap.set('n', '<leader>qn', '<cmd>cnext<CR>', { desc = 'Go to next item in Quickfix list' })
+vim.keymap.set('n', '<leader>qp', '<cmd>cprev<CR>', { desc = 'Go to previous item in Quickfix list' })
+vim.keymap.set('n', '<leader>q.', '<cmd>copen<CR>', { desc = 'Open Quickfix List' })
+vim.keymap.set('n', '<leader>qc', '<cmd>cclose<CR>', { desc = 'Close Quickfix List' })
 -- Toggle terminals
-vim.keymap.set('n', '<F7>', utils.toggle_horizontal, { desc = 'Toggle Horizontal Terminal' })
-vim.keymap.set('n', '<C-\\>', utils.toggle_float, { desc = 'Toggle Floating Terminal' })
+vim.keymap.set('n', '<F7>', '<cmd>HorizontalTerm<CR>', { desc = 'Toggle Horizontal Terminal' })
+vim.keymap.set('n', '<C-\\>', '<cmd>FloatTerm<CR>', { desc = 'Toggle Floating Terminal' })
 vim.keymap.set('t', '<C-\\>', function()
   -- Exit terminal mode and close the floating terminal
-  vim.cmd [[<C-\><C-n>]]
-  utils.toggle_float()
+  vim.cmd [[<C-\><C-n>]] '<cmd>FloatTerm<CR>'
 end, { desc = 'Toggle Floating Terminal' })
-vim.keymap.set('n', '<leader>g.', '<Cmd>LazyGit<CR>', { desc = 'Toggle LazyGit' })
+vim.keymap.set('n', '<leader>g.', '<cmd>LazyGit<CR>', { desc = 'Toggle LazyGit' })
 vim.keymap.set('t', '<Esc><Esc>', [[<C-\><C-n>]], { desc = 'Exit Terminal Mode' })
 -- vim: ts=2 sts=2 sw=2 et

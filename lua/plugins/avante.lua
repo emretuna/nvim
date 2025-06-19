@@ -23,6 +23,7 @@ require('avante').setup {
   mode = 'agentic',
   -- auto_suggestions_provider = 'claude', -- Since auto-suggestions are a high-frequency operation and therefore expensive, it is recommended to specify an inexpensive provider or even a free provider: copilot
   providers = {
+    ---@type AvanteSupportedProvider
     claude = {
       endpoint = 'https://api.anthropic.com',
       -- model = 'claude-3-5-sonnet-20241022',
@@ -30,6 +31,17 @@ require('avante').setup {
       extra_request_body = {
         temperature = 0.75,
         max_tokens = 4096,
+      },
+    },
+    ---@type AvanteSupportedProvider
+    gemini = {
+      endpoint = 'https://generativelanguage.googleapis.com/v1beta/models',
+      model = 'gemini-2.0-flash',
+      timeout = 30000, -- Timeout in milliseconds
+      extra_request_body = {
+        generationConfig = {
+          temperature = 0.75,
+        },
       },
     },
   },

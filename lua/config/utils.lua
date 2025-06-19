@@ -36,83 +36,6 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
--- Get color settings
-local function get_color(v)
-  local color = {}
-  for _, c in ipairs { 'fg', 'bg' } do
-    if v[c] then
-      local name, hl = v[c], vim.api.nvim_get_hl(0, { name = v[c], link = false })
-      local hl_color = (c == 'fg' and hl and hl.fg) or (c == 'bg' and hl and hl.bg)
-      if hl_color then
-        table.insert(color, string.format('#%06x', hl_color))
-      end
-    end
-  end
-  if v.bold then
-    table.insert(color, 'bold')
-  end
-  return color
-end
-
--- Generate LazyGit theme YAML
-local function generate_yaml_content(theme, authorColors)
-  local lines = {
-    'gui:',
-    '  nerdFontsVersion: "3"',
-    '  theme:',
-  }
-  for key, value in pairs(theme) do
-    table.insert(lines, string.format('    %s:', key))
-    for _, v in ipairs(value) do
-      table.insert(lines, string.format("      - '%s'", v))
-    end
-  end
-  table.insert(lines, '    authorColors:')
-  table.insert(lines, string.format("      '*': '%s'", authorColors['*']))
-  table.insert(lines, 'os:')
-  table.insert(lines, "  editPreset: 'nvim-remote'")
-  return table.concat(lines, '\n') .. '\n'
-end
-
-function M.generate_lazygit_theme()
-  local current_theme = vim.g.colors_name or 'default'
-  if current_theme == vim.g.last_lazygit_theme then
-    return
-  end
-  vim.g.last_lazygit_theme = current_theme
-
-  local theme = {
-    [241] = get_color { fg = 'Special' },
-    activeBorderColor = get_color { fg = 'MatchParen', bold = true },
-    inactiveBorderColor = get_color { fg = 'FloatBorder' },
-    optionsTextColor = get_color { fg = 'Function' },
-    selectedLineBgColor = get_color { bg = 'Visual' },
-    cherryPickedCommitBgColor = get_color { fg = 'Identifier' },
-    cherryPickedCommitFgColor = get_color { fg = 'Function' },
-    unstagedChangesColor = get_color { fg = 'DiagnosticError' },
-    defaultFgColor = get_color { fg = 'Normal' },
-    searchingActiveBorderColor = get_color { fg = 'MatchParen', bold = true },
-  }
-
-  local authorColors = { ['*'] = get_color({ fg = 'Constant' })[1] }
-  local yaml_content = generate_yaml_content(theme, authorColors)
-  local theme_path = vim.fn.stdpath 'cache' .. '/lazygit-theme.yml'
-  local file = io.open(theme_path, 'w')
-  if file then
-    file:write(yaml_content)
-    file:close()
-    vim.notify('LazyGit theme updated!', vim.log.levels.INFO)
-  else
-    vim.notify('Could not write lazygit-theme.yml', vim.log.levels.ERROR)
-  end
-end
-
-vim.api.nvim_create_autocmd('ColorScheme', {
-  callback = function()
-    vim.defer_fn(M.generate_lazygit_theme, 100)
-  end,
-})
-
 -- File rename with LSP
 local function realpath(path)
   return vim.fs.normalize(uv.fs_realpath(path) or path)
@@ -184,6 +107,9 @@ vim.api.nvim_create_autocmd('User', {
   end,
 })
 
+vim.api.nvim_create_user_command('WorkspaceRenameFile', M.rename_file, { desc = 'Workspace Rename File' })
+
+-- Toggle term
 M.state = {
   horizontal = nil,
   float = nil,
@@ -263,6 +189,9 @@ function M.toggle_float()
   vim.cmd 'startinsert'
 end
 
+vim.api.nvim_create_user_command('FloatTerm', M.toggle_float, { desc = 'Toggle Floating terminal' })
+vim.api.nvim_create_user_command('HorizontalTerm', M.toggle_horizontal, { desc = 'Toggle Floating terminal' })
+
 function M.toggle_lazygit()
   if vim.fn.finddir('.git', vim.fn.getcwd() .. ';') == '' then
     vim.notify('Not a git repository', vim.log.levels.WARN)
@@ -331,4 +260,83 @@ function M.toggle_lazygit()
 end
 
 vim.api.nvim_create_user_command('LazyGit', M.toggle_lazygit, { desc = 'Toggle LazyGit terminal' })
+
+-- Generate LazyGit theme based on selected colorscheme
+-- Get color settings
+local function get_color(v)
+  local color = {}
+  for _, c in ipairs { 'fg', 'bg' } do
+    if v[c] then
+      local name, hl = v[c], vim.api.nvim_get_hl(0, { name = v[c], link = false })
+      local hl_color = (c == 'fg' and hl and hl.fg) or (c == 'bg' and hl and hl.bg)
+      if hl_color then
+        table.insert(color, string.format('#%06x', hl_color))
+      end
+    end
+  end
+  if v.bold then
+    table.insert(color, 'bold')
+  end
+  return color
+end
+
+-- Generate LazyGit theme YAML
+local function generate_yaml_content(theme, authorColors)
+  local lines = {
+    'gui:',
+    '  nerdFontsVersion: "3"',
+    '  theme:',
+  }
+  for key, value in pairs(theme) do
+    table.insert(lines, string.format('    %s:', key))
+    for _, v in ipairs(value) do
+      table.insert(lines, string.format("      - '%s'", v))
+    end
+  end
+  table.insert(lines, '    authorColors:')
+  table.insert(lines, string.format("      '*': '%s'", authorColors['*']))
+  table.insert(lines, 'os:')
+  table.insert(lines, "  editPreset: 'nvim-remote'")
+  return table.concat(lines, '\n') .. '\n'
+end
+
+function M.generate_lazygit_theme()
+  local current_theme = vim.g.colors_name or 'default'
+  if current_theme == vim.g.last_lazygit_theme then
+    return
+  end
+  vim.g.last_lazygit_theme = current_theme
+
+  local theme = {
+    [241] = get_color { fg = 'Special' },
+    activeBorderColor = get_color { fg = 'MatchParen', bold = true },
+    inactiveBorderColor = get_color { fg = 'FloatBorder' },
+    optionsTextColor = get_color { fg = 'Function' },
+    selectedLineBgColor = get_color { bg = 'Visual' },
+    cherryPickedCommitBgColor = get_color { fg = 'Identifier' },
+    cherryPickedCommitFgColor = get_color { fg = 'Function' },
+    unstagedChangesColor = get_color { fg = 'DiagnosticError' },
+    defaultFgColor = get_color { fg = 'Normal' },
+    searchingActiveBorderColor = get_color { fg = 'MatchParen', bold = true },
+  }
+
+  local authorColors = { ['*'] = get_color({ fg = 'Constant' })[1] }
+  local yaml_content = generate_yaml_content(theme, authorColors)
+  local theme_path = vim.fn.stdpath 'cache' .. '/lazygit-theme.yml'
+  local file = io.open(theme_path, 'w')
+  if file then
+    file:write(yaml_content)
+    file:close()
+    vim.notify('LazyGit theme updated!', vim.log.levels.INFO)
+  else
+    vim.notify('Could not write lazygit-theme.yml', vim.log.levels.ERROR)
+  end
+end
+
+vim.api.nvim_create_autocmd('ColorScheme', {
+  callback = function()
+    vim.defer_fn(M.generate_lazygit_theme, 100)
+  end,
+})
+
 return M

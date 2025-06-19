@@ -97,15 +97,6 @@ require('ts-error-translator').setup {
 }
 
 add {
-  source = 'Sebastian-Nielsen/better-type-hover',
-}
-
-require('better-type-hover').setup {
-  -- The primary key to hit to open the main window
-  openTypeDocKeymap = '<C-P>',
-}
-
-add {
   source = 'iamkarasik/sonarqube.nvim',
   hooks = {
     post_checkout = function()

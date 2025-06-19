@@ -52,6 +52,7 @@ require('conform').setup {
     lua = { 'stylua' },
     php = { 'pint', 'php_cs_fixer', 'phpcbf' },
     blade = { 'blade-formatter' },
+    http = { 'kulala-fmt' },
     ['_'] = { 'trim_whitespace', 'trim_newlines' },
 
     -- python = { "isort", "black" },
