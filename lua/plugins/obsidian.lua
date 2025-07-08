@@ -1,10 +1,11 @@
 local add = MiniDeps.add
 add {
   source = 'obsidian-nvim/obsidian.nvim',
-	depends = { 'saghen/blink.cmp' }
+  depends = { 'saghen/blink.cmp' },
 }
 
 require('obsidian').setup {
+  legacy_commands = false,
   workspaces = {
     {
       name = 'Dev',
@@ -19,34 +20,6 @@ require('obsidian').setup {
   completion = { blink = true },
   picker = {
     name = 'mini.pick',
-  },
-  mappings = {
-    -- Overrides the 'gf' mapping to work on markdown/wiki links within your vault.
-    ['gf'] = {
-      action = function()
-        return require('obsidian').util.gf_passthrough()
-      end,
-      opts = { noremap = false, expr = true, buffer = true },
-    },
-    -- create and toggle checkboxes no need for now, will use below mapping
-    -- ['<leader>ch'] = {
-    --   action = function()
-    --     local line = vim.api.nvim_get_current_line()
-    --     if line:match '%s*- %[' then
-    --       require('obsidian').util.toggle_checkbox()
-    --     elseif line:match '%s*-' then
-    --       vim.cmd [[s/-/- [ ]/]]
-    --       vim.cmd.nohlsearch()
-    --     end
-    --   end,
-    --   opts = { buffer = true },
-    -- },
-    ['<cr>'] = {
-      action = function()
-        return require('obsidian').util.smart_action()
-      end,
-      opts = { buffer = true, expr = true },
-    },
   },
   -- Optional, customize how names/IDs for new notes are created.
   note_id_func = function(title)
@@ -69,22 +42,22 @@ require('obsidian').setup {
 vim.opt.conceallevel = 1
 
 -- Obsidian Daily
-vim.keymap.set('n', '<leader>nd', ':ObsidianToday<cr>', { desc = 'Daily' })
+vim.keymap.set('n', '<leader>nd', ':Obsidian today<cr>', { desc = 'Daily' })
 -- Obsidian Tomorrow
-vim.keymap.set('n', '<leader>nt', ':ObsidianToday 1<cr>', { desc = 'Tomorrow' })
+vim.keymap.set('n', '<leader>nt', ':Obsidian today 1<cr>', { desc = 'Tomorrow' })
 -- Obsidian Yesterday
-vim.keymap.set('n', '<leader>ny', ':ObsidianToday -1<cr>', { desc = 'Yesterday' })
+vim.keymap.set('n', '<leader>ny', ':Obsidian today -1<cr>', { desc = 'Yesterday' })
 -- Obsidian Backlinks
-vim.keymap.set('n', '<leader>nb', ':ObsidianBacklinks<cr>', { desc = 'Backlinks' })
+vim.keymap.set('n', '<leader>nb', ':Obsidian backlinks<cr>', { desc = 'Backlinks' })
 -- Obsidian Link Selection
-vim.keymap.set('n', '<leader>nl', ':ObsidianLink<cr>', { desc = 'Link Selection' })
+vim.keymap.set('n', '<leader>nl', ':Obsidian link<cr>', { desc = 'Link Selection' })
 -- Obsidian Follow Link
-vim.keymap.set('n', '<leader>nf', ':ObsidianFollowLink<cr>', { desc = 'Follow Link' })
+vim.keymap.set('n', '<leader>nf', ':Obsidian follow_link<cr>', { desc = 'Follow Link' })
 -- Obsidian New
-vim.keymap.set('n', '<leader>nn', ':ObsidianNew<cr>', { desc = 'New' })
+vim.keymap.set('n', '<leader>nn', ':Obsidian new<cr>', { desc = 'New' })
 -- Obsidian Search
-vim.keymap.set('n', '<leader>ns', ':ObsidianSearch<cr>', { desc = 'Search' })
+vim.keymap.set('n', '<leader>ns', ':Obsidian search<cr>', { desc = 'Search' })
 -- Obsidian Open Quickswitch
-vim.keymap.set('n', '<leader>n.', ':ObsidianQuickSwitch<cr>', { desc = 'Quickswitch' })
+vim.keymap.set('n', '<leader>n.', ':Obsidian quick_switch<cr>', { desc = 'Quickswitch' })
 -- Obsidian Open In App
-vim.keymap.set('n', '<leader>no', ':ObsidianOpen<cr>', { desc = 'Open In App' })
+vim.keymap.set('n', '<leader>no', ':Obsidian open<cr>', { desc = 'Open In App' })

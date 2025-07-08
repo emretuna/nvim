@@ -18,11 +18,24 @@ add {
 
 require('avante').setup {
   ---@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
-  provider = 'claude', -- Recommend using Claude
+  provider = 'ollama', -- Recommend using Claude
   ---@alias Mode "agentic" | "legacy"
   mode = 'agentic',
   -- auto_suggestions_provider = 'claude', -- Since auto-suggestions are a high-frequency operation and therefore expensive, it is recommended to specify an inexpensive provider or even a free provider: copilot
   providers = {
+    ---@type AvanteSupportedProvider
+    ollama = {
+      endpoint = 'http://127.0.0.1:11434', -- Note that there is no /v1 at the end.
+      model = 'codellama:7b', -- qwq:32b
+      timeout = 30000, -- Timeout in milliseconds
+      extra_request_body = {
+        options = {
+          temperature = 0.75,
+          num_ctx = 20480,
+          keep_alive = '5m',
+        },
+      },
+    },
     ---@type AvanteSupportedProvider
     claude = {
       endpoint = 'https://api.anthropic.com',

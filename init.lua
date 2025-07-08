@@ -79,8 +79,6 @@ later(function()
   require 'plugins.treesitter'
   require 'plugins.ts-autotag'
   require 'plugins.lspconfig'
-  require 'plugins.avante'
-  require 'plugins.mcphub'
   require 'plugins.typescript'
   require 'plugins.nvim-highlight-colors'
   require 'plugins.obsidian'
