@@ -150,6 +150,15 @@ vim.api.nvim_create_autocmd('VimEnter', {
   end,
 })
 
+-- temporary solution for claude.nvim
+vim.api.nvim_create_autocmd('TermOpen', {
+  pattern = 'term://*claude*',
+  callback = function()
+    vim.bo.filetype = 'claude_term'
+    vim.bo.bufhidden = 'hide'
+  end,
+})
+
 -- Close some filetypes with <q>
 vim.api.nvim_create_autocmd({ 'FileType' }, {
   desc = 'Close some filetypes with <q>',
@@ -182,6 +191,7 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
     'grug-far',
     'custom_term',
     'lazygit_term',
+    'claude_term',
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false
@@ -189,6 +199,7 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
   end,
   group = augroup 'close_with_q',
 })
+
 vim.api.nvim_create_autocmd('VimEnter', {
   desc = 'Disable right contextual menu warning message',
   callback = function()

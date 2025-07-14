@@ -58,7 +58,7 @@ require('mini.clue').setup {
     require('mini.clue').gen_clues.windows(),
     require('mini.clue').gen_clues.z(),
     -- Custom clues
-    { mode = 'n', keys = '<Leader>a', desc = 'Avante' },
+    { mode = 'n', keys = '<Leader>a', desc = 'AI' },
     { mode = 'n', keys = '<Leader>b', desc = 'Buffer' },
     { mode = 'n', keys = '<Leader>f', desc = 'Find' },
     { mode = 'n', keys = '<Leader>g', desc = 'Git' },

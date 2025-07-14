@@ -76,6 +76,7 @@ end)
 
 later(function()
   require 'plugins.mini'
+  require 'plugins.claude'
   require 'plugins.treesitter'
   require 'plugins.ts-autotag'
   require 'plugins.lspconfig'
