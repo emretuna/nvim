@@ -63,28 +63,6 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
-vim.api.nvim_create_autocmd('CursorMoved', {
-  pattern = '*',
-  group = augroup 'ResizeBuffer',
-  desc = 'Resize buffer on entry, Alternative to focus.nvim',
-  callback = function()
-    local excluded_filetypes = {
-      'neo-tree',
-      'Trouble',
-      'trouble',
-      'netrw',
-    }
-    -- This handles all floating windows
-    local win = vim.api.nvim_win_get_config(0)
-    if win.relative ~= '' then
-      return
-    end
-    if not vim.tbl_contains(excluded_filetypes, vim.bo.filetype) then
-      vim.cmd('vertical resize ' .. math.floor(vim.o.columns / 1.618))
-    end
-  end,
-})
-
 -- vim.api.nvim_create_autocmd({ 'FileType' }, {
 --   pattern = { 'gitcommit', 'markdown' },
 --   callback = function()
