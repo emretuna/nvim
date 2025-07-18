@@ -198,45 +198,47 @@ function M.toggle_lazygit()
     return
   end
 
-  -- Close existing window if it exists
-  if M.state.lazygit and M.state.lazygit.win and vim.api.nvim_win_is_valid(M.state.lazygit.win) then
-    vim.api.nvim_win_close(M.state.lazygit.win, true)
+  local term = M.state.lazygit
+  -- If already open, close it
+  if term and term.win and vim.api.nvim_win_is_valid(term.win) then
+    vim.api.nvim_win_close(term.win, true)
     M.state.lazygit.win = nil
     return
   end
 
-  -- Always create a new buffer
-  local config_path = vim.fn.stdpath 'cache' .. '/lazygit-theme.yml'
-  local config_arg = string.format('--use-config-file="%s"', config_path)
-  local bufnr = vim.api.nvim_create_buf(false, true)
+  -- Create terminal buffer if missing
+  if not term or not term.buf or not vim.api.nvim_buf_is_valid(term.buf) then
+    local config_path = vim.fn.stdpath 'cache' .. '/lazygit-theme.yml'
+    local config_arg = string.format('--use-config-file="%s"', config_path)
+    local bufnr = vim.api.nvim_create_buf(false, true)
 
-  vim.api.nvim_buf_call(bufnr, function()
-    vim.cmd('terminal lazygit ' .. config_arg)
-  end)
+    vim.api.nvim_buf_call(bufnr, function()
+      vim.cmd('terminal lazygit ' .. config_arg)
+    end)
 
-  -- Make buffer unlisted and set buffer name
-  vim.bo[bufnr].buflisted = false
-  vim.api.nvim_buf_set_name(bufnr, 'term://lazygit')
-  vim.bo[bufnr].filetype = 'lazygit_term'
+    -- Make buffer unlisted and set buffer name
+    vim.bo[bufnr].buflisted = false
+    vim.bo[bufnr].filetype = 'lazygit_term'
 
-  -- Set up TermClose autocommand
-  vim.api.nvim_create_autocmd('TermClose', {
-    buffer = bufnr,
-    callback = function()
-      vim.schedule(function()
-        if M.state.lazygit and M.state.lazygit.win and vim.api.nvim_win_is_valid(M.state.lazygit.win) then
-          vim.api.nvim_win_close(M.state.lazygit.win, true)
-          M.state.lazygit.win = nil
-        end
-        -- Delete the buffer when terminal closes
-        if vim.api.nvim_buf_is_valid(bufnr) then
-          vim.api.nvim_buf_delete(bufnr, { force = true })
-        end
-      end)
-    end,
-  })
+    -- Set up TermClose autocommand
+    vim.api.nvim_create_autocmd('TermClose', {
+      buffer = bufnr,
+      callback = function()
+        vim.schedule(function()
+          if M.state.lazygit and M.state.lazygit.win and vim.api.nvim_win_is_valid(M.state.lazygit.win) then
+            vim.api.nvim_win_close(M.state.lazygit.win, true)
+            M.state.lazygit.win = nil
+          end
+          -- Clear the buffer reference when terminal closes
+          if M.state.lazygit then
+            M.state.lazygit.buf = nil
+          end
+        end)
+      end,
+    })
 
-  M.state.lazygit = { buf = bufnr }
+    M.state.lazygit = { buf = bufnr }
+  end
   local width = math.floor(vim.o.columns * 0.9)
   local height = math.floor(vim.o.lines * 0.9)
   local row = math.floor((vim.o.lines - height) / 2)

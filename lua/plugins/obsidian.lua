@@ -17,7 +17,7 @@ require('obsidian').setup {
     },
   },
   ui = { enable = false },
-  completion = { blink = true },
+  completion = { blink = true, nvim_cmp = false },
   picker = {
     name = 'mini.pick',
   },

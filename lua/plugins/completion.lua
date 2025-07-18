@@ -7,12 +7,12 @@ add {
     'rafamadriz/friendly-snippets',
     'Kaiser-Yang/blink-cmp-avante',
   },
-  checkout = 'v1.3.1',
+  checkout = 'v1.5.1',
 }
 
 require('blink.cmp').setup {
   fuzzy = {
-    prebuilt_binaries = { download = true, force_version = 'v1.3.1' },
+    prebuilt_binaries = { download = true, force_version = 'v1.5.1' },
   },
 
   keymap = {
@@ -35,6 +35,9 @@ require('blink.cmp').setup {
       dot_repeat = false,
     },
     menu = {
+      auto_show = function(ctx)
+        return ctx.mode ~= 'default'
+      end,
       min_width = 40,
       max_height = 20,
       border = vim.g.border_style,
