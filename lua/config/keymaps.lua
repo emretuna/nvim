@@ -91,4 +91,5 @@ vim.keymap.set('t', '<C-\\>', function()
 end, { desc = 'Toggle Floating Terminal' })
 vim.keymap.set('n', '<leader>g.', '<cmd>LazyGit<CR>', { desc = 'Toggle LazyGit' })
 vim.keymap.set('t', '<Esc><Esc>', [[<C-\><C-n>]], { desc = 'Exit Terminal Mode' })
+vim.keymap.set('n', '<leader>am', '<cmd>ClaudeMonitor<CR>', { desc = 'Claude Monitor' })
 -- vim: ts=2 sts=2 sw=2 et

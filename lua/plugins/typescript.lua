@@ -105,4 +105,41 @@ add {
   },
 }
 
-require('sonarqube').setup {}
+require('sonarqube').setup {
+  rules = {
+    enabled = true,
+
+    -- Enforce readable line lengths (adjust to your preference)
+    ['typescript:S103'] = { enabled = true, parameters = { maximumLineLength = 180 } },
+
+    -- 🐛 Bug detection
+    ['typescript:S1481'] = { enabled = true }, -- Unused local variables should be removed
+    ['typescript:S1848'] = { enabled = true }, -- Use shorthand syntax `{foo}` instead of `{foo: foo}`
+    ['typescript:S3330'] = { enabled = true }, -- Use strict equality `===` instead of `==`
+
+    -- 🧼 Code Quality / Readability
+    ['typescript:S1121'] = { enabled = true }, -- Assignments should not be made from within sub-expressions
+    ['typescript:S125'] = { enabled = true }, -- Commented-out code should be removed
+    ['typescript:S110'] = { enabled = true }, -- Inheritance tree too deep (can be noisy in React, disable if needed)
+    ['typescript:S1450'] = { enabled = true }, -- Private fields only used in one method should be local variables
+    ['typescript:S1448'] = { enabled = true }, -- Avoid function declarations inside loops
+
+    -- ✅ Maintainability
+    ['typescript:S3776'] = { enabled = true, parameters = { maxCognitiveComplexity = 15 } }, -- Reduce method complexity
+    ['typescript:S125'] = { enabled = true }, -- Remove commented-out code
+    ['typescript:S2583'] = { enabled = true }, -- Conditions should not unconditionally evaluate to "true" or "false"
+
+    -- 🛡️ Security
+    ['typescript:S2076'] = { enabled = true }, -- OS command injection vulnerabilities
+    ['typescript:S2092'] = { enabled = true }, -- Disabling HTML escaping can expose XSS
+    ['typescript:S5332'] = { enabled = true }, -- Avoid using `eval()`
+
+    -- ✨ Optional, but helpful in large teams:
+    ['typescript:S4325'] = { enabled = true }, -- Classes should be named with PascalCase
+    ['typescript:S4326'] = { enabled = true }, -- Interfaces should start with `I` (e.g., `IUser`) — personal/team preference
+
+    -- 💡 For frontend specifically
+    ['typescript:S3655'] = { enabled = true }, -- Proper use of optional chaining
+    ['typescript:S3616'] = { enabled = true }, -- Avoid confusing non-null assertions (e.g., `foo!.bar`)
+  },
+}

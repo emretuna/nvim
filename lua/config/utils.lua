@@ -114,6 +114,7 @@ M.state = {
   horizontal = nil,
   float = nil,
   lazygit = nil,
+  claude_monitor = nil,
 }
 
 function M.toggle_horizontal()
@@ -262,6 +263,48 @@ function M.toggle_lazygit()
 end
 
 vim.api.nvim_create_user_command('LazyGit', M.toggle_lazygit, { desc = 'Toggle LazyGit terminal' })
+-- Claude Monitor
+-- install first using: `uv tool install claude-monitor`
+
+function M.toggle_claude_monitor()
+  local term = M.state.claude_monitor
+  if term and term.win and vim.api.nvim_win_is_valid(term.win) then
+    vim.api.nvim_win_close(term.win, true)
+    M.state.claude_monitor.win = nil
+    return
+  end
+
+  if not term or not term.buf or not vim.api.nvim_buf_is_valid(term.buf) then
+    local bufnr = vim.api.nvim_create_buf(false, true)
+    vim.api.nvim_buf_call(bufnr, function()
+      vim.cmd 'terminal claude-monitor'
+    end)
+    vim.bo[bufnr].buflisted = false
+    vim.api.nvim_buf_set_name(bufnr, 'term://claude-monitor')
+    vim.bo[bufnr].filetype = 'claude_monitor_term'
+    M.state.claude_monitor = { buf = bufnr }
+  end
+
+  local width = math.floor(vim.o.columns * 0.8)
+  local height = math.floor(vim.o.lines * 0.8)
+  local row = math.floor((vim.o.lines - height) / 2)
+  local col = math.floor((vim.o.columns - width) / 2)
+
+  local win = vim.api.nvim_open_win(M.state.claude_monitor.buf, true, {
+    relative = 'editor',
+    row = row,
+    col = col,
+    width = width,
+    height = height,
+    style = 'minimal',
+    border = vim.g.border_style or 'rounded',
+  })
+
+  M.state.claude_monitor.win = win
+  vim.cmd 'startinsert'
+end
+
+vim.api.nvim_create_user_command('ClaudeMonitor', M.toggle_claude_monitor, { desc = 'Toggle Claude Monitor terminal' })
 
 -- Generate LazyGit theme based on selected colorscheme
 -- Get color settings
