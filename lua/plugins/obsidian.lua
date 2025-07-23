@@ -1,7 +1,7 @@
 local add = MiniDeps.add
 add {
   source = 'obsidian-nvim/obsidian.nvim',
-  depends = { 'saghen/blink.cmp' },
+  depends = { 'nvim-lua/plenary.nvim' },
 }
 
 require('obsidian').setup {
