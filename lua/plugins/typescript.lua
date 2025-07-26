@@ -74,6 +74,9 @@ require('typescript-tools').setup {
     },
   },
 }
+vim.lsp.config('typescript-tools', {
+  enabled = true,
+})
 
 vim.api.nvim_create_autocmd('BufWritePre', {
   pattern = '*.ts*',
@@ -143,3 +146,7 @@ require('sonarqube').setup {
     ['typescript:S3616'] = { enabled = true }, -- Avoid confusing non-null assertions (e.g., `foo!.bar`)
   },
 }
+
+vim.lsp.config('sonarqube', {
+  enabled = true,
+})

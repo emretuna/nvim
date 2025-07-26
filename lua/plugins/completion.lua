@@ -35,9 +35,6 @@ require('blink.cmp').setup {
       dot_repeat = false,
     },
     menu = {
-      auto_show = function(ctx)
-        return ctx.mode ~= 'default'
-      end,
       min_width = 40,
       max_height = 20,
       border = vim.g.border_style,
