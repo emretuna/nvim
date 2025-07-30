@@ -83,6 +83,7 @@ later(function()
   require 'plugins.lspconfig'
   require 'plugins.typescript'
   require 'plugins.nvim-highlight-colors'
+  require 'plugins.ergoterm'
   require 'plugins.obsidian'
   require 'plugins.render-markdown'
   require 'plugins.formatting'

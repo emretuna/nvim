@@ -167,9 +167,10 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
     'tsplayground',
     'Oil',
     'grug-far',
-    'custom_term',
+    'ergoterm',
     'lazygit_term',
     'claude_term',
+    'claude_monitor_term',
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false
