@@ -13,7 +13,7 @@ local dark_palette = {
   base0B = '#5a5a5a', -- Strings, inline code, escape characters
   base0C = '#6c6c6c', -- Support, regex, escape characters, special variables
   base0D = '#bcbcbc', -- Functions, methods, attributes
-  base0E = '#5e5e5e', -- Keywords, storage, language constructs
+  base0E = '#AC5963', -- Keywords, storage, language constructs
   base0F = '#404040', -- Deprecated elements, embedded language tags
 }
 
@@ -32,7 +32,7 @@ local light_palette = {
   base0B = '#707070', -- Strings, inline code, escape characters
   base0C = '#8a8a8a', -- Support, regex, escape characters, special variables
   base0D = '#595959', -- Functions, methods, attributes
-  base0E = '#707070', -- Keywords, storage, language constructs
+  base0E = '#AC5963', -- Keywords, storage, language constructs
   base0F = '#c0c0c0', -- Deprecated elements, embedded language tags
 }
 
@@ -41,7 +41,7 @@ local function apply_palette()
   local palette = vim.o.background == 'dark' and dark_palette or light_palette
   require('mini.base16').setup {
     palette = palette,
-    use_cterm = false,
+    use_cterm = true,
   }
   vim.g.colors_name = 'base16' -- Set colorscheme name
   -- Sample highlight overriding

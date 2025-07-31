@@ -27,7 +27,9 @@ local claude_monitor = terms.Terminal:new {
   -- dir = 'git_dir',
   selectable = false,
 }
-
+vim.api.nvim_create_user_command('LazyGit', function()
+  lazygit:toggle()
+end, { desc = 'Toggle Lazygit' })
 vim.keymap.set('n', '<leader>g.', function()
   lazygit:toggle()
 end, { desc = 'Open lazygit' })
@@ -37,7 +39,7 @@ vim.keymap.set('n', '<leader>am', function()
 end, { desc = 'Claude Monitor' })
 
 -- Terminal creation with different layouts
-vim.keymap.set('n', '<leader>cs', ':TermNew layout=below<CR>', { desc = 'Terminal below', noremap = true, silent = true }) -- Split below
+vim.keymap.set('n', '<F7>', ':TermNew layout=below<CR>', { desc = 'Terminal below', noremap = true, silent = true }) -- Split below
 vim.keymap.set('n', '<leader>cv', ':TermNew layout=right<CR>', { desc = 'Terminal right', noremap = true, silent = true }) -- Vertical split
 vim.keymap.set('n', '<leader>cf', ':TermNew layout=float<CR>', { desc = 'Terminal float', noremap = true, silent = true }) -- Floating window
 vim.keymap.set('n', '<leader>ct', ':TermNew layout=tab<CR>', { desc = 'Terminal tab', noremap = true, silent = true }) -- New tab
