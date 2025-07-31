@@ -22,7 +22,7 @@ local lazygit = terms.Terminal:new {
 }
 local claude_monitor = terms.Terminal:new {
   name = 'claude_monitor_term',
-  cmd = 'claude-monitor',
+  cmd = 'claude-monitor --plan pro',
   layout = 'float',
   -- dir = 'git_dir',
   selectable = false,
