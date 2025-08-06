@@ -83,12 +83,6 @@ vim.keymap.set('n', '<leader>qp', '<cmd>cprev<CR>', { desc = 'Go to previous ite
 vim.keymap.set('n', '<leader>q.', '<cmd>copen<CR>', { desc = 'Open Quickfix List' })
 vim.keymap.set('n', '<leader>qc', '<cmd>cclose<CR>', { desc = 'Close Quickfix List' })
 -- Toggle terminals
-vim.keymap.set('n', '<F7>', '<cmd>HorizontalTerm<CR>', { desc = 'Toggle Horizontal Terminal' })
-vim.keymap.set('n', '<C-\\>', '<cmd>FloatTerm<CR>', { desc = 'Toggle Floating Terminal' })
-vim.keymap.set('t', '<C-\\>', function()
-  -- Exit terminal mode and close the floating terminal
-  vim.cmd [[<C-\><C-n>]] '<cmd>FloatTerm<CR>'
-end, { desc = 'Toggle Floating Terminal' })
 vim.keymap.set('n', '<leader>g.', '<cmd>LazyGit<CR>', { desc = 'Toggle LazyGit' })
 vim.keymap.set('t', '<Esc><Esc>', [[<C-\><C-n>]], { desc = 'Exit Terminal Mode' })
 vim.keymap.set('n', '<leader>am', '<cmd>ClaudeMonitor<CR>', { desc = 'Claude Monitor' })

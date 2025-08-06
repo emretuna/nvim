@@ -41,7 +41,7 @@ end, { desc = 'Claude Monitor' })
 -- Terminal creation with different layouts
 vim.keymap.set('n', '<F7>', ':TermNew layout=below<CR>', { desc = 'Terminal below', noremap = true, silent = true }) -- Split below
 vim.keymap.set('n', '<leader>cv', ':TermNew layout=right<CR>', { desc = 'Terminal right', noremap = true, silent = true }) -- Vertical split
-vim.keymap.set('n', '<leader>cf', ':TermNew layout=float<CR>', { desc = 'Terminal float', noremap = true, silent = true }) -- Floating window
+vim.keymap.set('n', '<C-\\>', ':TermNew layout=float<CR>', { desc = 'Terminal float', noremap = true, silent = true }) -- Floating window
 vim.keymap.set('n', '<leader>ct', ':TermNew layout=tab<CR>', { desc = 'Terminal tab', noremap = true, silent = true }) -- New tab
 
 -- Open terminal picker

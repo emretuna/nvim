@@ -84,6 +84,7 @@ later(function()
   require 'plugins.typescript'
   require 'plugins.nvim-highlight-colors'
   require 'plugins.ergoterm'
+  require 'plugins.fff'
   require 'plugins.obsidian'
   require 'plugins.render-markdown'
   require 'plugins.formatting'

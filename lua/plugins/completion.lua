@@ -7,13 +7,18 @@ add {
     'rafamadriz/friendly-snippets',
     'Kaiser-Yang/blink-cmp-avante',
   },
-  checkout = 'v1.5.1',
+  hooks = {
+    post_install = function(params)
+      vim.system({ 'cargo', 'build', '--release' }, { cwd = params.path }):wait()
+    end,
+    post_checkout = function(params)
+      vim.system({ 'cargo', 'build', '--release' }, { cwd = params.path }):wait()
+    end,
+  },
 }
 
 require('blink.cmp').setup {
-  fuzzy = {
-    prebuilt_binaries = { download = true, force_version = 'v1.5.1' },
-  },
+  fuzzy = { implementation = 'prefer_rust_with_warning' },
 
   keymap = {
     preset = 'default',
