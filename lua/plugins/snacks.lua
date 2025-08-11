@@ -49,10 +49,10 @@ end, { desc = 'Terminal' })
 
 vim.keymap.set('n', '<leader>mc', function()
   Snacks.terminal(
-    { 'claude-monitor', '--plan', 'pro' },
-    { win = { border = vim.g.border_style, position = 'float', backdrop = false, title = 'Claude Monitor' } }
+    { 'bunx', 'ccusage', 'blocks', '--live', '--timezone Europe/Istanbul' },
+    { win = { border = vim.g.border_style, position = 'float', height = 20, backdrop = false, title = 'Claude Monitor' }, interactive = false }
   )
-end, { desc = 'Claude Monitor' })
+end, { desc = 'Claude Usage' })
 
 vim.keymap.set('n', '<leader>mt', function()
   Snacks.terminal.open(

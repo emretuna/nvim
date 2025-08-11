@@ -12,6 +12,12 @@ end
 --   command = 'silent! update | redraw',
 -- })
 
+vim.api.nvim_create_autocmd({ 'FocusGained', 'BufEnter', 'CursorHold', 'CursorHoldI' }, {
+  callback = function()
+    vim.cmd 'checktime'
+  end,
+})
+
 -- create directories when needed, when saving a file
 vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
   pattern = '*',

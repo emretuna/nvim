@@ -4,7 +4,14 @@ add {
   source = 'coder/claudecode.nvim',
 }
 
-require('claudecode').setup {}
+require('claudecode').setup {
+  terminal = {
+    snacks_win_opts = {
+      border = vim.g.border_style,
+      width = 64,
+    },
+  },
+}
 vim.keymap.set('n', '<leader>cc', '<cmd>ClaudeCode<cr>', { desc = 'Toggle Claude' })
 vim.keymap.set('n', '<leader>cf', '<cmd>ClaudeCodeFocus<cr>', { desc = 'Focus Claude' })
 vim.keymap.set('n', '<leader>cr', '<cmd>ClaudeCode --resume<cr>', { desc = 'Resume Claude' })
