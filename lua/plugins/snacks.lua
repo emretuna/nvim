@@ -16,6 +16,12 @@ require('snacks').setup {
   },
   image = {
     enabled = true,
+    doc = {
+      inline = false,
+      float = false,
+      max_width = 30,
+      max_height = 20,
+    },
   },
 }
 
@@ -27,10 +33,11 @@ vim.api.nvim_create_autocmd('User', {
     Snacks.rename.on_rename_file(event.data.from, event.data.to)
   end,
 })
-
-vim.keymap.set('n', '<leader>g.', function()
+vim.api.nvim_create_user_command('LazyGit', function()
   Snacks.lazygit { win = { border = vim.g.border_style, backdrop = false } }
-end, { desc = 'LazyGit' })
+end, { desc = 'Open LazyGit' })
+
+vim.keymap.set('n', '<leader>g.', '<cmd>LazyGit<cr>', { desc = 'LazyGit' })
 
 vim.keymap.set('n', '<F7>', function()
   Snacks.terminal.open(nil, { win = { relative = 'editor', position = 'bottom', height = 20 } })
@@ -47,6 +54,13 @@ vim.keymap.set('n', '<leader>mc', function()
   )
 end, { desc = 'Claude Monitor' })
 
+vim.keymap.set('n', '<leader>mt', function()
+  Snacks.terminal.open(
+    { 'tokei' },
+    { win = { style = 'minimal', relative = 'editor', position = 'bottom', title = 'Tokei', height = 20 }, interactive = false }
+  )
+end, { desc = 'Tokei' })
+
 vim.keymap.set('n', '<leader>mR', function()
   Snacks.rename.rename_file()
 end, { desc = 'Rename File' })
@@ -62,3 +76,7 @@ end, { desc = 'Zen Mode' })
 vim.keymap.set('n', '<leader>mZ', function()
   Snacks.zen.zoom()
 end, { desc = 'Zen Zoom' })
+
+vim.keymap.set('n', '<leader>mi', function()
+  Snacks.image.hover()
+end, { desc = 'Image Hover' })

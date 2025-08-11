@@ -5,6 +5,7 @@ vim.g.maplocalleader = ' '
 
 vim.opt.cmdheight = 0 -- Hide command line spacing
 
+vim.opt.autoread = true -- Set to auto read when a file is changed from the outside
 -- Netrw settings
 vim.g.netrw_banner = 0
 vim.g.netrw_liststyle = 3
