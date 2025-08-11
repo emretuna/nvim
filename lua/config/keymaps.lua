@@ -20,11 +20,10 @@ vim.keymap.set('n', '<C-u>', function()
 end, {
   desc = 'Fast move up',
 })
-vim.keymap.set('n', '<leader>mz', function()
-  MiniMisc.zoom()
-end, { desc = 'Zoom Buffer' })
+
 -- Map ScrollWheelUp to Ctrl+B
 vim.api.nvim_set_keymap('n', '<ScrollWheelUp>', '<C-B>', { noremap = true })
+
 -- Map ScrollWheelDown to Ctrl+F
 vim.api.nvim_set_keymap('n', '<ScrollWheelDown>', '<C-F>', { noremap = true })
 
@@ -43,30 +42,16 @@ vim.keymap.set('n', '<C-Up>', '<cmd>resize +2<cr>', { desc = 'Increase Window He
 vim.keymap.set('n', '<C-Down>', '<cmd>resize -2<cr>', { desc = 'Decrease Window Height' })
 vim.keymap.set('n', '<C-Left>', '<cmd>vertical resize -2<cr>', { desc = 'Decrease Window Width' })
 vim.keymap.set('n', '<C-Right>', '<cmd>vertical resize +2<cr>', { desc = 'Increase Window Width' })
+
 -- tabs
 vim.keymap.set('n', '<leader>to', '<cmd>tabnew<CR>', { desc = 'Open new tab' }) -- open new tab
 vim.keymap.set('n', '<leader>tx', '<cmd>tabclose<CR>', { desc = 'Close current tab' }) -- close current tab
 vim.keymap.set('n', '<leader>tf', '<cmd>tabnew %<CR>', { desc = 'Open current buffer in new tab' }) --  move current buffer to new tab
---
--- Rename file using LSP
-vim.keymap.set('n', '<leader>mR', '<cmd>WorkspaceRenameFile<CR>', { desc = 'Rename file' })
 
--- Open file under cursor
-vim.keymap.set('n', '<leader>mo', function()
-  local osType = os.getenv 'OS'
-  local filepath = vim.fn.expand '<cfile>' -- Get the file under the cursor
-  if vim.fn.filereadable(filepath) == 1 then
-    if osType == 'Darwin' then
-      vim.fn.jobstart({ 'open', filepath }, { detach = true })
-    else
-      vim.fn.jobstart({ 'xdg-open', filepath }, { detach = true })
-    end
-  else
-    vim.notify('No readable file under cursor', vim.log.levels.ERROR)
-  end
-end, { desc = 'Open file under cursor with open' })
+-- buffers
 vim.keymap.set('n', '<leader>`', '<cmd>e #<cr>', { desc = 'Switch Buffer' })
 vim.keymap.set('n', '<leader>ba', '<cmd>new<cr>', { desc = 'Buffer Add' })
+
 -- better indent
 vim.keymap.set('x', '<Tab>', '>gv', { desc = 'Indent Line' })
 vim.keymap.set('x', '<S-Tab>', '<gv', { desc = 'Unindent Line' })
@@ -82,8 +67,8 @@ vim.keymap.set('n', '<leader>qn', '<cmd>cnext<CR>', { desc = 'Go to next item in
 vim.keymap.set('n', '<leader>qp', '<cmd>cprev<CR>', { desc = 'Go to previous item in Quickfix list' })
 vim.keymap.set('n', '<leader>q.', '<cmd>copen<CR>', { desc = 'Open Quickfix List' })
 vim.keymap.set('n', '<leader>qc', '<cmd>cclose<CR>', { desc = 'Close Quickfix List' })
--- Toggle terminals
-vim.keymap.set('n', '<leader>g.', '<cmd>LazyGit<CR>', { desc = 'Toggle LazyGit' })
+
+-- Terminal Better Ecape
 vim.keymap.set('t', '<Esc><Esc>', [[<C-\><C-n>]], { desc = 'Exit Terminal Mode' })
-vim.keymap.set('n', '<leader>am', '<cmd>ClaudeMonitor<CR>', { desc = 'Claude Monitor' })
+
 -- vim: ts=2 sts=2 sw=2 et

@@ -60,7 +60,7 @@ require('mini.clue').setup {
     -- Custom clues
     { mode = 'n', keys = '<Leader>a', desc = 'AI' },
     { mode = 'n', keys = '<Leader>b', desc = 'Buffer' },
-    { mode = 'n', keys = '<Leader>c', desc = 'Terminal' },
+    { mode = 'n', keys = '<Leader>c', desc = 'Claude' },
     { mode = 'n', keys = '<Leader>f', desc = 'Find' },
     { mode = 'n', keys = '<Leader>g', desc = 'Git' },
     { mode = 'n', keys = '<Leader>h', desc = 'Http' },
@@ -70,7 +70,6 @@ require('mini.clue').setup {
     { mode = 'n', keys = '<Leader>r', desc = 'Refactor' },
     { mode = 'n', keys = '<Leader>t', desc = 'Tabs' },
     { mode = 'n', keys = '<Leader>m', desc = 'Misc' },
-    { mode = 'n', keys = '<Leader>u', desc = 'UI' },
     { mode = 'n', keys = '<Leader>v', desc = 'Visits' },
     { mode = 'n', keys = '<Leader>w', desc = 'Window' },
     { mode = 'n', keys = '<Leader>x', desc = 'Trouble' },

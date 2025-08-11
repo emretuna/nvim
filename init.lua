@@ -53,7 +53,6 @@ now(function()
   require 'config.options'
   require 'config.keymaps'
   require 'config.autocmds'
-  require 'config.utils'
 
   -- Use 'mini.misc' for some useful helpers
   require('mini.misc').setup()
@@ -76,14 +75,15 @@ end)
 
 later(function()
   require 'plugins.mini'
+  require 'plugins.snacks'
   require 'plugins.claude'
+  require 'plugins.opencode'
   require 'plugins.treesitter'
   require 'plugins.ts-autotag'
   require 'plugins.completion'
   require 'plugins.lspconfig'
   require 'plugins.typescript'
   require 'plugins.nvim-highlight-colors'
-  require 'plugins.ergoterm'
   require 'plugins.fff'
   require 'plugins.obsidian'
   require 'plugins.render-markdown'
@@ -98,7 +98,6 @@ later(function()
   require 'plugins.overseer'
   require 'plugins.refactoring'
   require 'plugins.trouble'
-  require 'plugins.zen-mode'
   require 'plugins.dadbod'
   -- require 'plugins.debug'
   -- require 'plugins.neotest'

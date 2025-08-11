@@ -6,6 +6,7 @@ add {
     'mikavilpas/blink-ripgrep.nvim',
     'rafamadriz/friendly-snippets',
     'Kaiser-Yang/blink-cmp-avante',
+    'MeanderingProgrammer/render-markdown.nvim',
   },
   hooks = {
     post_install = function(params)
@@ -107,29 +108,10 @@ require('blink.cmp').setup {
     },
   },
   sources = {
-    default = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev', 'markdown', 'avante' },
+    default = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev', 'markdown' },
     min_keyword_length = 0,
     per_filetype = { sql = { 'dadbod', 'lsp' } },
     providers = {
-      avante = {
-        module = 'blink-cmp-avante',
-        name = 'Avante',
-        opts = {
-          -- options for blink-cmp-avante
-          avante = {
-            command = {
-              get_kind_name = function(_)
-                return 'AvanteCmd'
-              end,
-            },
-            mention = {
-              get_kind_name = function(_)
-                return 'AvanteMention'
-              end,
-            },
-          },
-        },
-      },
       ripgrep = {
         module = 'blink-ripgrep',
         name = 'Ripgrep',

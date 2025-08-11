@@ -6,7 +6,8 @@ add {
 }
 
 require('render-markdown').setup {
-  file_types = { 'markdown', 'norg', 'rmd', 'org', 'vimwiki', 'Avante' },
+  file_types = { 'markdown', 'norg', 'rmd', 'org', 'vimwiki', 'Avante', 'opencode_output' },
+  anti_conceal = { enabled = false },
   code = {
     sign = false,
     width = 'block',

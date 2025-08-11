@@ -9,6 +9,7 @@ add {
       vim.system({ 'cargo', 'build', '--release' }, { cwd = params.path }):wait()
     end,
   },
+  depends ={'folke/snacks.nvim'},
 }
 
 require('fff').setup {
