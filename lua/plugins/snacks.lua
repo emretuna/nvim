@@ -23,6 +23,9 @@ require('snacks').setup {
       max_height = 20,
     },
   },
+  toggle = {
+    notify = false,
+  },
 }
 
 local Snacks = require 'snacks'
@@ -36,6 +39,10 @@ vim.api.nvim_create_autocmd('User', {
 vim.api.nvim_create_user_command('LazyGit', function()
   Snacks.lazygit { win = { border = vim.g.border_style, backdrop = false } }
 end, { desc = 'Open LazyGit' })
+
+Snacks.toggle.dim():map '<leader>md'
+Snacks.toggle.zoom():map '<leader>mz'
+Snacks.toggle.zen():map '<leader>mZ'
 
 vim.keymap.set('n', '<leader>g.', '<cmd>LazyGit<cr>', { desc = 'LazyGit' })
 
@@ -68,14 +75,6 @@ end, { desc = 'Rename File' })
 vim.keymap.set('n', '<leader>mb', function()
   Snacks.gitbrowse()
 end, { desc = 'Git Browse' })
-
-vim.keymap.set('n', '<leader>mz', function()
-  Snacks.zen()
-end, { desc = 'Zen Mode' })
-
-vim.keymap.set('n', '<leader>mZ', function()
-  Snacks.zen.zoom()
-end, { desc = 'Zen Zoom' })
 
 vim.keymap.set('n', '<leader>mi', function()
   Snacks.image.hover()

@@ -8,11 +8,8 @@ add {
 }
 
 require('opencode').setup {
-  prompts = {
-    joke = {
-      description = 'Tell me a cat joke',
-      prompt = 'Tell me a joke about cats. Make it funny, but not too funny.',
-    },
+  terminal = {
+    enter = true,
   },
 }
 
