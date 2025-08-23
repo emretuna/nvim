@@ -28,7 +28,6 @@ NVIM_APPNAME=emretuna/nvim/ nvim
 
 ### ai
 
-- [yetone/avante.nvim](https://dotfyle.com/plugins/yetone/avante.nvim)
 - [monkoose/neocodeium](https://dotfyle.com/plugins/monkoose/neocodeium)
 - [supermaven-inc/supermaven-nvim](https://dotfyle.com/plugins/supermaven-inc/supermaven-nvim)
 
@@ -38,8 +37,7 @@ NVIM_APPNAME=emretuna/nvim/ nvim
 
 ### color
 
-- [NvChad/nvim-colorizer.lua](https://dotfyle.com/plugins/NvChad/nvim-colorizer.lua)
-- [folke/twilight.nvim](https://dotfyle.com/plugins/folke/twilight.nvim)
+- [brenoprata10/nvim-highlight-colors](https://dotfyle.com/plugins/brenoprata10/nvim-highlight-colors)
 
 ### colorscheme
 
@@ -56,7 +54,7 @@ NVIM_APPNAME=emretuna/nvim/ nvim
 
 ### completion
 
-- [zbirenbaum/copilot.lua](https://dotfyle.com/plugins/zbirenbaum/copilot.lua)
+- [mikavilpas/blink-ripgrep.nvim](https://dotfyle.com/plugins/mikavilpas/blink-ripgrep.nvim)
 - [Saghen/blink.cmp](https://dotfyle.com/plugins/Saghen/blink.cmp)
 
 ### debugging
@@ -71,17 +69,17 @@ NVIM_APPNAME=emretuna/nvim/ nvim
 
 ### editing-support
 
+- [folke/snacks.nvim](https://dotfyle.com/plugins/folke/snacks.nvim)
 - [nvim-treesitter/nvim-treesitter-context](https://dotfyle.com/plugins/nvim-treesitter/nvim-treesitter-context)
-- [folke/zen-mode.nvim](https://dotfyle.com/plugins/folke/zen-mode.nvim)
 - [windwp/nvim-ts-autotag](https://dotfyle.com/plugins/windwp/nvim-ts-autotag)
 
 ### formatting
 
 - [stevearc/conform.nvim](https://dotfyle.com/plugins/stevearc/conform.nvim)
 
-### icon
+### fuzzy-finder
 
-- [echasnovski/mini.icons](https://dotfyle.com/plugins/echasnovski/mini.icons)
+- [dmtrKovalenko/fff.nvim](https://dotfyle.com/plugins/dmtrKovalenko/fff.nvim)
 
 ### lsp
 
@@ -96,13 +94,9 @@ NVIM_APPNAME=emretuna/nvim/ nvim
 
 - [MeanderingProgrammer/render-markdown.nvim](https://dotfyle.com/plugins/MeanderingProgrammer/render-markdown.nvim)
 
-### media
-
-- [HakonHarnes/img-clip.nvim](https://dotfyle.com/plugins/HakonHarnes/img-clip.nvim)
-
 ### note-taking
 
-- [epwalsh/obsidian.nvim](https://dotfyle.com/plugins/epwalsh/obsidian.nvim)
+- [obsidian-nvim/obsidian.nvim](https://dotfyle.com/plugins/obsidian-nvim/obsidian.nvim)
 
 ### nvim-dev
 
@@ -114,6 +108,7 @@ NVIM_APPNAME=emretuna/nvim/ nvim
 
 - [adalessa/laravel.nvim](https://dotfyle.com/plugins/adalessa/laravel.nvim)
 - [dmmulroy/ts-error-translator.nvim](https://dotfyle.com/plugins/dmmulroy/ts-error-translator.nvim)
+- [dmmulroy/tsc.nvim](https://dotfyle.com/plugins/dmmulroy/tsc.nvim)
 
 ### quickfix
 
@@ -125,17 +120,12 @@ NVIM_APPNAME=emretuna/nvim/ nvim
 
 ### snippet
 
-- [L3MON4D3/LuaSnip](https://dotfyle.com/plugins/L3MON4D3/LuaSnip)
 - [rafamadriz/friendly-snippets](https://dotfyle.com/plugins/rafamadriz/friendly-snippets)
 
 ### syntax
 
 - [nvim-treesitter/nvim-treesitter-textobjects](https://dotfyle.com/plugins/nvim-treesitter/nvim-treesitter-textobjects)
 - [nvim-treesitter/nvim-treesitter](https://dotfyle.com/plugins/nvim-treesitter/nvim-treesitter)
-
-### terminal-integration
-
-- [akinsho/toggleterm.nvim](https://dotfyle.com/plugins/akinsho/toggleterm.nvim)
 
 ### test
 
@@ -147,7 +137,6 @@ NVIM_APPNAME=emretuna/nvim/ nvim
 
 ### utility
 
-- [kevinhwang91/nvim-ufo](https://dotfyle.com/plugins/kevinhwang91/nvim-ufo)
 - [echasnovski/mini.nvim](https://dotfyle.com/plugins/echasnovski/mini.nvim)
 
 ### web-development
@@ -156,17 +145,20 @@ NVIM_APPNAME=emretuna/nvim/ nvim
 
 ## Language Servers
 
-- clangd
+- astro
+- cmake
 - cssls
+- denols
 - docker_compose_language_service
 - dockerls
-- gopls
+- emmet_ls
 - graphql
 - html
 - intelephense
 - jsonls
 - lua_ls
 - prismals
+- sqlls
 - svelte
 - tailwindcss
 - tflint
