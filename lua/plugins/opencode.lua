@@ -7,7 +7,7 @@ add {
   },
 }
 
-require('opencode').setup {
+vim.g.opencode_opts = {
   terminal = {
     enter = true,
   },
@@ -26,7 +26,7 @@ vim.api.nvim_create_autocmd('User', {
   end,
 })
 
-vim.keymap.set('n', '<leader>at', '<cmd>lua require("opencode").toggle()<cr>', { desc = 'Toggle embedded opencode' })
+vim.keymap.set('n', '<leader>ao', '<cmd>lua require("opencode").toggle()<cr>', { desc = 'Toggle embedded opencode' })
 vim.keymap.set('n', '<leader>aa', '<cmd>lua require("opencode").ask()<cr>', { desc = 'Ask opencode' })
 vim.keymap.set('n', '<leader>ap', '<cmd>lua require("opencode").select_prompt()<cr>', { desc = 'Select prompt' })
 vim.keymap.set('n', '<leader>an', '<cmd>lua require("opencode").command("session_new")<cr>', { desc = 'New session' })

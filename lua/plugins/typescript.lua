@@ -10,6 +10,12 @@ add {
 
 require('typescript-tools').setup {
   settings = {
+    root_dir = function(fname)
+      if lspconfig_util.root_pattern('deno.json', 'deno.jsonc')(fname) then
+        return nil
+      end
+      return lspconfig_util.root_pattern('package.json', 'tsconfig.json')(fname)
+    end,
     -- tsserver_max_memory = 8192,
     code_lens_mode = 'all',
     expose_as_code_action = 'all',
