@@ -38,7 +38,7 @@ require('obsidian').setup {
     return tostring(os.time()) .. '-' .. suffix
   end,
 }
-vim.opt.conceallevel = 1
+vim.o.conceallevel = 1
 
 -- Obsidian Daily
 vim.keymap.set('n', '<leader>nd', ':Obsidian today<cr>', { desc = 'Daily' })

@@ -76,7 +76,7 @@ end)
 later(function()
   require 'plugins.mini'
   require 'plugins.snacks'
-  require 'plugins.claude'
+  -- require 'plugins.claude'
   require 'plugins.opencode'
   require 'plugins.treesitter'
   require 'plugins.ts-autotag'

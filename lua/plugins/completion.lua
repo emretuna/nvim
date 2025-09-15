@@ -5,7 +5,6 @@ add {
   depends = {
     'mikavilpas/blink-ripgrep.nvim',
     'rafamadriz/friendly-snippets',
-    'Kaiser-Yang/blink-cmp-avante',
     'MeanderingProgrammer/render-markdown.nvim',
   },
   hooks = {

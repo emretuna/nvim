@@ -25,11 +25,30 @@ vim.api.nvim_create_autocmd('User', {
     end
   end,
 })
-
-vim.keymap.set('n', '<leader>ao', '<cmd>lua require("opencode").toggle()<cr>', { desc = 'Toggle embedded opencode' })
-vim.keymap.set('n', '<leader>aa', '<cmd>lua require("opencode").ask()<cr>', { desc = 'Ask opencode' })
-vim.keymap.set('n', '<leader>ap', '<cmd>lua require("opencode").select_prompt()<cr>', { desc = 'Select prompt' })
-vim.keymap.set('n', '<leader>an', '<cmd>lua require("opencode").command("session_new")<cr>', { desc = 'New session' })
-vim.keymap.set('n', '<leader>ay', '<cmd>lua require("opencode").command("messages_copy")<cr>', { desc = 'Copy last message' })
-vim.keymap.set('n', '<S-C-u>', '<cmd>lua require("opencode").command("messages_half_page_up")<cr>', { desc = 'Scroll messages up' })
-vim.keymap.set('n', '<S-C-d>', '<cmd>lua require("opencode").command("messages_half_page_down")<cr>', { desc = 'Scroll messages down' })
+vim.keymap.set('n', '<leader>ao', function()
+  require('opencode').toggle()
+end, { desc = 'Toggle opencode' })
+vim.keymap.set('n', '<leader>aa', function()
+  require('opencode').ask()
+end, { desc = 'Ask opencode' })
+vim.keymap.set('n', '<leader>ac', function()
+  require('opencode').ask '@cursor: '
+end, { desc = 'Ask opencode about cursor' })
+vim.keymap.set('v', '<leader>as', function()
+  require('opencode').ask '@selection: '
+end, { desc = 'Ask opencode about selection' })
+vim.keymap.set('n', '<leader>an', function()
+  require('opencode').command 'session_new'
+end, { desc = 'New opencode session' })
+vim.keymap.set('n', '<leader>ay', function()
+  require('opencode').command 'messages_copy'
+end, { desc = 'Copy last opencode response' })
+vim.keymap.set('n', '<S-C-u>', function()
+  require('opencode').command 'messages_half_page_up'
+end, { desc = 'Messages half page up' })
+vim.keymap.set('n', '<S-C-d>', function()
+  require('opencode').command 'messages_half_page_down'
+end, { desc = 'Messages half page down' })
+vim.keymap.set({ 'n', 'v' }, '<leader>a.', function()
+  require('opencode').select()
+end, { desc = 'Select opencode prompt' })
