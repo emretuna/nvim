@@ -76,8 +76,7 @@ end)
 later(function()
   require 'plugins.mini'
   require 'plugins.snacks'
-  require 'plugins.sidekick'
-  -- require 'plugins.claude'
+  require 'plugins.claude'
   require 'plugins.opencode'
   require 'plugins.treesitter'
   require 'plugins.ts-autotag'
@@ -95,7 +94,7 @@ later(function()
   require 'plugins.rest'
   require 'plugins.quicker'
   require 'plugins.grug-far'
-  -- require 'plugins.ai-assistant'
+  require 'plugins.ai-assistant'
   require 'plugins.overseer'
   require 'plugins.refactoring'
   require 'plugins.trouble'
