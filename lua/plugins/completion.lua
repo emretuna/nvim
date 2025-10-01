@@ -24,6 +24,16 @@ require('blink.cmp').setup {
     preset = 'default',
     ['<C-e>'] = { 'hide', 'fallback' },
     ['<C-y>'] = { 'select_and_accept', 'fallback' },
+    ['<Tab>'] = {
+      'snippet_forward',
+      function() -- sidekick next edit suggestion
+        return require('sidekick').nes_jump_or_apply()
+      end,
+      function() -- if you are using Neovim's native inline completions
+        return vim.lsp.inline_completion.get()
+      end,
+      'fallback',
+    },
   },
 
   appearance = {
@@ -119,8 +129,12 @@ require('blink.cmp').setup {
         opts = {
           prefix_min_len = 4,
           score_offset = 10, -- should be lower priority
-          max_filesize = '300K',
-          search_casing = '--smart-case',
+        },
+        backend = {
+          ripgrep = {
+            max_filesize = '300K',
+            search_casing = '--smart-case',
+          },
         },
       },
       lazydev = { name = 'LazyDev', module = 'lazydev.integrations.blink', score_offset = 100, fallbacks = { 'lsp' } },

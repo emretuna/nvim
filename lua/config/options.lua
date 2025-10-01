@@ -5,7 +5,7 @@ vim.g.maplocalleader = ' '
 
 vim.o.cmdheight = 0 -- Hide command line spacing
 
-vim.o.autoread = true -- Set to auto read when a file is changed from the outside
+-- vim.o.autoread = true -- Set to auto read when a file is changed from the outside
 vim.o.jumpoptions = ''
 -- Netrw settings
 vim.g.netrw_banner = 0
@@ -67,7 +67,8 @@ vim.o.whichwrap = '<,>,[,],l,h' -- Which characters can go through wrap on a lin
 vim.o.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal'
 vim.o.colorcolumn = '80' -- PEP8 like character limit vertical bar.
 -- vim.o.mousescroll = 'ver:2,hor:5' -- Disables hozirontal scroll in neovim.
-vim.o.guicursor = 'n-v-c:block-Cursor/lCursor-blinkwait1000-blinkon100-blinkoff100,i-ci:ver25-Cursor/lCursor-blinkwait1000-blinkon100-blinkoff100,r:hor50-Cursor/lCursor-blinkwait100-blinkon100-blinkoff100'
+vim.o.guicursor =
+  'n-v-c:block-Cursor/lCursor-blinkwait1000-blinkon100-blinkoff100,i-ci:ver25-Cursor/lCursor-blinkwait1000-blinkon100-blinkoff100,r:hor50-Cursor/lCursor-blinkwait100-blinkon100-blinkoff100'
 
 vim.o.scrolloff = 10 -- Number of lines to leave before/after the cursor when scrolling. Setting a high value keep the cursor centered.
 vim.o.sidescrolloff = 10 -- Same but for side scrolling.

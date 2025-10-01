@@ -1,6 +1,6 @@
 local add = MiniDeps.add
 local ai_assistant = vim.g.ai_assistant or 'codeium' -- Default to neocodeium if not set
-local completion_engine = require 'blink.cmp'
+local blink = require 'blink.cmp'
 
 if ai_assistant == 'codeium' then
   add {
@@ -14,8 +14,12 @@ if ai_assistant == 'codeium' then
     silent = true,
     debounce = false,
     filter = function()
-      return not completion_engine.is_visible()
+      return not blink.is_visible()
     end,
+    single_line = {
+      enabled = true,
+      label = '⚡︎',
+    },
   }
 
   vim.api.nvim_create_autocmd('User', {
@@ -24,6 +28,7 @@ if ai_assistant == 'codeium' then
       neocodeium.clear()
     end,
   })
+
   -- Neocodeium keymaps
   vim.keymap.set('i', '<c-y>', function()
     neocodeium.accept()

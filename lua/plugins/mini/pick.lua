@@ -53,6 +53,10 @@ vim.keymap.set('n', '<leader>f?', function()
 end, { desc = 'Search Hipatterns' })
 
 vim.keymap.set('n', '<leader>fo', function()
+  MiniExtra.pickers.oldfiles { current_dir = true }
+end, { desc = 'Search Oldfiles Cwd' })
+
+vim.keymap.set('n', '<leader>fO', function()
   MiniExtra.pickers.oldfiles()
 end, { desc = 'Search Oldfiles' })
 
