@@ -5,7 +5,9 @@ add {
 }
 
 require('claudecode').setup {
+  focus_after_send = true,
   terminal = {
+    provider = 'snacks',
     snacks_win_opts = {
       border = vim.g.border_style,
       width = 64,
@@ -19,5 +21,6 @@ vim.keymap.set('n', '<leader>cr', '<cmd>ClaudeCode --resume<cr>', { desc = 'Resu
 vim.keymap.set('n', '<leader>cC', '<cmd>ClaudeCode --continue<cr>', { desc = 'Continue Claude' })
 vim.keymap.set('n', '<leader>cb', '<cmd>ClaudeCodeAdd %<cr>', { desc = 'Add current buffer' })
 vim.keymap.set('v', '<leader>cs', '<cmd>ClaudeCodeSend<cr>', { desc = 'Send to Claude' })
+vim.keymap.set('n', '<leader>ct', '<cmd>ClaudeCodeTreeAdd<cr>', { desc = 'Add Tree' })
 vim.keymap.set('n', '<leader>ca', '<cmd>ClaudeCodeDiffAccept<cr>', { desc = 'Accept diff' })
 vim.keymap.set('n', '<leader>cd', '<cmd>ClaudeCodeDiffDeny<cr>', { desc = 'Deny diff' })
