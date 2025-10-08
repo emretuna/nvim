@@ -13,6 +13,9 @@ require('claudecode').setup {
       width = 64,
     },
   },
+  diff_opts = {
+    keep_terminal_focus = true, -- If true, moves focus back to terminal after diff opens
+  },
 }
 
 vim.keymap.set('n', '<leader>cc', '<cmd>ClaudeCode<cr>', { desc = 'Toggle Claude' })

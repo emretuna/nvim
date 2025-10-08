@@ -58,7 +58,7 @@ now(function()
   require('mini.misc').setup()
   MiniMisc.setup_restore_cursor()
   MiniMisc.setup_auto_root()
-  MiniMisc.setup_termbg_sync()
+  -- MiniMisc.setup_termbg_sync() -- Synchronize terminal background color (Disable for transparent background)
   require('mini.basics').setup {
     options = { basic = true },
     mappings = { option_toggle_prefix = [[\]], move_with_alt = true },
