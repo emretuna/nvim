@@ -33,7 +33,7 @@ local servers = {
   'yamlls',
 }
 vim.lsp.enable(servers)
-
+vim.lsp.inline_completion.enable()
 vim.lsp.config('*', {
   capabilities = require('blink.cmp').get_lsp_capabilities(nil, true),
   root_markers = { '.git' },

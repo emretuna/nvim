@@ -60,7 +60,6 @@ require('mini.clue').setup {
     -- Custom clues
     { mode = 'n', keys = '<Leader>a', desc = 'AI' },
     { mode = 'n', keys = '<Leader>b', desc = 'Buffer' },
-    { mode = 'n', keys = '<Leader>c', desc = 'Claude' },
     { mode = 'n', keys = '<Leader>f', desc = 'Find' },
     { mode = 'n', keys = '<Leader>g', desc = 'Git' },
     { mode = 'n', keys = '<Leader>h', desc = 'Http' },

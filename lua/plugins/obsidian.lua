@@ -48,12 +48,30 @@ vim.keymap.set('n', '<leader>nt', ':Obsidian today 1<cr>', { desc = 'Tomorrow' }
 vim.keymap.set('n', '<leader>ny', ':Obsidian today -1<cr>', { desc = 'Yesterday' })
 -- Obsidian Backlinks
 vim.keymap.set('n', '<leader>nb', ':Obsidian backlinks<cr>', { desc = 'Backlinks' })
+-- Obsidian Tags
+vim.keymap.set('n', '<leader>nT', ':Obsidian tags<cr>', { desc = 'Tags' })
+-- Obsidian Toc
+vim.keymap.set('n', '<leader>nc', ':Obsidian toc<cr>', { desc = 'Table of Contents' })
 -- Obsidian Link Selection
 vim.keymap.set('n', '<leader>nl', ':Obsidian link<cr>', { desc = 'Link Selection' })
+-- Obsidian Link New
+vim.keymap.set('n', '<leader>nL', ':Obsidian link_new<cr>', { desc = 'Link New' })
 -- Obsidian Follow Link
 vim.keymap.set('n', '<leader>nf', ':Obsidian follow_link<cr>', { desc = 'Follow Link' })
+-- Obsidian Insert Template
+vim.keymap.set('n', '<leader>ni', ':Obsidian template<cr>', { desc = 'Insert Template' })
+-- Obsidian Paste Image
+vim.keymap.set('n', '<leader>np', ':Obsidian paste_image<cr>', { desc = 'Paste Image' })
+-- Obsidian Toggle
+vim.keymap.set('n', '<leader>n/', ':Obsidian toggle<cr>', { desc = 'Toggle' })
 -- Obsidian New
 vim.keymap.set('n', '<leader>nn', ':Obsidian new<cr>', { desc = 'New' })
+-- Obsidian Rename
+vim.keymap.set('n', '<leader>nr', ':Obsidian rename<cr>', { desc = 'Rename' })
+-- Obsidian Extract
+vim.keymap.set('n', '<leader>ne', ':Obsidian extract_note<cr>', { desc = 'Extract' })
+-- Obsidian Workspace
+vim.keymap.set('n', '<leader>nw', ':Obsidian workspace<cr>', { desc = 'Workspace' })
 -- Obsidian Search
 vim.keymap.set('n', '<leader>ns', ':Obsidian search<cr>', { desc = 'Search' })
 -- Obsidian Open Quickswitch
