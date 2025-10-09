@@ -12,12 +12,19 @@ require('sidekick').setup {
     },
   },
 }
+
+-- Keymaps
 -- Next Edit Suggestion
 vim.keymap.set({ 'n', 'i' }, '<tab>', function()
   if not require('sidekick').nes_jump_or_apply() then
     return '<Tab>'
   end
 end, { expr = true, desc = 'Goto/Apply Next Edit Suggestion' })
+
+vim.keymap.set('n', '<leader>au', function()
+  require('sidekick.nes').update()
+end, { desc = 'Update NES' })
+
 -- Toggle Sidekick CLI
 vim.keymap.set({ 'n', 't', 'i', 'x' }, '<c-.>', function()
   require('sidekick.cli').toggle()

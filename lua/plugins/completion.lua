@@ -22,18 +22,14 @@ require('blink.cmp').setup {
 
   keymap = {
     preset = 'default',
-    ['<Tab>'] = {
-      'snippet_forward',
-      function() -- sidekick next edit suggestion
-        return require('sidekick').nes_jump_or_apply()
-      end,
+    ['<C-e>'] = { 'hide', 'fallback' },
+    ['<C-y>'] = {
+      'select_and_accept',
       function() -- if you are using Neovim's native inline completions
         return vim.lsp.inline_completion.get()
       end,
-      'fallback',
+      fallback,
     },
-    ['<C-e>'] = { 'hide', 'fallback' },
-    ['<C-y>'] = { 'select_and_accept', 'fallback' },
   },
 
   appearance = {
