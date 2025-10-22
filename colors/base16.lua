@@ -1,39 +1,39 @@
 local dark_palette = {
   base00 = '#1c1917', -- Background
-  base01 = '#1f1c19', -- Lighter background (used for status bars, line numbers, etc.)
-  base02 = '#35332f', -- Selection background
-  base03 = '#5c5c5c', -- Comments, invisibles, line highlighting
-  base04 = '#6a6a6a', -- Dark foreground (used for status bars)
-  base05 = '#7a7a7a', -- Default foreground, caret, delimiters, operators
-  base06 = '#909090', -- Light foreground (not often used)
-  base07 = '#c8c8c8', -- Lightest foreground (used for bold text)
+  base01 = '#2a2520', -- Lighter background (used for status bars, line numbers, etc.)
+  base02 = '#3a3530', -- Selection background
+  base03 = '#6b6b6b', -- Comments, invisibles, line highlighting
+  base04 = '#7b7b7b', -- Dark foreground (used for status bars)
+  base05 = '#9b9b9b', -- Default foreground, caret, delimiters, operators
+  base06 = '#ababab', -- Light foreground (not often used)
+  base07 = '#d4d4d4', -- Lightest foreground (used for bold text)
   base08 = '#b38a7d', -- Variables, XML tags, markup link text, bullet points
   base09 = '#dee5e5', -- Integers, booleans, constants, XML attributes
   base0A = '#8c9ea5', -- Classes, attributes, function parameters, search text background
-  base0B = '#5a5a5a', -- Strings, inline code, escape characters
-  base0C = '#6c6c6c', -- Support, regex, escape characters, special variables
-  base0D = '#bcbcbc', -- Functions, methods, attributes
+  base0B = '#8a9a8a', -- Strings, inline code, escape characters
+  base0C = '#8a8a8a', -- Support, regex, escape characters, special variables
+  base0D = '#a8a8a8', -- Functions, methods, attributes
   base0E = '#AC5963', -- Keywords, storage, language constructs
-  base0F = '#404040', -- Deprecated elements, embedded language tags
+  base0F = '#505050', -- Deprecated elements, embedded language tags
 }
 
 local light_palette = {
-  base00 = '#f8f8f8', -- Background
-  base01 = '#f0f0f0', -- Lighter background (used for status bars, line numbers, etc.)
-  base02 = '#e8e8e8', -- Selection background
-  base03 = '#b0b0b0', -- Comments, invisibles, line highlighting
-  base04 = '#a0a0a0', -- Dark foreground (used for status bars)
-  base05 = '#5C6370', -- Default foreground, caret, delimiters, operators
-  base06 = '#4A5061', -- Light foreground (not often used)
-  base07 = '#282C34', -- Lightest foreground (used for bold text)
-  base08 = '#ba8d7f', -- Variables, XML tags, markup link text, bullet points
-  base09 = '#4e5a5a', -- Integers, booleans, constants, XML attributes
-  base0A = '#8899aa', -- Classes, attributes, function parameters, search text background
-  base0B = '#707070', -- Strings, inline code, escape characters
-  base0C = '#8a8a8a', -- Support, regex, escape characters, special variables
-  base0D = '#595959', -- Functions, methods, attributes
-  base0E = '#AC5963', -- Keywords, storage, language constructs
-  base0F = '#c0c0c0', -- Deprecated elements, embedded language tags
+  base00 = '#f8f8f8', -- Background (keep your original)
+  base01 = '#e8e8e8', -- Lighter background (keep your original)
+  base02 = '#d0d0d0', -- Selection background (more contrast)
+  base03 = '#a0a0a0', -- Comments, invisibles, line highlighting (darker for visibility)
+  base04 = '#787878', -- Dark foreground (used for status bars)
+  base05 = '#4a4c58', -- Default foreground, caret, delimiters, operators (better contrast)
+  base06 = '#383a48', -- Light foreground (not often used)
+  base07 = '#282c34', -- Lightest foreground (used for bold text)
+  base08 = '#c08070', -- Variables (warm tone, more saturated for light theme)
+  base09 = '#5a6060', -- Integers, booleans, constants (darker than original)
+  base0A = '#8c9ea5', -- Classes, attributes, function parameters (keep your color)
+  base0B = '#505050', -- Strings, inline code (darker for readability)
+  base0C = '#707070', -- Support, regex, escape characters (keep your original)
+  base0D = '#787878', -- Functions, methods, attributes (darker than your dark theme)
+  base0E = '#b85a63', -- Keywords, storage, language constructs (more saturated version)
+  base0F = '#484848', -- Deprecated elements, embedded language tags (slightly lighter)
 }
 
 -- Function to apply the colorscheme based on `vim.o.background`
