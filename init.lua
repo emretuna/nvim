@@ -47,6 +47,7 @@ now(function()
   --   depends = { 'rktjmp/lush.nvim' },
   -- }
 
+  -- vim.g.zenbones = { transparent_background = true }
   -- vim.cmd.colorscheme 'zenbones'
   vim.cmd.colorscheme 'base16'
 
@@ -102,5 +103,6 @@ later(function()
   require 'plugins.dadbod'
   -- require 'plugins.debug'
   -- require 'plugins.neotest'
+  require 'plugins.smear-cursor'
   other_plugins()
 end)
