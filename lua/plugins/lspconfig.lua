@@ -8,6 +8,7 @@ add {
     'WhoIsSethDaniel/mason-tool-installer.nvim',
     'b0o/schemastore.nvim',
     'folke/lazydev.nvim',
+    'artemave/workspace-diagnostics.nvim',
   },
 }
 
@@ -274,7 +275,15 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
   end,
 })
-
+-- Populate workspace diagnostics on LSP attach
+vim.api.nvim_create_autocmd('LspAttach', {
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if client then
+      require('workspace-diagnostics').populate_workspace_diagnostics(client, 0)
+    end
+  end,
+})
 -- Set floating window border style
 local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
 
