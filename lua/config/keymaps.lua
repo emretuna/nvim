@@ -69,6 +69,6 @@ vim.keymap.set('n', '<leader>q.', '<cmd>copen<CR>', { desc = 'Open Quickfix List
 vim.keymap.set('n', '<leader>qc', '<cmd>cclose<CR>', { desc = 'Close Quickfix List' })
 
 -- Terminal Better Ecape
-vim.keymap.set('t', '<Esc><Esc>', [[<C-\><C-n>]], { desc = 'Exit Terminal Mode' })
+-- vim.keymap.set('t', '<Esc><Esc>', [[<C-\><C-n>]], { desc = 'Exit Terminal Mode' })
 
 -- vim: ts=2 sts=2 sw=2 et

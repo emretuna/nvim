@@ -101,9 +101,7 @@ add {
   source = 'dmmulroy/ts-error-translator.nvim',
 }
 
-require('ts-error-translator').setup {
-  auto_override_publish_diagnostics = true,
-}
+require('ts-error-translator').setup()
 
 add {
   source = 'iamkarasik/sonarqube.nvim',
